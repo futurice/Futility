@@ -54,7 +54,11 @@ THE SOFTWARE.
     objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_DISMISS_BLOCK, dismissBlock, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_CANCEL_BLOCK, cancelBlock, OBJC_ASSOCIATION_COPY);
     
+#if __has_feature(objc_arc)
+    return alert;
+#else
     return [alert autorelease];
+#endif
 }
 
 + (UIAlertView *) fk_showWithTitle:(NSString*)title
@@ -135,7 +139,11 @@ THE SOFTWARE.
         
         alert.message = [modifiedMessage stringByAppendingFormat:@"%@\n\n\n", (messageIsTruncated ? @"…" : @"")];
         
+#if __has_feature(objc_arc)
+        field = [[UITextField alloc] initWithFrame:CGRectMake(16, 0, 252, 25)];
+#else
         field = [[[UITextField alloc] initWithFrame:CGRectMake(16, 0, 252, 25)] autorelease];
+#endif
         field.font = [UIFont systemFontOfSize:18];
         field.keyboardAppearance = UIKeyboardAppearanceAlert;
         field.secureTextEntry = secureInput;
@@ -203,10 +211,17 @@ THE SOFTWARE.
     {
         if (cancelBlock != nil)
         {
-            FKAlertViewCancelBlock bCancelBlock = [cancelBlock retain];
+            FKAlertViewCancelBlock bCancelBlock =
+#if __has_feature(objc_arc)
+                cancelBlock;
+#else
+                [cancelBlock retain];
+#endif
             dispatch_async(dispatch_get_main_queue(), ^{
                 bCancelBlock(alertView);
+#if !__has_feature(objc_arc)
                 [bCancelBlock release];
+#endif
             });
         }
     }
@@ -221,10 +236,17 @@ THE SOFTWARE.
         
         if (dismissBlock != nil)
         {
-            FKAlertViewDismissBlock bDismissBlock = [dismissBlock retain];
+            FKAlertViewDismissBlock bDismissBlock =
+#if __has_feature(objc_arc)
+                dismissBlock;
+#else
+                [dismissBlock retain];
+#endif
             dispatch_async(dispatch_get_main_queue(), ^{
                 bDismissBlock(alertView, buttonIndex, input);
+#if !__has_feature(objc_arc)
                 [bDismissBlock release];
+#endif
             });
         }
     }

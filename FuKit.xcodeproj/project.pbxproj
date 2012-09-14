@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
+		AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DBD160348DC007CEDDB /* SenTestingKit.framework */; };
+		AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA5160348DC007CEDDB /* UIKit.framework */; };
+		AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
+		AD255DF116034978007CEDDB /* libFuKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DDD16034978007CEDDB /* libFuKit.a */; };
+		AD255DF716034978007CEDDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD255DF516034978007CEDDB /* InfoPlist.strings */; };
+		AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255DF916034978007CEDDB /* FuKitTests.m */; };
+		AD255E0A160349FE007CEDDB /* DeviceCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E04160349FE007CEDDB /* DeviceCapabilities.m */; };
+		AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */; };
+		AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */; };
+		AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */; };
+		AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA9160348DC007CEDDB /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD255DEF16034978007CEDDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD255D98160348DC007CEDDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD255DDC16034978007CEDDB;
+			remoteInfo = FuKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD255DDB16034978007CEDDB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AD255DA5160348DC007CEDDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AD255DA7160348DC007CEDDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AD255DA9160348DC007CEDDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AD255DBD160348DC007CEDDB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		AD255DDD16034978007CEDDB /* libFuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD255DEB16034978007CEDDB /* FuKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FuKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD255DF416034978007CEDDB /* FuKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FuKitTests-Info.plist"; sourceTree = "<group>"; };
+		AD255DF616034978007CEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AD255DF916034978007CEDDB /* FuKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuKitTests.m; sourceTree = "<group>"; };
+		AD255E02160349FE007CEDDB /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
+		AD255E03160349FE007CEDDB /* DeviceCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCapabilities.h; sourceTree = "<group>"; };
+		AD255E04160349FE007CEDDB /* DeviceCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCapabilities.m; sourceTree = "<group>"; };
+		AD255E05160349FE007CEDDB /* NSArray+FKExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKExtensions.h"; sourceTree = "<group>"; };
+		AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKExtensions.m"; sourceTree = "<group>"; };
+		AD255E07160349FE007CEDDB /* OSConditionals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSConditionals.h; sourceTree = "<group>"; };
+		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
+		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
+		AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKExtensionsTests.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD255DDA16034978007CEDDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD255DE716034978007CEDDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */,
+				AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */,
+				AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */,
+				AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */,
+				AD255DF116034978007CEDDB /* libFuKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD255D96160348DC007CEDDB = {
+			isa = PBXGroup;
+			children = (
+				AD255DDF16034978007CEDDB /* FuKit */,
+				AD255DF216034978007CEDDB /* FuKitTests */,
+				AD255DA4160348DC007CEDDB /* Frameworks */,
+				AD255DA2160348DC007CEDDB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AD255DA2160348DC007CEDDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DDD16034978007CEDDB /* libFuKit.a */,
+				AD255DEB16034978007CEDDB /* FuKitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD255DA4160348DC007CEDDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DA5160348DC007CEDDB /* UIKit.framework */,
+				AD255DA7160348DC007CEDDB /* Foundation.framework */,
+				AD255DA9160348DC007CEDDB /* CoreGraphics.framework */,
+				AD255DBD160348DC007CEDDB /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD255DDF16034978007CEDDB /* FuKit */ = {
+			isa = PBXGroup;
+			children = (
+				AD255E01160349FE007CEDDB /* utility */,
+			);
+			path = FuKit;
+			sourceTree = "<group>";
+		};
+		AD255DF216034978007CEDDB /* FuKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DF316034978007CEDDB /* Supporting Files */,
+				AD255DF916034978007CEDDB /* FuKitTests.m */,
+				AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */,
+			);
+			path = FuKitTests;
+			sourceTree = "<group>";
+		};
+		AD255DF316034978007CEDDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DF416034978007CEDDB /* FuKitTests-Info.plist */,
+				AD255DF516034978007CEDDB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD255E01160349FE007CEDDB /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				AD255E02160349FE007CEDDB /* Colors.h */,
+				AD255E03160349FE007CEDDB /* DeviceCapabilities.h */,
+				AD255E04160349FE007CEDDB /* DeviceCapabilities.m */,
+				AD255E05160349FE007CEDDB /* NSArray+FKExtensions.h */,
+				AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */,
+				AD255E07160349FE007CEDDB /* OSConditionals.h */,
+				AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */,
+				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
+			);
+			path = utility;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD255DDC16034978007CEDDB /* FuKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKit" */;
+			buildPhases = (
+				AD255DD916034978007CEDDB /* Sources */,
+				AD255DDA16034978007CEDDB /* Frameworks */,
+				AD255DDB16034978007CEDDB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FuKit;
+			productName = FuKit;
+			productReference = AD255DDD16034978007CEDDB /* libFuKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AD255DEA16034978007CEDDB /* FuKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKitTests" */;
+			buildPhases = (
+				AD255DE616034978007CEDDB /* Sources */,
+				AD255DE716034978007CEDDB /* Frameworks */,
+				AD255DE816034978007CEDDB /* Resources */,
+				AD255DE916034978007CEDDB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD255DF016034978007CEDDB /* PBXTargetDependency */,
+			);
+			name = FuKitTests;
+			productName = FuKitTests;
+			productReference = AD255DEB16034978007CEDDB /* FuKitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD255D98160348DC007CEDDB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Futurice;
+			};
+			buildConfigurationList = AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "FuKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AD255D96160348DC007CEDDB;
+			productRefGroup = AD255DA2160348DC007CEDDB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD255DDC16034978007CEDDB /* FuKit */,
+				AD255DEA16034978007CEDDB /* FuKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD255DE816034978007CEDDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD255DF716034978007CEDDB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AD255DE916034978007CEDDB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD255DD916034978007CEDDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD255E0A160349FE007CEDDB /* DeviceCapabilities.m in Sources */,
+				AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */,
+				AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD255DE616034978007CEDDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */,
+				AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD255DF016034978007CEDDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD255DDC16034978007CEDDB /* FuKit */;
+			targetProxy = AD255DEF16034978007CEDDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AD255DF516034978007CEDDB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD255DF616034978007CEDDB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AD255DCC160348DC007CEDDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AD255DCD160348DC007CEDDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AD255DFC16034978007CEDDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/FuKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AD255DFD16034978007CEDDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/FuKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AD255DFF16034978007CEDDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "FuKitTests/FuKitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		AD255E0016034978007CEDDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "FuKitTests/FuKitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "FuKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD255DCC160348DC007CEDDB /* Debug */,
+				AD255DCD160348DC007CEDDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD255DFC16034978007CEDDB /* Debug */,
+				AD255DFD16034978007CEDDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD255DFF16034978007CEDDB /* Debug */,
+				AD255E0016034978007CEDDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD255D98160348DC007CEDDB /* Project object */;
+}
