@@ -31,4 +31,4 @@ THE SOFTWARE.
 #define COLOR_HSB(h,s,b)    COLOR_HSBA(h,s,b,1.0)
 
 #define COLOR_HEX(__hex)      COLOR_RGB(((__hex >> 16) & 0xFF)/255.0f, ((__hex >> 8) & 0xFF)/255.0f, (__hex & 0xFF)/255.0f)
-#define COLOR_HEX_A(__hex)    COLOR_RGBA(((__hex >> 16) & 0xFF)/255.0f, ((__hex >> 8) & 0xFF)/255.0f, (__hex & 0xFF)/255.0f, (a))
+#define COLOR_HEX_A(__hex,a)  COLOR_RGBA(((__hex >> 16) & 0xFF)/255.0f, ((__hex >> 8) & 0xFF)/255.0f, (__hex & 0xFF)/255.0f, (a))
