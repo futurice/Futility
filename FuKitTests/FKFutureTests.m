@@ -212,4 +212,54 @@ THE SOFTWARE.
     STAssertTrue(future3.ready, @"Ready after wait");
 }
 
+- (void)testAll1
+{
+    FKFuture *input = fk_result(@"That that is is that that is not is not is that it it is");
+    FKFuture *length = input.withResult(^(NSString *string) {
+        [NSThread sleepForTimeInterval:0.03];
+        return fk_result(@(string.length));
+    });
+    FKFuture *firstWord = input.withResult(^(NSString *string) {
+        [NSThread sleepForTimeInterval:0.01];
+        return fk_result([string componentsSeparatedByString:@" "][0]);
+    });
+    FKFuture *wordCounts = input.withResult(^(NSString *string) {
+        [NSThread sleepForTimeInterval:0.01];
+        NSArray *words = [string componentsSeparatedByString:@" "];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (NSString *word in words) {
+            dict[word] = @([dict[word] unsignedIntegerValue] + 1);
+        }
+        return fk_result(dict);
+    });
+    
+    STAssertFalse(length.ready, @"Still sleeping");
+    STAssertFalse(firstWord.ready, @"Still sleeping");
+    STAssertFalse(wordCounts.ready, @"Still sleeping");
+    
+    FKFuture *wordThings = @[firstWord, wordCounts].fk_whenAll;
+
+    STAssertFalse(wordThings.ready, @"Both inputs are sleeping, so am I");
+
+    [wordThings wait];
+
+    STAssertFalse(length.ready, @"Still sleeping");
+    STAssertTrue(firstWord.ready, @"Ready having waited for dependent future");
+    STAssertTrue(wordCounts.ready, @"Ready having waited for dependent future");
+    STAssertTrue(wordThings.ready, @"Ready after wait");
+    
+    NSArray *result = wordThings.result;
+    
+    STAssertEqualObjects(result, (@[
+        @"That",
+        @{
+            @"That": @1,
+            @"that": @4,
+            @"is": @6,
+            @"it": @2,
+            @"not": @2
+        }
+    ]), @"Contains results from both futures");
+}
+
 @end

@@ -57,14 +57,14 @@ FKFuture *fk_fail(NSString *messageOrNil); // [FKFuture futureWithError:]
 FKFuture *fk_error(NSError *error); // [FKFuture futureWithError:error]
 
 FKFuture *fk_whenAll(NSArray *futures);
-FKFuture *fk_whenAny(NSArray *futures);
+// FKFuture *fk_whenAny(NSArray *futures);
 
 // -----------------------------------------------------------------------------
 
 @interface NSArray (FKFutureExtensions)
 
 - (FKFuture *)fk_whenAll;
-- (FKFuture *)fk_whenAny;
+// - (FKFuture *)fk_whenAny;
 
 @end
 
@@ -80,7 +80,7 @@ FKFuture *fk_whenAny(NSArray *futures);
 
 // Will contain array of id and index.
 // (E.g. @[@"result", @4] means that the 5th future has value @"result".)
-+ (FKFuture *)futureWithAny:(NSArray *)futures;
+//+ (FKFuture *)futureWithAny:(NSArray *)futures;
 
 + (FKFuture *)futureByCallingBlock:(FKFutureFunction)block
                            withArg:(FKFuture*)future;

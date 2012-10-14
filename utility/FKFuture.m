@@ -68,10 +68,10 @@ FKFuture *fk_whenAll(NSArray *futures)
     return [FKFuture futureWithAll:futures];
 }
 
-FKFuture *fk_whenAny(NSArray *futures)
-{
-    return [FKFuture futureWithAny:futures];
-}
+//FKFuture *fk_whenAny(NSArray *futures)
+//{
+//    return [FKFuture futureWithAny:futures];
+//}
 
 
 
@@ -84,10 +84,10 @@ FKFuture *fk_whenAny(NSArray *futures)
     return fk_whenAll(self);
 }
 
-- (FKFuture *)fk_whenAny
-{
-    return fk_whenAny(self);
-}
+//- (FKFuture *)fk_whenAny
+//{
+//    return fk_whenAny(self);
+//}
 
 @end
 
@@ -200,27 +200,32 @@ FKFuture *fk_futureAny(NSArray *futures) {
 }
 
 - (id)initWithBlock:(FKFutureFunction)function
-                arg:(FKFuture *)argument
+          arguments:(NSArray *)arguments
               queue:(dispatch_queue_t)queue
 {
     NSAssert(function, @"block cannot be nil");
-    NSAssert(argument, @"argument cannot be nil");
-    NSAssert([argument isKindOfClass:[FKFuture class]], @"non-future argument");
+    NSAssert(arguments.count > 0, @"arguments array cannot be empty");
+    for (FKFuture *argument in arguments) {
+        NSAssert([argument isKindOfClass:[FKFuture class]],
+                 @"arguments must have type FKFuture");
+    }
 
     if ((self = [super init])) {
-        if (_queue) {
-            dispatch_retain(queue);
+        if (queue) {
             _queue = queue;
-        } else if (argument->_queue) {
-            dispatch_retain(argument->_queue);
-            _queue = argument->_queue;
+        } else {
+            for (FKFuture *argument in arguments) {
+                if (argument->_queue) {
+                    _queue = argument->_queue;
+                    break;
+                }
+            }
         }
+        if (_queue) dispatch_retain(_queue);
 
-        _inputs = @[argument];
+        _inputs = arguments;
         _outputs = [NSMutableArray array];
-        _function = ^(FKFuture *future) {
-            return function(future.result ? fk_result(future.result[0]) : future);
-        };
+        _function = function;
         _blockingInputCount = _inputs.count;
         for (FKFuture *input in _inputs) {
             if (![input addOutput:self]) {
@@ -346,21 +351,14 @@ FKFuture *fk_futureAny(NSArray *futures) {
 
 + (FKFuture *)futureWithAll:(NSArray *)futures
 {
-//    for (id obj in futures) {
-//        NSAssert(obj && [obj isKindOfClass:[FKFuture class]],
-//                 @"the array contains non-futures");
-//    }
-//    
-//    FKFuture *future = [[FKFuture alloc] init];
-//    future.inputs = [futures mutableCopy]; // ???
-//    fk_futureDispatch(future); // TODO
-//    
-//    return future;
-    return nil; // TODO
+    return [[FKFuture alloc]
+        initWithBlock:^(FKFuture *future) { return future; }
+        arguments:futures
+        queue:NULL];
 }
 
-+ (FKFuture *)futureWithAny:(NSArray *)futures
-{
+//+ (FKFuture *)futureWithAny:(NSArray *)futures
+//{
 //    for (id obj in futures) {
 //        NSAssert(obj && [obj isKindOfClass:[FKFuture class]],
 //                 @"the array contains non-futures");
@@ -368,9 +366,9 @@ FKFuture *fk_futureAny(NSArray *futures) {
 //    
 //    FKFuture *future = [[FKFuture alloc] init];
 //    // arg ???
-    
-    return nil; // TODO
-}
+//    
+//    return nil; // TODO
+//}
 
 + (FKFuture *)futureByCallingBlock:(FKFutureFunction)block
                            withArg:(FKFuture *)arg
@@ -385,8 +383,10 @@ FKFuture *fk_futureAny(NSArray *futures) {
                              queue:(dispatch_queue_t)queue
 {
     return [[FKFuture alloc]
-        initWithBlock:block
-        arg:arg
+        initWithBlock:^(FKFuture *future) {
+            return block(future.result ? fk_result(future.result[0]) : future);
+        }
+        arguments:@[arg]
         queue:queue];
 }
 
