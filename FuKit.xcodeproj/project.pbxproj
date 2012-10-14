@@ -20,7 +20,9 @@
 		AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */; };
 		AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */; };
 		AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */; };
+		AD725BED1628645B00579AA2 /* FKFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD725BEC1628645B00579AA2 /* FKFutureTests.m */; };
 		AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA9160348DC007CEDDB /* CoreGraphics.framework */; };
+		ADC1193B161A04B300E598BC /* FKFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC1193A161A04B300E598BC /* FKFuture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
 		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
 		AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKExtensionsTests.m"; sourceTree = "<group>"; };
+		AD725BEC1628645B00579AA2 /* FKFutureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKFutureTests.m; sourceTree = "<group>"; };
+		ADC11939161A04B300E598BC /* FKFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKFuture.h; sourceTree = "<group>"; };
+		ADC1193A161A04B300E598BC /* FKFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKFuture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +143,7 @@
 				AD255DF916034978007CEDDB /* FuKitTests.m */,
 				AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */,
 				88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */,
+				AD725BEC1628645B00579AA2 /* FKFutureTests.m */,
 			);
 			path = FuKitTests;
 			sourceTree = "<group>";
@@ -164,6 +170,8 @@
 				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
 				88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */,
 				88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */,
+				ADC11939161A04B300E598BC /* FKFuture.h */,
+				ADC1193A161A04B300E598BC /* FKFuture.m */,
 			);
 			path = utility;
 			sourceTree = SOURCE_ROOT;
@@ -270,6 +278,7 @@
 				AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */,
 				AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */,
 				88D5CAC21604E78800B7CBD7 /* NSArray+FKBinarySearch.m in Sources */,
+				ADC1193B161A04B300E598BC /* FKFuture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +289,7 @@
 				AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */,
 				AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */,
 				88D5CAC61604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm in Sources */,
+				AD725BED1628645B00579AA2 /* FKFutureTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
