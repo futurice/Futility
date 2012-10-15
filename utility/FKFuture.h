@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 typedef FKFuture *(^FKFutureFunction)(FKFuture *argument);
 
-typedef FKFuture *(^FKFutureWithResult)(id object);
+typedef FKFuture *(^FKFutureWithResult)(id result);
 typedef FKFuture *(^FKFutureWithError)(NSError *error);
 
 // -----------------------------------------------------------------------------
