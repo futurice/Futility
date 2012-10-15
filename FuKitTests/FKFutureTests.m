@@ -273,16 +273,16 @@ THE SOFTWARE.
     STAssertFalse(future1.ready, @"not ready before manual delivery");
     STAssertFalse(future2.ready, @"not ready before manual delivery");
 
-    [future2 deliverResult:@"foo"];
+    [future2 deliver:fk_result(@"foo")];
     
     STAssertFalse(future1.ready, @"not ready before manual delivery");
     STAssertTrue(future2.ready, @"ready after manual delivery");
     STAssertEqualObjects(future2.result, @"foo", @"");
     
-    [future1 deliverError:[NSError errorWithDomain:@"FKFutureTests" code:-1 userInfo:nil]];
+    [future1 deliver:fk_fail(@"doh!")];
     
     STAssertTrue(future1.ready, @"ready after manual delivery");
-    STAssertEqualObjects(future1.error.domain, @"FKFutureTests", @"");
+    STAssertEqualObjects(future1.error.userInfo[@"message"], @"doh!", @"");
     
     [future3 wait];
     

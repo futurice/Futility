@@ -97,8 +97,7 @@ FKFuture *fk_whenAll(NSArray *futures);
 
 + (FKFuture *)futureWithManualDelivery;
 
-- (void)deliverResult:(id)result;
-- (void)deliverError:(id)error;
+- (void)deliver:(FKFuture *)computedFuture;
 
 @property (atomic, readonly) BOOL ready; // whether there's a result or an error
 @property (atomic, readonly) id result;

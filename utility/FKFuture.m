@@ -273,13 +273,8 @@ FKFuture *fk_futureAny(NSArray *futures) {
         _inputs = nil;
     }
     NSAssert(inputs, @"already computed");
-    FKFuture *result = _function(fk_futureAll(inputs));
-
-    if (result.result) {
-        [self deliverResult:result.result];
-    } else {
-        [self deliverError:result.error];
-    }
+    FKFuture *future = _function(fk_futureAll(inputs));
+    [self deliver:future];
 }
 
 - (void)inputDidCompute:(FKFuture *)argument
@@ -395,44 +390,23 @@ FKFuture *fk_futureAny(NSArray *futures) {
     return [[FKFuture alloc] init]; // everything default-initialized
 }
 
-- (void)deliverResult:(id)result
+- (void)deliver:(FKFuture *)computedFuture
 {
-    if (!result) {
-        NSAssert(NO, @"result cannot be nil");
+    if (!computedFuture.ready) {
+        NSAssert(NO, @"a computed future must be ready");
         return;
     }
     @synchronized(self) {
         if (_result || _error) {
-            NSAssert(NO, @"cannot deliver result to a future which is ready");
+            NSAssert(NO, @"cannot deliver to a future which is ready");
             return;
         } else if (_inputs) {
-            NSAssert(NO, @"cannot deliver result to a scheduled future");
+            NSAssert(NO, @"cannot deliver to a scheduled future");
             return;
+        } else if (computedFuture.error) {
+            _error = computedFuture.error;
         } else {
-            _result = result;
-        }
-    }
-    [self notifyOutputs];
-}
-
-- (void)deliverError:(id)error
-{
-    if (!error) {
-        NSAssert(NO, @"error cannot be nil");
-        return;
-    } else if (![error isKindOfClass:[NSError class]]) {
-        NSAssert(NO, @"error must be kind of class NSError");
-        return;
-    }
-    @synchronized(self) {
-        if (_result || _error) {
-            NSAssert(NO, @"cannot deliver error to a future which is ready");
-            return;
-        } else if (_inputs) {
-            NSAssert(NO, @"cannot deliver error to a scheduled future");
-            return;
-        } else {
-            _error = error;
+            _result = computedFuture.result;
         }
     }
     [self notifyOutputs];
