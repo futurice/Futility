@@ -262,4 +262,31 @@ THE SOFTWARE.
     ]), @"Contains results from both futures");
 }
 
+- (void)testManualDelivery
+{
+    FKFuture *future1 = [FKFuture futureWithManualDelivery];
+    FKFuture *future2 = [FKFuture futureWithManualDelivery];
+    FKFuture *future3 = future2.withResult(^(NSString *s) {
+        return fk_result(@(s.length));
+    });
+    
+    STAssertFalse(future1.ready, @"not ready before manual delivery");
+    STAssertFalse(future2.ready, @"not ready before manual delivery");
+
+    [future2 deliverResult:@"foo"];
+    
+    STAssertFalse(future1.ready, @"not ready before manual delivery");
+    STAssertTrue(future2.ready, @"ready after manual delivery");
+    STAssertEqualObjects(future2.result, @"foo", @"");
+    
+    [future1 deliverError:[NSError errorWithDomain:@"FKFutureTests" code:-1 userInfo:nil]];
+    
+    STAssertTrue(future1.ready, @"ready after manual delivery");
+    STAssertEqualObjects(future1.error.domain, @"FKFutureTests", @"");
+    
+    [future3 wait];
+    
+    STAssertEqualObjects(future3.result, @3, @"");
+}
+
 @end

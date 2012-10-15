@@ -70,6 +70,12 @@ FKFuture *fk_whenAll(NSArray *futures);
 
 // -----------------------------------------------------------------------------
 
+@protocol FKFutureDelegate
+- (void)fk_futureWasCancelled;
+@end
+
+// -----------------------------------------------------------------------------
+
 @interface FKFuture : NSObject
 
 + (FKFuture *)futureWithResult:(id)result;
@@ -88,6 +94,11 @@ FKFuture *fk_whenAll(NSArray *futures);
 + (FKFuture *)futureByCallingBlock:(FKFutureFunction)block
                            withArg:(FKFuture*)future
                              queue:(dispatch_queue_t)queue; // default is NULL
+
++ (FKFuture *)futureWithManualDelivery;
+
+- (void)deliverResult:(id)result;
+- (void)deliverError:(id)error;
 
 @property (atomic, readonly) BOOL ready; // whether there's a result or an error
 @property (atomic, readonly) id result;

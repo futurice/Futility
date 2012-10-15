@@ -183,6 +183,14 @@ FKFuture *fk_futureAny(NSArray *futures) {
 
 @implementation FKFuture
 
+- (id)init
+{
+    if ((self = [super init])) {
+        _outputs = [NSMutableArray array];
+    }
+    return self;
+}
+
 - (id)initWithResult:(id)result
 {
     if ((self = [super init])) {
@@ -259,26 +267,18 @@ FKFuture *fk_futureAny(NSArray *futures) {
 
 - (void)compute
 {
-    FKFuture *result = _function(fk_futureAll(_inputs));
-
-    NSArray *outputs = nil;
-    
+    NSArray *inputs = nil;
     @synchronized(self) {
-        if (result.result) {
-            _result = result.result;
-        } else {
-            _error = result.error;
-        }
-        outputs = _outputs;
-        _outputs = nil;
+        inputs = _inputs;
         _inputs = nil;
     }
-    
-    NSAssert(self.ready, @"");
-    
-    // Notify outputs about finished computation.
-    for (FKWeak *ref in outputs) {
-        [[ref object] inputDidCompute:self];
+    NSAssert(inputs, @"already computed");
+    FKFuture *result = _function(fk_futureAll(inputs));
+
+    if (result.result) {
+        [self deliverResult:result.result];
+    } else {
+        [self deliverError:result.error];
     }
 }
 
@@ -390,6 +390,67 @@ FKFuture *fk_futureAny(NSArray *futures) {
         queue:queue];
 }
 
++ (FKFuture *)futureWithManualDelivery
+{
+    return [[FKFuture alloc] init]; // everything default-initialized
+}
+
+- (void)deliverResult:(id)result
+{
+    if (!result) {
+        NSAssert(NO, @"result cannot be nil");
+        return;
+    }
+    @synchronized(self) {
+        if (_result || _error) {
+            NSAssert(NO, @"cannot deliver result to a future which is ready");
+            return;
+        } else if (_inputs) {
+            NSAssert(NO, @"cannot deliver result to a scheduled future");
+            return;
+        } else {
+            _result = result;
+        }
+    }
+    [self notifyOutputs];
+}
+
+- (void)deliverError:(id)error
+{
+    if (!error) {
+        NSAssert(NO, @"error cannot be nil");
+        return;
+    } else if (![error isKindOfClass:[NSError class]]) {
+        NSAssert(NO, @"error must be kind of class NSError");
+        return;
+    }
+    @synchronized(self) {
+        if (_result || _error) {
+            NSAssert(NO, @"cannot deliver error to a future which is ready");
+            return;
+        } else if (_inputs) {
+            NSAssert(NO, @"cannot deliver error to a scheduled future");
+            return;
+        } else {
+            _error = error;
+        }
+    }
+    [self notifyOutputs];
+}
+
+- (void)notifyOutputs
+{
+    NSAssert(self.ready, @"");
+    NSArray *outputs = nil;
+    @synchronized(self) {
+        outputs = _outputs;
+        _outputs = nil;
+    }
+    for (FKWeak *ref in outputs) {
+        [[ref object] inputDidCompute:self];
+    }
+}
+
 - (FKFuture *(^)(FKFutureFunction))then
 {
     __strong FKFuture *future = self;
@@ -495,6 +556,8 @@ FKFuture *fk_futureAny(NSArray *futures) {
 
 - (void)wait
 {
+    if (self.ready) return; // nothing to wait for
+
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
     self.then(^(id _) {
