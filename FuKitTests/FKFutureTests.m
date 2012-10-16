@@ -31,6 +31,8 @@ THE SOFTWARE.
 
 #import "FKFuture.h"
 
+// -----------------------------------------------------------------------------
+
 @interface FKDealloc : NSObject
 @property (nonatomic, readonly) id label;
 @property (nonatomic, readonly) NSMutableArray *target;
@@ -51,6 +53,38 @@ THE SOFTWARE.
     [self.target addObject:self.label];
 }
 @end
+
+// -----------------------------------------------------------------------------
+
+@interface FKFutureTestDelegate : NSObject <FKFutureDelegate>
+@property (atomic) NSMutableArray *cancelledLabels;
+@property (atomic, readonly) NSUInteger cancelledCount;
+@end
+
+@implementation FKFutureTestDelegate
+
+- (id)init
+{
+    if (!(self = [super init])) return nil;
+    self.cancelledLabels = [NSMutableArray array];
+    return self;
+}
+
+- (void)futureWasCancelled:(id)label
+{
+    @synchronized(self) {
+        [self.cancelledLabels addObject:label];
+    }
+}
+
+- (NSUInteger)cancelledCount
+{
+    return self.cancelledLabels.count;
+}
+
+@end
+
+// -----------------------------------------------------------------------------
 
 @interface FKFutureTests : SenTestCase
 // No publicly used interface.
@@ -264,8 +298,8 @@ THE SOFTWARE.
 
 - (void)testManualDelivery
 {
-    FKFuture *future1 = [FKFuture futureWithManualDelivery];
-    FKFuture *future2 = [FKFuture futureWithManualDelivery];
+    FKFuture *future1 = [FKFuture futureWithDelegate:nil label:nil];
+    FKFuture *future2 = [FKFuture futureWithDelegate:nil label:nil];
     FKFuture *future3 = future2.withResult(^(NSString *s) {
         return fk_result(@(s.length));
     });
@@ -287,6 +321,35 @@ THE SOFTWARE.
     [future3 wait];
     
     STAssertEqualObjects(future3.result, @3, @"");
+}
+
+- (void)testDelegation
+{
+    FKFutureTestDelegate *delegate = [[FKFutureTestDelegate alloc] init];
+
+    STAssertEquals(delegate.cancelledCount, 0U, @"");
+    
+    @autoreleasepool {
+        FKFuture *future = [FKFuture futureWithDelegate:delegate label:@"1"];
+        future = nil;
+    }
+    
+    STAssertEquals(delegate.cancelledCount, 1U, @"");
+
+    @autoreleasepool {
+        FKFuture *future = [FKFuture futureWithDelegate:delegate label:@"2"];
+        [future deliver:fk_result(@123)];
+        STAssertEqualObjects(future.result, @123, @"");
+    }
+
+    STAssertEquals(delegate.cancelledCount, 1U, @"");
+
+    @autoreleasepool {
+        FKFuture *future = [FKFuture futureWithDelegate:delegate label:@"3"];
+        future = nil;
+    }
+    
+    STAssertEqualObjects(delegate.cancelledLabels, (@[@"1", @"3"]), @"");
 }
 
 @end

@@ -158,6 +158,9 @@ static void fk_futureDispatch(FKFuture *future);
 
 @property (nonatomic, readonly) NSMutableArray *outputs; // FKWeak-wrapped FKFutures, or nil
 
+@property (nonatomic, weak) id<FKFutureDelegate> delegate;
+@property (nonatomic) id label;
+
 @end
 
 
@@ -247,6 +250,7 @@ FKFuture *fk_futureAny(NSArray *futures) {
 - (void)dealloc
 {
     if (_queue) dispatch_release(_queue);
+    if (!self.ready) [self.delegate futureWasCancelled:self.label];
 }
 
 
@@ -385,9 +389,13 @@ FKFuture *fk_futureAny(NSArray *futures) {
         queue:queue];
 }
 
-+ (FKFuture *)futureWithManualDelivery
++ (FKFuture *)futureWithDelegate:(id<FKFutureDelegate>)delegate
+                           label:(id)label
 {
-    return [[FKFuture alloc] init]; // everything default-initialized
+    FKFuture *future = [[FKFuture alloc] init]; // everything default-initialized
+    future.delegate = delegate;
+    future.label = label;
+    return future;
 }
 
 - (void)deliver:(FKFuture *)computedFuture

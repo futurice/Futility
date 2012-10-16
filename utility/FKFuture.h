@@ -71,7 +71,7 @@ FKFuture *fk_whenAll(NSArray *futures);
 // -----------------------------------------------------------------------------
 
 @protocol FKFutureDelegate
-- (void)fk_futureWasCancelled;
+- (void)futureWasCancelled:(NSString *)label;
 @end
 
 // -----------------------------------------------------------------------------
@@ -95,7 +95,8 @@ FKFuture *fk_whenAll(NSArray *futures);
                            withArg:(FKFuture*)future
                              queue:(dispatch_queue_t)queue; // default is NULL
 
-+ (FKFuture *)futureWithManualDelivery;
++ (FKFuture *)futureWithDelegate:(id<FKFutureDelegate>)delegate
+                           label:(id)label;
 
 - (void)deliver:(FKFuture *)computedFuture;
 
