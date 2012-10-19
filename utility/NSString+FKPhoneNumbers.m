@@ -96,6 +96,10 @@
     NSString *standardized = self.fk_standardizedPhoneNumber;
     if (standardized.length < 5 || 20 < standardized.length)
         return NO;
+    // + allowed only at beginning:
+    NSInteger lastPlusIndex = [standardized rangeOfString:@"+" options:NSBackwardsSearch].location;
+    if (lastPlusIndex != NSNotFound && 0 < lastPlusIndex)
+        return NO;
     return ([self rangeOfCharacterFromSet:NSString.fk_atypicalPhoneNumberChars].location == NSNotFound);
 }
 

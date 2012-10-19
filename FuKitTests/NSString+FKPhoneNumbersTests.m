@@ -14,7 +14,7 @@
 
 @implementation NSString_FKPhoneNumbersTests
 
-- (void) testDetectionHeuristics
+- (void) testDetection
 {
     STAssertFalse([@"" fk_looksLikeAPhoneNumber], nil);
     STAssertFalse([@"1234" fk_looksLikeAPhoneNumber], @"too short");
@@ -29,6 +29,8 @@
     STAssertTrue([@"040 7515 415" fk_looksLikeAPhoneNumber], @"typical finnish case");
     STAssertFalse([@"555 GHOSTBUSTERS" fk_looksLikeAPhoneNumber], @"letters not allowed");
     STAssertTrue([@"  123       14     4   15          " fk_looksLikeAPhoneNumber], @"all whitespace should be ignored");
+    
+    STAssertFalse([@"100+200" fk_looksLikeAPhoneNumber], @"+ allowed only at the beginning");
 }
 
 - (void) testStandardization
