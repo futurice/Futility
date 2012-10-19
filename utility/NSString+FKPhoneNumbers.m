@@ -43,27 +43,27 @@
 
 @implementation NSString (FKPhoneNumbers)
 
-- (NSCharacterSet *) fk_significantPhoneNumberChars
++ (NSCharacterSet *) fk_significantPhoneNumberChars
 {
     RETURN_CACHED(NSCharacterSet,
         value = FK_RETAIN([NSCharacterSet characterSetWithCharactersInString:@"0123456789+#*"]);
     )
 }
-- (NSCharacterSet *) fk_insignificantPhoneNumberChars
++ (NSCharacterSet *) fk_insignificantPhoneNumberChars
 {
     RETURN_CACHED(NSCharacterSet,
         value = FK_RETAIN([self.fk_significantPhoneNumberChars invertedSet]);
     )
 }
 
-- (NSCharacterSet *) fk_typicalPhoneNumberChars
++ (NSCharacterSet *) fk_typicalPhoneNumberChars
 {
     RETURN_CACHED(NSCharacterSet,
         value = FK_RETAIN(self.fk_significantPhoneNumberChars.mutableCopy);
         [(NSMutableCharacterSet *)value addCharactersInString:@"- ()"];
     )
 }
-- (NSCharacterSet *) fk_atypicalPhoneNumberChars
++ (NSCharacterSet *) fk_atypicalPhoneNumberChars
 {
     RETURN_CACHED(NSCharacterSet,
         value = FK_RETAIN([self.fk_typicalPhoneNumberChars invertedSet]);
@@ -77,7 +77,7 @@
 
 - (NSString *) fk_standardizedPhoneNumber
 {
-    return [self fk_stringWithoutCharactersInSet:self.fk_insignificantPhoneNumberChars];
+    return [self fk_stringWithoutCharactersInSet:NSString.fk_insignificantPhoneNumberChars];
 }
 
 // Optional: You can use Apple's detector, but this
@@ -96,7 +96,7 @@
     NSString *standardized = self.fk_standardizedPhoneNumber;
     if (standardized.length < 5 || 20 < standardized.length)
         return NO;
-    return ([self rangeOfCharacterFromSet:self.fk_atypicalPhoneNumberChars].location == NSNotFound);
+    return ([self rangeOfCharacterFromSet:NSString.fk_atypicalPhoneNumberChars].location == NSNotFound);
 }
 
 @end

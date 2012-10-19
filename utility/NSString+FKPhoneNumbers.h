@@ -32,15 +32,15 @@
 
 // Characters that are typically found in phone numbers
 // that are formatted in a human-readable way
-- (NSCharacterSet *) fk_typicalPhoneNumberChars;
-- (NSCharacterSet *) fk_atypicalPhoneNumberChars; // opposite of above
++ (NSCharacterSet *) fk_typicalPhoneNumberChars;
++ (NSCharacterSet *) fk_atypicalPhoneNumberChars; // opposite of above
 
 // Characters that are significant wrt the identity of
 // the phone number (if any of these characters are
 // omitted, changed or added, the result is a different
 // phone number)
-- (NSCharacterSet *) fk_significantPhoneNumberChars;
-- (NSCharacterSet *) fk_insignificantPhoneNumberChars; // opposite of above
++ (NSCharacterSet *) fk_significantPhoneNumberChars;
++ (NSCharacterSet *) fk_insignificantPhoneNumberChars; // opposite of above
 
 - (BOOL) fk_looksLikeAPhoneNumber;
 
