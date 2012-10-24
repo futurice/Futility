@@ -103,4 +103,23 @@
     return ([self rangeOfCharacterFromSet:NSString.fk_atypicalPhoneNumberChars].location == NSNotFound);
 }
 
+- (BOOL) fk_looksLikeAFinnishMobilePhoneNumber
+{
+    if (!self.fk_looksLikeAPhoneNumber)
+        return NO;
+    
+    NSString *numberToExamine = self.fk_standardizedPhoneNumber;
+    if ([numberToExamine hasPrefix:@"+"])
+    {
+        NSString *finlandPrefix = @"+358";
+        if (![numberToExamine hasPrefix:finlandPrefix])
+            return NO;
+        numberToExamine = [@"0" stringByAppendingString:[numberToExamine substringFromIndex:finlandPrefix.length]];
+    }
+    
+    // http://www.viestintavirasto.fi/index/puhelin/puhelinverkonnumerointi/matkaviestinverkkojensuuntanumerot.html
+    // "Matkaviestinverkot ja -palvelut numeroidaan 04- ja 050-alkuisilla numeroilla."
+    return ([numberToExamine hasPrefix:@"04"] || [numberToExamine hasPrefix:@"050"]);
+}
+
 @end

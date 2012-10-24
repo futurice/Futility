@@ -33,6 +33,23 @@
     STAssertFalse([@"100+200" fk_looksLikeAPhoneNumber], @"+ allowed only at the beginning");
 }
 
+- (void) testFinnishMobileNumberDetection
+{
+    STAssertFalse([@"+10407515415" fk_looksLikeAFinnishMobilePhoneNumber], @"Non-Finnish (US) number");
+    
+    STAssertTrue([@"0407515415" fk_looksLikeAFinnishMobilePhoneNumber], nil);
+    STAssertTrue([@"+358407515415" fk_looksLikeAFinnishMobilePhoneNumber], nil);
+    STAssertTrue([@"(+358) 40 7515-415" fk_looksLikeAFinnishMobilePhoneNumber], nil);
+    
+    // See: http://www.viestintavirasto.fi/index/puhelin/puhelinverkonnumerointi/matkaviestinverkkojensuuntanumerot/matkaviestinverkkojensuuntanumerot.html
+    NSArray *finnishMobilePrefixes = @[@"040", @"041", @"042", @"04320", @"04321", @"0436", @"0438", @"044", @"0450", @"0451", @"0452", @"0453", @"04541", @"04542", @"04543", @"04544", @"04546", @"04547", @"04552", @"04554", @"04555", @"04556", @"04558", @"04559", @"0456", @"04570", @"04573", @"04574", @"04575", @"04576", @"04577", @"04578", @"04579", @"0458", @"046", @"04944", @"050"];
+    for (NSString *prefix in finnishMobilePrefixes)
+    {
+        STAssertTrue(([[NSString stringWithFormat:@"%@7515415", prefix] fk_looksLikeAFinnishMobilePhoneNumber]), prefix);
+        STAssertTrue(([[NSString stringWithFormat:@"+358%@7515415", [prefix substringFromIndex:1]] fk_looksLikeAFinnishMobilePhoneNumber]), prefix);
+    }
+}
+
 - (void) testStandardization
 {
     STAssertEqualObjects([@"(+3) - #*7" fk_standardizedPhoneNumber], @"+3#*7", @"irrelevant characters are stripped but relevant ones are not");

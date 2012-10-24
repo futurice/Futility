@@ -43,6 +43,7 @@
 + (NSCharacterSet *) fk_insignificantPhoneNumberChars; // opposite of above
 
 - (BOOL) fk_looksLikeAPhoneNumber;
+- (BOOL) fk_looksLikeAFinnishMobilePhoneNumber;
 
 - (NSString *) fk_standardizedPhoneNumber;
 
