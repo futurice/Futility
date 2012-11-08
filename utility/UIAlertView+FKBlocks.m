@@ -1,6 +1,5 @@
 //
 //  UIAlertView+FKBlocks.m
-//  Non-ARC version
 //  iOS 4.3+
 // 
 /*
