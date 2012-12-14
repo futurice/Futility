@@ -45,7 +45,7 @@
 
 - (UIImageView *) fk_addSplashScreenPlaceholderToWindow
 {
-    BOOL isFourInchScreen = (568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
+    BOOL isFourInchScreen = fabs(568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
     UIImage *splashImage = [UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")];
     
     UIImageView *splash = FK_AUTORELEASE([[UIImageView alloc] initWithImage:splashImage]);
