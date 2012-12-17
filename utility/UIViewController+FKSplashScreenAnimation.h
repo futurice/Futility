@@ -50,7 +50,8 @@ FKSplashScreenAnimation;
 // the screen somehow.
 //
 // Call this in the main UIViewController's -viewDidAppear: when
-// it is called the first time during the lifetime of the app.
+// it is called the first time during the lifetime of the app (you
+// can use fk_splashScreenHasBeenAnimated for this).
 //
 // The `animations` argument accepts an OR-ed bitfield of values from the
 // FKSplashScreenAnimation enumeration.
@@ -68,5 +69,10 @@ FKSplashScreenAnimation;
 // you are done animating it.
 //
 - (UIImageView *) fk_splashScreenPlaceholder;
+
+// Global state for whether the animation has already been
+// performed.
+//
+- (BOOL) fk_splashScreenHasBeenAnimated;
 
 @end

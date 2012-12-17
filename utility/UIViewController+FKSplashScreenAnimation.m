@@ -127,6 +127,12 @@ static BOOL animationIncludesSliding(int animations)
     self.view.transform = CGAffineTransformIdentity;
 }
 
+static BOOL splashScreenHasBeenAnimated = NO;
+- (BOOL) fk_splashScreenHasBeenAnimated
+{
+    return splashScreenHasBeenAnimated;
+}
+
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
                                                  animations:(int)animations
                                                  completion:(void(^)(BOOL finished))completion;
@@ -149,6 +155,7 @@ static BOOL animationIncludesSliding(int animations)
              completion(finished);
      }];
     
+    splashScreenHasBeenAnimated = YES;
     return splash;
 }
 
