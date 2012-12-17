@@ -43,15 +43,22 @@
 
 @implementation UIViewController (FKSplashScreenAnimation)
 
-- (UIImageView *) fk_addSplashScreenPlaceholderToWindow
+#define SPLASH_PLACEHOLDER_TAG 77177171
+
+- (UIImageView *) fk_splashScreenPlaceholder
 {
+    UIWindow *win = UIApplication.sharedApplication.keyWindow;
+    UIImageView *splash = (UIImageView *)[win viewWithTag:SPLASH_PLACEHOLDER_TAG];
+    if (splash != nil)
+        return splash;
+    
     BOOL isFourInchScreen = fabs(568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
     UIImage *splashImage = [UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")];
     
-    UIImageView *splash = FK_AUTORELEASE([[UIImageView alloc] initWithImage:splashImage]);
+    splash = FK_AUTORELEASE([[UIImageView alloc] initWithImage:splashImage]);
     splash.layer.shouldRasterize = YES;
+    splash.tag = SPLASH_PLACEHOLDER_TAG;
     
-    UIWindow *win = UIApplication.sharedApplication.keyWindow;
     splash.frame = CGRectMake(0, 0, win.frame.size.width, win.frame.size.height);
     [win addSubview:splash];
     
@@ -127,7 +134,7 @@ static BOOL animationIncludesSliding(int animations)
     if (animations == FKSplashScreenAnimation_None)
         return nil;
     
-    UIImageView *splash = [self fk_addSplashScreenPlaceholderToWindow];
+    UIImageView *splash = [self fk_splashScreenPlaceholder];
     
     [self fk_prepareAnimations:animations forView:splash];
     [UIView

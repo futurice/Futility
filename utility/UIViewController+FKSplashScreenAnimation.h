@@ -59,12 +59,14 @@ FKSplashScreenAnimation;
                                                  animations:(int)animations
                                                  completion:(void(^)(BOOL finished))completion;
 
-// Creates the splash screen image and adds it to the window.
+// Returns the splash screen placeholder image in the window.
+//
+// Creates it and adds it to the window, if it does not exist.
 // You can use this to perform animations for it manually.
 //
 // Remember to remove the image view from its superview when
 // you are done animating it.
 //
-- (UIImageView *) fk_addSplashScreenPlaceholderToWindow;
+- (UIImageView *) fk_splashScreenPlaceholder;
 
 @end
