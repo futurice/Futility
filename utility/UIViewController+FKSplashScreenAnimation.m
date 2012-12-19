@@ -67,7 +67,7 @@
 
 #define CHANGE_Y(__view, __y) (__view).frame = CGRectMake((__view).frame.origin.x, (__y), (__view).frame.size.width, (__view).frame.size.height)
 #define CHANGE_X(__view, __x) (__view).frame = CGRectMake((__x), (__view).frame.origin.y, (__view).frame.size.width, (__view).frame.size.height)
-#define ANIMATION_IS_USED(__animationsBitfield, __animationBit) (((__animationsBitfield) & (__animationBit)) != 0)
+#define ANIMATION_IS_USED(__animationsBitfield, __animationBit) ((__animationsBitfield) & (__animationBit))
 
 static BOOL animationIncludesSliding(int animations)
 {
