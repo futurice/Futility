@@ -52,6 +52,10 @@ typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
 // it is called the first time during the lifetime of the app (you
 // can use fk_splashScreenHasBeenAnimated for this).
 //
+// You may also call -fk_splashScreenPlaceholder in -viewDidLoad
+// to ensure that the splash screen placeholder is in place when
+// the system removes the actual default image from the screen.
+//
 // The `animations` argument accepts an OR-ed bitfield of values from the
 // FKSplashScreenAnimation enumeration.
 //
