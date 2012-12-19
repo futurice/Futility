@@ -30,7 +30,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum
+typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
 {
     FKSplashScreenAnimation_None = 0,
     FKSplashScreenAnimation_SlideUp =    (1 << 0),
@@ -40,8 +40,7 @@ typedef enum
     FKSplashScreenAnimation_FadeOut =    (1 << 4),
     FKSplashScreenAnimation_ZoomCloser = (1 << 5),
     FKSplashScreenAnimation_ZoomViewUnderneath = (1 << 6),
-}
-FKSplashScreenAnimation;
+};
 
 @interface UIViewController (FKSplashScreenAnimation)
 
