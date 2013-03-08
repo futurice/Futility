@@ -4,7 +4,7 @@
 /*
 The MIT License
 
-Copyright (c) 2012 Ali Rantakari
+Copyright (c) 2012-2013 Ali Rantakari
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,5 +48,18 @@ typedef BOOL (^FKArrayMatchBlock)(id obj);
 
 - (NSArray *) fk_arrayWithoutDuplicates;
 - (NSArray *) fk_arrayWithoutNulls;
+
+// Return @[@[a,x], @[c,y]] as @{a:x, c:y}
+- (NSDictionary *) fk_asDictionary;
+
+@end
+
+
+@interface NSDictionary (FKExtensions)
+
+// Return @{a:x, c:y} as @[@[a,x], @[c,y]]
+- (NSArray *) fk_pairs;
+
+- (NSDictionary *) fk_dictionaryByMerging:(NSDictionary *)other;
 
 @end

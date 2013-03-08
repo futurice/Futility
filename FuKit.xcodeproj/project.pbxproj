@@ -20,10 +20,10 @@
 		AD255DF716034978007CEDDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD255DF516034978007CEDDB /* InfoPlist.strings */; };
 		AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255DF916034978007CEDDB /* FuKitTests.m */; };
 		AD255E0A160349FE007CEDDB /* DeviceCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E04160349FE007CEDDB /* DeviceCapabilities.m */; };
-		AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */; };
 		AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */; };
-		AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */; };
+		AD255E0F16035F20007CEDDB /* FKCollectionExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */; };
 		AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA9160348DC007CEDDB /* CoreGraphics.framework */; };
+		C9F0FC3416E9FEDB0059531C /* FKCollectionsExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,12 +69,12 @@
 		AD255E02160349FE007CEDDB /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
 		AD255E03160349FE007CEDDB /* DeviceCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCapabilities.h; sourceTree = "<group>"; };
 		AD255E04160349FE007CEDDB /* DeviceCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCapabilities.m; sourceTree = "<group>"; };
-		AD255E05160349FE007CEDDB /* NSArray+FKExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKExtensions.h"; sourceTree = "<group>"; };
-		AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKExtensions.m"; sourceTree = "<group>"; };
 		AD255E07160349FE007CEDDB /* OSConditionals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSConditionals.h; sourceTree = "<group>"; };
 		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
 		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
-		AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKExtensionsTests.m"; sourceTree = "<group>"; };
+		AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionExtensionsTests.m; sourceTree = "<group>"; };
+		C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKCollectionsExtensions.h; sourceTree = "<group>"; };
+		C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionsExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,7 @@
 			children = (
 				AD255DF316034978007CEDDB /* Supporting Files */,
 				AD255DF916034978007CEDDB /* FuKitTests.m */,
-				AD255E0E16035F20007CEDDB /* NSArray+FKExtensionsTests.m */,
+				AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */,
 				88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */,
 				A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */,
 			);
@@ -163,11 +163,11 @@
 		AD255E01160349FE007CEDDB /* utility */ = {
 			isa = PBXGroup;
 			children = (
+				C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */,
+				C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */,
 				AD255E02160349FE007CEDDB /* Colors.h */,
 				AD255E03160349FE007CEDDB /* DeviceCapabilities.h */,
 				AD255E04160349FE007CEDDB /* DeviceCapabilities.m */,
-				AD255E05160349FE007CEDDB /* NSArray+FKExtensions.h */,
-				AD255E06160349FE007CEDDB /* NSArray+FKExtensions.m */,
 				AD255E07160349FE007CEDDB /* OSConditionals.h */,
 				AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */,
 				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
@@ -280,11 +280,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD255E0A160349FE007CEDDB /* DeviceCapabilities.m in Sources */,
-				AD255E0B160349FE007CEDDB /* NSArray+FKExtensions.m in Sources */,
 				AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */,
 				88D5CAC21604E78800B7CBD7 /* NSArray+FKBinarySearch.m in Sources */,
 				A459A97C1631573900D88254 /* NSString+FKPhoneNumbers.m in Sources */,
 				A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */,
+				C9F0FC3416E9FEDB0059531C /* FKCollectionsExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */,
-				AD255E0F16035F20007CEDDB /* NSArray+FKExtensionsTests.m in Sources */,
+				AD255E0F16035F20007CEDDB /* FKCollectionExtensionsTests.m in Sources */,
 				88D5CAC61604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm in Sources */,
 				A459A980163159C500D88254 /* NSString+FKPhoneNumbersTests.m in Sources */,
 			);

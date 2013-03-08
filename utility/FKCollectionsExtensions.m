@@ -4,7 +4,7 @@
 /*
 The MIT License
 
-Copyright (c) 2012 Ali Rantakari
+Copyright (c) 2012-2013 Ali Rantakari
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,30 +25,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#import "NSArray+FKExtensions.h"
+#import "FKCollectionsExtensions.h"
 
 @implementation NSArray (FKExtensions)
 
 - (NSArray *) fk_map:(FKArrayEnumerationBlock)block
 {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.count];
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self)
     {
         id o = block(obj);
-        [array addObject:(o == nil ? [NSNull null] : o)];
+        [ret addObject:(o == nil ? [NSNull null] : o)];
     }
-    return array;
+    return ret;
 }
 
 - (NSArray *) fk_filter:(FKArrayMatchBlock)block
 {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.count];
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self)
     {
         if (block(obj))
-            [array addObject:obj];
+            [ret addObject:obj];
     }
-    return array;
+    return ret;
 }
 
 - (id) fk_reduce:(FKArrayOperationBlock)block
@@ -75,14 +75,56 @@ THE SOFTWARE.
 
 - (NSArray *) fk_arrayWithoutDuplicates
 {
-    return [[NSSet setWithArray:self] allObjects];
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
+    for (id obj in self)
+    {
+        if (![ret containsObject:obj])
+            [ret addObject:obj];
+    }
+    return ret;
 }
 - (NSArray *) fk_arrayWithoutNulls
 {
     return [self fk_filter:^BOOL(id obj) {
-        return (![obj isEqual:[NSNull null]]);
+        return (![obj isEqual:NSNull.null]);
     }];
 }
 
+- (NSDictionary *) fk_asDictionary
+{
+    NSMutableDictionary *ret = [NSMutableDictionary dictionaryWithCapacity:self.count];
+    for (NSArray *obj in self)
+    {
+        if (![obj respondsToSelector:@selector(count)]
+            || obj.count == 0
+            || ![obj[0] conformsToProtocol:@protocol(NSCopying)]
+            )
+            continue;
+        ret[obj[0]] = (1 < obj.count) ? obj[1] : NSNull.null;
+    }
+    return ret;
+}
+
+@end
+
+
+@implementation NSDictionary (FKExtensions)
+
+- (NSArray *) fk_pairs
+{
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
+    for (id key in self)
+    {
+        [ret addObject:@[key, self[key]]];
+    }
+    return ret;
+}
+
+- (NSDictionary *) fk_dictionaryByMerging:(NSDictionary *)other
+{
+    NSMutableDictionary *ret = self.mutableCopy;
+    [ret addEntriesFromDictionary:other];
+    return ret;
+}
 
 @end
