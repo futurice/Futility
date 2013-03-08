@@ -30,14 +30,8 @@
 
 #import "UIViewController+FKSplashScreenAnimation.h"
 
-#if __has_feature(objc_arc)
-#define FK_RELEASE(__a)
-#define FK_RETAIN(__a) __a
-#define FK_AUTORELEASE(__a) __a
-#else
-#define FK_RELEASE(__a) [(__a) release]
-#define FK_RETAIN(__a) [(__a) retain]
-#define FK_AUTORELEASE(__a) [(__a) autorelease]
+#if !__has_feature(objc_arc)
+#warning "This file must be compiled with ARC enabled"
 #endif
 
 
@@ -55,7 +49,7 @@
     BOOL isFourInchScreen = fabs(568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
     UIImage *splashImage = [UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")];
     
-    splash = FK_AUTORELEASE([[UIImageView alloc] initWithImage:splashImage]);
+    splash = [[UIImageView alloc] initWithImage:splashImage];
     splash.layer.shouldRasterize = YES;
     splash.tag = SPLASH_PLACEHOLDER_TAG;
     
