@@ -130,7 +130,7 @@ static BOOL splashScreenHasBeenAnimated = NO;
 
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
                                                  animations:(int)animations
-                                                 completion:(void(^)(BOOL finished))completion;
+                                                 completion:(void(^)(BOOL finished))completion
 {
     if (animations == FKSplashScreenAnimation_None)
         return nil;
