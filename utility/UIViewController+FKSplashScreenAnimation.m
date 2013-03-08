@@ -51,6 +51,7 @@
     
     splash = [[UIImageView alloc] initWithImage:splashImage];
     splash.layer.shouldRasterize = YES;
+    splash.layer.rasterizationScale = UIScreen.mainScreen.scale;
     splash.tag = SPLASH_PLACEHOLDER_TAG;
     
     splash.frame = CGRectMake(0, 0, win.frame.size.width, win.frame.size.height);
