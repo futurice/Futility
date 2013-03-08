@@ -43,7 +43,7 @@
 {
     UIWindow *win = UIApplication.sharedApplication.keyWindow;
     UIImageView *splash = (UIImageView *)[win viewWithTag:SPLASH_PLACEHOLDER_TAG];
-    if (splash != nil)
+    if (splash)
         return splash;
     
     BOOL isFourInchScreen = fabs(568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
