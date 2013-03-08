@@ -60,9 +60,9 @@
     return splash;
 }
 
-#define CHANGE_Y(__view, __y) (__view).frame = CGRectMake((__view).frame.origin.x, (__y), (__view).frame.size.width, (__view).frame.size.height)
-#define CHANGE_X(__view, __x) (__view).frame = CGRectMake((__x), (__view).frame.origin.y, (__view).frame.size.width, (__view).frame.size.height)
-#define ANIMATION_IS_USED(__animationsBitfield, __animationBit) ((__animationsBitfield) & (__animationBit))
+#define CHANGE_Y(_view, _y) (_view).frame = CGRectMake((_view).frame.origin.x, (_y), (_view).frame.size.width, (_view).frame.size.height)
+#define CHANGE_X(_view, _x) (_view).frame = CGRectMake((_x), (_view).frame.origin.y, (_view).frame.size.width, (_view).frame.size.height)
+#define ANIMATION_IS_USED(_animationsBitfield, _animationBit) ((_animationsBitfield) & (_animationBit))
 
 static BOOL animationIncludesSliding(int animations)
 {
