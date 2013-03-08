@@ -30,16 +30,9 @@
 #import "FKThirdPartyApps.h"
 #import <objc/runtime.h>
 
-#if __has_feature(objc_arc)
-#define FK_RELEASE(__a)
-#define FK_RETAIN(__a) __a
-#define FK_AUTORELEASE(__a) __a
-#else
-#define FK_RELEASE(__a) [(__a) release]
-#define FK_RETAIN(__a) [(__a) retain]
-#define FK_AUTORELEASE(__a) [(__a) autorelease]
+#if !__has_feature(objc_arc)
+#warning "This file must be compiled with ARC enabled"
 #endif
-
 
 
 static BOOL canOpenURL(NSString *urlString)
@@ -56,11 +49,7 @@ static NSURL *urlByChangingScheme(NSURL *url, NSString *newScheme)
     NSMutableString *s = [NSMutableString stringWithCapacity:100];
     
     // [NSURL -path] strips possible trailing slashes, CFURLCopyPath() does not:
-#if __has_feature(objc_arc)
     NSString *path = (NSString *)CFBridgingRelease(CFURLCopyPath((CFURLRef)url));
-#else
-    NSString *path = FK_AUTORELEASE((NSString *)CFURLCopyPath((CFURLRef)url));
-#endif
     
     if (newScheme != nil && 0 < newScheme.length)
         [s appendFormat:@"%@://", newScheme];
@@ -83,11 +72,7 @@ static NSString *urlEncoded(NSString *str)
                                                               NULL,
                                                               (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
                                                               CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-#if __has_feature(objc_arc)
     return (NSString *)CFBridgingRelease(ref);
-#else
-    return FK_AUTORELEASE((NSString *)ref);
-#endif
 }
 
 
@@ -208,18 +193,18 @@ static NSString *urlEncoded(NSString *str)
 static NSArray *getBrowserApps()
 {
     return @[
-    FK_AUTORELEASE([[FKWebBrowserAppSafari alloc] init]),
-    FK_AUTORELEASE([[FKWebBrowserAppGoogleChrome alloc] init]),
-    FK_AUTORELEASE([[FKWebBrowserAppOperaMini alloc] init]),
+    [[FKWebBrowserAppSafari alloc] init],
+    [[FKWebBrowserAppGoogleChrome alloc] init],
+    [[FKWebBrowserAppOperaMini alloc] init],
     ];
 }
 
 static NSArray *getMapsApps()
 {
     return @[
-    FK_AUTORELEASE([[FKMapsAppAppleMaps alloc] init]),
-    FK_AUTORELEASE([[FKMapsAppGoogleMaps alloc] init]),
-    //FK_AUTORELEASE([[FKMapsAppNokiaHere alloc] init]),
+    [[FKMapsAppAppleMaps alloc] init],
+    [[FKMapsAppGoogleMaps alloc] init],
+    //[[FKMapsAppNokiaHere alloc] init],
     ];
 }
 
@@ -265,12 +250,12 @@ static void presentAppChoice(NSArray *apps, id targetValue, UIView *sheetParentV
     if (sheetDelegate == nil)
         sheetDelegate = [[FKAppActionSheetDelegate alloc] init];
     
-    UIActionSheet *sheet = FK_AUTORELEASE([[UIActionSheet alloc]
-                                           initWithTitle:sheetTitle
-                                           delegate:sheetDelegate
-                                           cancelButtonTitle:nil
-                                           destructiveButtonTitle:nil
-                                           otherButtonTitles:nil]);
+    UIActionSheet *sheet = [[UIActionSheet alloc]
+                            initWithTitle:sheetTitle
+                            delegate:sheetDelegate
+                            cancelButtonTitle:nil
+                            destructiveButtonTitle:nil
+                            otherButtonTitles:nil];
     
     for (FKApp *app in apps)
     {
