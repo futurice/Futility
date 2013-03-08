@@ -28,46 +28,30 @@
 
 #import "NSString+FKPhoneNumbers.h"
 
-#if __has_feature(objc_arc)
-#define FK_RETAIN(__a) __a
-#else
-#define FK_RETAIN(__a) [(__a) retain]
+#if !__has_feature(objc_arc)
+#warning "This file must be compiled with ARC enabled"
 #endif
-
-#define RETURN_CACHED(__type, ...) \
-    static __type *value = nil; \
-    if (value == nil) { \
-        __VA_ARGS__ \
-    } \
-    return value;
 
 @implementation NSString (FKPhoneNumbers)
 
 + (NSCharacterSet *) fk_significantPhoneNumberChars
 {
-    RETURN_CACHED(NSCharacterSet,
-        value = FK_RETAIN([NSCharacterSet characterSetWithCharactersInString:@"0123456789+#*"]);
-    )
+    return [NSCharacterSet characterSetWithCharactersInString:@"0123456789+#*"];
 }
 + (NSCharacterSet *) fk_insignificantPhoneNumberChars
 {
-    RETURN_CACHED(NSCharacterSet,
-        value = FK_RETAIN([self.fk_significantPhoneNumberChars invertedSet]);
-    )
+    return [self.fk_significantPhoneNumberChars invertedSet];
 }
 
 + (NSCharacterSet *) fk_typicalPhoneNumberChars
 {
-    RETURN_CACHED(NSCharacterSet,
-        value = FK_RETAIN(self.fk_significantPhoneNumberChars.mutableCopy);
-        [(NSMutableCharacterSet *)value addCharactersInString:@"- ()"];
-    )
+    NSMutableCharacterSet *ret = self.fk_significantPhoneNumberChars.mutableCopy;
+    [ret addCharactersInString:@"- ()"];
+    return ret;
 }
 + (NSCharacterSet *) fk_atypicalPhoneNumberChars
 {
-    RETURN_CACHED(NSCharacterSet,
-        value = FK_RETAIN([self.fk_typicalPhoneNumberChars invertedSet]);
-    )
+    return [self.fk_typicalPhoneNumberChars invertedSet];
 }
 
 - (NSString *) fk_stringWithoutCharactersInSet:(NSCharacterSet *)set
@@ -87,7 +71,7 @@
 {
     static NSDataDetector *phoneNumberDetector = nil;
     if (phoneNumberDetector == nil)
-        phoneNumberDetector = FK_RETAIN([NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:NULL]);
+        phoneNumberDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:NULL];
     return (0 < [phoneNumberDetector numberOfMatchesInString:self options:0 range:NSMakeRange(0, self.length)]);
 }
 
