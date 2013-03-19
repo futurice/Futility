@@ -81,6 +81,7 @@ static BOOL animationIncludesSliding(int animations)
         splashView.layer.shadowOffset = CGSizeMake(0, 0);
         splashView.layer.shadowOpacity = 0.6;
         splashView.layer.shadowRadius = 10;
+        splashView.layer.shadowPath = [UIBezierPath bezierPathWithRect:splashView.bounds].CGPath;
     }
     
     if (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_ZoomViewUnderneath))
