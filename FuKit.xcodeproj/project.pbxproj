@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		88D5CAC21604E78800B7CBD7 /* NSArray+FKBinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */; };
 		88D5CAC61604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */; };
+		A43AA7B016FA0D2100912B00 /* UIActionSheet+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */; };
 		A459A97C1631573900D88254 /* NSString+FKPhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */; };
 		A459A980163159C500D88254 /* NSString+FKPhoneNumbersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */; };
 		A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */; };
@@ -52,6 +53,8 @@
 		88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKBinarySearch.h"; sourceTree = "<group>"; };
 		88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKBinarySearch.m"; sourceTree = "<group>"; };
 		88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+FKBinarySearchTests.mm"; sourceTree = "<group>"; };
+		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
+		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
 		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
 		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
 		A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbersTests.m"; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				AD255E07160349FE007CEDDB /* OSConditionals.h */,
 				AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */,
 				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
+				A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */,
+				A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */,
 				88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */,
 				88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */,
 				A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */,
@@ -285,6 +290,7 @@
 				A459A97C1631573900D88254 /* NSString+FKPhoneNumbers.m in Sources */,
 				A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */,
 				C9F0FC3416E9FEDB0059531C /* FKCollectionsExtensions.m in Sources */,
+				A43AA7B016FA0D2100912B00 /* UIActionSheet+FKBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
