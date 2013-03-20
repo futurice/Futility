@@ -29,14 +29,8 @@ THE SOFTWARE.
 #import "UIAlertView+FKBlocks.h"
 #import <objc/runtime.h>
 
-#if __has_feature(objc_arc)
-#define FK_RELEASE(__a)
-#define FK_RETAIN(__a) __a
-#define FK_AUTORELEASE(__a) __a
-#else
-#define FK_RELEASE(__a) [(__a) release]
-#define FK_RETAIN(__a) [(__a) retain]
-#define FK_AUTORELEASE(__a) [(__a) autorelease]
+#if !__has_feature(objc_arc)
+#warning "This file must be compiled with ARC enabled"
 #endif
 
 #define FK_ASSOCIATION_KEY_DISMISS_BLOCK @"FKDismissBlock"
@@ -63,7 +57,7 @@ THE SOFTWARE.
     objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_DISMISS_BLOCK, dismissBlock, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_CANCEL_BLOCK, cancelBlock, OBJC_ASSOCIATION_COPY);
     
-    return FK_AUTORELEASE(alert);
+    return alert;
 }
 
 + (UIAlertView *) fk_showWithTitle:(NSString*)title
@@ -144,7 +138,7 @@ THE SOFTWARE.
         
         alert.message = [modifiedMessage stringByAppendingFormat:@"%@\n\n\n", (messageIsTruncated ? @"…" : @"")];
         
-        field = FK_AUTORELEASE([[UITextField alloc] initWithFrame:CGRectMake(16, 0, 252, 25)]);
+        field = [[UITextField alloc] initWithFrame:CGRectMake(16, 0, 252, 25)];
         field.font = [UIFont systemFontOfSize:18];
         field.keyboardAppearance = UIKeyboardAppearanceAlert;
         field.secureTextEntry = secureInput;
@@ -212,10 +206,8 @@ THE SOFTWARE.
     {
         if (cancelBlock != nil)
         {
-            FKAlertViewCancelBlock bCancelBlock = FK_RETAIN(cancelBlock);
             dispatch_async(dispatch_get_main_queue(), ^{
-                bCancelBlock(alertView);
-                FK_RELEASE(bCancelBlock);
+                cancelBlock(alertView);
             });
         }
     }
@@ -230,10 +222,8 @@ THE SOFTWARE.
         
         if (dismissBlock != nil)
         {
-            FKAlertViewDismissBlock bDismissBlock = FK_RETAIN(dismissBlock);
             dispatch_async(dispatch_get_main_queue(), ^{
-                bDismissBlock(alertView, buttonIndex, input);
-                FK_RELEASE(bDismissBlock);
+                dismissBlock(alertView, buttonIndex, input);
             });
         }
     }
