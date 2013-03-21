@@ -37,7 +37,6 @@
 
 #define FK_ASSOCIATION_KEY_DISMISS_BLOCK @"FKDismissBlock"
 #define FK_ASSOCIATION_KEY_CANCEL_BLOCK @"FKCancelBlock"
-#define FK_ASSOCIATION_KEY_BUTTON_TAG @"FKButtonTag"
 
 @implementation UIActionSheet (FKBlocks)
 
