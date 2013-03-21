@@ -57,9 +57,9 @@
                             otherButtonTitles:nil];
     sheet.actionSheetStyle = style;
     
-    for (NSString *title in otherButtonTitles)
+    for (NSString *buttonTitle in otherButtonTitles)
     {
-        [sheet addButtonWithTitle:title];
+        [sheet addButtonWithTitle:buttonTitle];
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:cancelButtonTitle];
     
