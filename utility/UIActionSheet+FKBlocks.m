@@ -66,11 +66,11 @@
     objc_setAssociatedObject(sheet, FK_ASSOCIATION_KEY_DISMISS_BLOCK, dismissBlock, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(sheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK, cancelBlock, OBJC_ASSOCIATION_COPY);
     
-    if ([sheetParentView isKindOfClass:[UITabBar class]])
+    if ([sheetParentView isKindOfClass:UITabBar.class])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
-    else if ([sheetParentView isKindOfClass:[UIToolbar class]])
+    else if ([sheetParentView isKindOfClass:UIToolbar.class])
         [sheet showFromToolbar:(UIToolbar *)sheetParentView];
-    else if ([sheetParentView isKindOfClass:[UIBarButtonItem class]])
+    else if ([sheetParentView isKindOfClass:UIBarButtonItem.class])
         [sheet showFromBarButtonItem:(UIBarButtonItem *)sheetParentView animated:YES];
     else
         [sheet showInView:sheetParentView];
