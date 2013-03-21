@@ -39,25 +39,37 @@
 
 #define SPLASH_PLACEHOLDER_TAG 77177171
 
-- (UIImageView *) fk_splashScreenPlaceholder
+static UIWindow *splashWindow;
+
+- (void) fk_createSplashScreenWindow
 {
-    UIWindow *win = UIApplication.sharedApplication.keyWindow;
-    UIImageView *splash = (UIImageView *)[win viewWithTag:SPLASH_PLACEHOLDER_TAG];
-    if (splash)
-        return splash;
+    if (splashWindow)
+        return;
+    
+    // Instantiating a UIWindow adds it to the app automatically.
+    //
+    CGSize keyWindowSize = UIApplication.sharedApplication.keyWindow.frame.size;
+    splashWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, keyWindowSize.width, keyWindowSize.height)];
+    splashWindow.backgroundColor = UIColor.clearColor;
+    splashWindow.alpha = 1;
+    splashWindow.windowLevel = UIWindowLevelStatusBar - 1;
+    splashWindow.hidden = NO;
+    splashWindow.rootViewController = [[UIViewController alloc] init];
     
     BOOL isFourInchScreen = fabs(568 - UIScreen.mainScreen.bounds.size.height) < 0.1;
-    UIImage *splashImage = [UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")];
-    
-    splash = [[UIImageView alloc] initWithImage:splashImage];
+    UIImageView *splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")]];
     splash.layer.shouldRasterize = YES;
     splash.layer.rasterizationScale = UIScreen.mainScreen.scale;
     splash.tag = SPLASH_PLACEHOLDER_TAG;
     
-    splash.frame = CGRectMake(0, 0, win.frame.size.width, win.frame.size.height);
-    [win addSubview:splash];
-    
-    return splash;
+    splash.frame = CGRectMake(0, 0, splashWindow.frame.size.width, splashWindow.frame.size.height);
+    splashWindow.rootViewController.view.frame = splash.bounds;
+    [splashWindow.rootViewController.view addSubview:splash];
+}
+
+- (UIImageView *) fk_splashScreenPlaceholder
+{
+    return (UIImageView *)[splashWindow.rootViewController.view viewWithTag:SPLASH_PLACEHOLDER_TAG];
 }
 
 #define CHANGE_Y(_view, _y) (_view).frame = CGRectMake((_view).frame.origin.x, (_y), (_view).frame.size.width, (_view).frame.size.height)
@@ -136,6 +148,7 @@ static BOOL splashScreenHasBeenAnimated = NO;
     if (animations == FKSplashScreenAnimation_None)
         return nil;
     
+    [self fk_createSplashScreenWindow];
     UIImageView *splash = [self fk_splashScreenPlaceholder];
     
     [self fk_prepareAnimations:animations forView:splash];
@@ -146,7 +159,8 @@ static BOOL splashScreenHasBeenAnimated = NO;
      }
      completion:^(BOOL finished) {
          [self fk_completeAnimations:animations forView:splash];
-         [splash removeFromSuperview];
+         [splashWindow removeFromSuperview];
+         splashWindow = nil;
          if (completion)
              completion(finished);
      }];

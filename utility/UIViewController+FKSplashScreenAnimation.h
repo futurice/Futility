@@ -7,7 +7,7 @@
 /*
  The MIT License
  
- Copyright (c) 2012 Futurice
+ Copyright (c) 2012-2013 Futurice
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -44,15 +44,13 @@ typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
 
 @interface UIViewController (FKSplashScreenAnimation)
 
-// Animates the removal of the splash screen by adding a UIImageView with
-// the splash screen image into the window and then animating that off
-// the screen somehow.
+// Animates the removal of the splash screen.
 //
 // Call this in the main UIViewController's -viewDidAppear: when
 // it is called the first time during the lifetime of the app (you
 // can use fk_splashScreenHasBeenAnimated for this).
 //
-// You may also call -fk_splashScreenPlaceholder in -viewDidLoad
+// You may also call -fk_createSplashScreenWindow in -viewDidLoad
 // to ensure that the splash screen placeholder is in place when
 // the system removes the actual default image from the screen.
 //
@@ -63,12 +61,14 @@ typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
                                                  animations:(int)animations
                                                  completion:(void(^)(BOOL finished))completion;
 
+// Creates a temporary UIWindow that contains the splash screen image.
+//
+- (void) fk_createSplashScreenWindow;
+
 // Returns the splash screen placeholder image in the window.
 //
-// Creates it and adds it to the window, if it does not exist.
 // You can use this to perform animations for it manually.
-//
-// Remember to remove the image view from its superview when
+// Remember to remove the UIWindow from its superview when
 // you are done animating it.
 //
 - (UIImageView *) fk_splashScreenPlaceholder;
