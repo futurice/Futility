@@ -58,7 +58,7 @@ THE SOFTWARE.
         return ret;
     for (NSUInteger i = 1; i < self.count; i++)
     {
-        ret = block(ret, [self objectAtIndex:i]);
+        ret = block(ret, self[i]);
     }
     return ret;
 }
@@ -96,7 +96,7 @@ THE SOFTWARE.
 - (NSArray *) fk_arrayWithoutNulls
 {
     return [self fk_filter:^BOOL(id obj) {
-        return (![obj isEqual:NSNull.null]);
+        return ![obj isEqual:NSNull.null];
     }];
 }
 
