@@ -46,6 +46,9 @@ typedef BOOL (^FKArrayMatchBlock)(id obj);
 // Return first item for which block(obj) returns YES
 - (id) fk_first:(FKArrayMatchBlock)block;
 
+// Return whether array contains an item for which block(obj) returns YES
+- (BOOL) fk_contains:(FKArrayMatchBlock)block;
+
 - (NSArray *) fk_arrayWithoutDuplicates;
 - (NSArray *) fk_arrayWithoutNulls;
 

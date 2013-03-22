@@ -73,6 +73,16 @@ THE SOFTWARE.
     return nil;
 }
 
+- (BOOL) fk_contains:(FKArrayMatchBlock)block
+{
+    for (id obj in self)
+    {
+        if (block(obj))
+            return YES;
+    }
+    return NO;
+}
+
 - (NSArray *) fk_arrayWithoutDuplicates
 {
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
