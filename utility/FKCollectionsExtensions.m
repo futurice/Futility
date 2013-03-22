@@ -53,7 +53,9 @@ THE SOFTWARE.
 
 - (id) fk_reduce:(FKArrayOperationBlock)block
 {
-    id ret = [self objectAtIndex:0];
+    if (self.count == 0)
+        return nil;
+    id ret = self[0];
     if (self.count < 2)
         return ret;
     for (NSUInteger i = 1; i < self.count; i++)
