@@ -65,6 +65,9 @@
 
 - (void) test_fk_reduce
 {
+    STAssertEqualObjects(([@[] fk_reduce:^id(id x, id y) { return @1; }]), nil, @"Empty receiver -> response is nil");
+    STAssertEqualObjects(([@[@1,@2] fk_reduce:^id(id x, id y) { return nil; }]), nil, @"nil");
+    
     id val_sum = [@[@1,@2,@3,@4] fk_reduce:^id(id x, id y) {
         return @([x intValue] + [y intValue]);
     }];
