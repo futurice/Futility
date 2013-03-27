@@ -90,18 +90,18 @@
 
 @implementation UIView (FKKeyboard)
 
-#define FK_OBSERVER_ASSOCIATION_KEY @"com.futurice.FKViewKeyboardObserver"
+static void *kFKObserverAssociationKey = (void *)&kFKObserverAssociationKey;
 
 - (void) fk_reactToKeyboardWithHandler:(FKViewKeyboardReactionHandler)handler
 {
     FKViewKeyboardObserver *observer = [[FKViewKeyboardObserver alloc] init];
     [observer handleKeyboardForView:self withHandler:handler];
-    objc_setAssociatedObject(self, FK_OBSERVER_ASSOCIATION_KEY, observer, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, kFKObserverAssociationKey, observer, OBJC_ASSOCIATION_RETAIN);
 }
 
 - (void) fk_stopReactingToKeyboard
 {
-    objc_setAssociatedObject(self, FK_OBSERVER_ASSOCIATION_KEY, nil, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, kFKObserverAssociationKey, nil, OBJC_ASSOCIATION_RETAIN);
 }
 
 - (void) fk_reactToKeyboardWithAnimationHandler:(void (^)(BOOL keyboardWillShow))handler

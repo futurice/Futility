@@ -33,8 +33,8 @@ THE SOFTWARE.
 #warning "This file must be compiled with ARC enabled"
 #endif
 
-#define FK_ASSOCIATION_KEY_DISMISS_BLOCK @"FKDismissBlock"
-#define FK_ASSOCIATION_KEY_CANCEL_BLOCK @"FKCancelBlock"
+static void *kFKDismissBlockAssociationKey = (void *)&kFKDismissBlockAssociationKey;
+static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKey;
 
 @implementation UIAlertView (UIAlertView_FKBlocks)
 
@@ -54,8 +54,8 @@ THE SOFTWARE.
     for (NSString *otherButtonTitle in otherButtonTitles)
         [alert addButtonWithTitle:otherButtonTitle];
     
-    objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_DISMISS_BLOCK, dismissBlock, OBJC_ASSOCIATION_COPY);
-    objc_setAssociatedObject(alert, FK_ASSOCIATION_KEY_CANCEL_BLOCK, cancelBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(alert, kFKDismissBlockAssociationKey, dismissBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(alert, kFKCancelBlockAssociationKey, cancelBlock, OBJC_ASSOCIATION_COPY);
     
     return alert;
 }
@@ -199,8 +199,8 @@ THE SOFTWARE.
 
 + (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    FKAlertViewDismissBlock dismissBlock = objc_getAssociatedObject(alertView, FK_ASSOCIATION_KEY_DISMISS_BLOCK);
-    FKAlertViewCancelBlock cancelBlock = objc_getAssociatedObject(alertView, FK_ASSOCIATION_KEY_CANCEL_BLOCK);
+    FKAlertViewDismissBlock dismissBlock = objc_getAssociatedObject(alertView, kFKDismissBlockAssociationKey);
+    FKAlertViewCancelBlock cancelBlock = objc_getAssociatedObject(alertView, kFKCancelBlockAssociationKey);
     
     if (buttonIndex == [alertView cancelButtonIndex])
     {
@@ -228,8 +228,8 @@ THE SOFTWARE.
         }
     }
     
-    objc_setAssociatedObject(alertView, FK_ASSOCIATION_KEY_DISMISS_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(alertView, FK_ASSOCIATION_KEY_CANCEL_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(alertView, kFKDismissBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(alertView, kFKCancelBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 @end

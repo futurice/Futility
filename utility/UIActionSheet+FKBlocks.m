@@ -35,8 +35,8 @@
 #warning "This file must be compiled with ARC enabled"
 #endif
 
-#define FK_ASSOCIATION_KEY_DISMISS_BLOCK @"FKDismissBlock"
-#define FK_ASSOCIATION_KEY_CANCEL_BLOCK @"FKCancelBlock"
+static void *kFKDismissBlockAssociationKey = (void *)&kFKDismissBlockAssociationKey;
+static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKey;
 
 @implementation UIActionSheet (FKBlocks)
 
@@ -63,8 +63,8 @@
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:cancelButtonTitle];
     
-    objc_setAssociatedObject(sheet, FK_ASSOCIATION_KEY_DISMISS_BLOCK, dismissBlock, OBJC_ASSOCIATION_COPY);
-    objc_setAssociatedObject(sheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK, cancelBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(sheet, kFKDismissBlockAssociationKey, dismissBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(sheet, kFKCancelBlockAssociationKey, cancelBlock, OBJC_ASSOCIATION_COPY);
     
     if ([sheetParentView isKindOfClass:UITabBar.class])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
@@ -80,8 +80,8 @@
 
 + (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    FKActionSheetDismissBlock dismissBlock = objc_getAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_DISMISS_BLOCK);
-    FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK);
+    FKActionSheetDismissBlock dismissBlock = objc_getAssociatedObject(actionSheet, kFKDismissBlockAssociationKey);
+    FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, kFKCancelBlockAssociationKey);
     
     if (buttonIndex == actionSheet.cancelButtonIndex)
     {
@@ -102,13 +102,13 @@
         }
     }
     
-    objc_setAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_DISMISS_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKDismissBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKCancelBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 + (void) actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK);
+    FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, kFKCancelBlockAssociationKey);
     
     if (cancelBlock != nil)
     {
@@ -117,8 +117,8 @@
         });
     }
     
-    objc_setAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_DISMISS_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(actionSheet, FK_ASSOCIATION_KEY_CANCEL_BLOCK, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKDismissBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKCancelBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 @end
