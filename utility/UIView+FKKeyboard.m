@@ -45,6 +45,7 @@
 // react to this by detaching the observer.
 //
 @interface FKViewKeyboardObserver : NSObject
+@property(retain) NSMutableArray *observers;
 @end
 @implementation FKViewKeyboardObserver
 
@@ -61,29 +62,36 @@
 
 - (void) handleKeyboardForView:(UIView *)view withHandler:(FKViewKeyboardReactionHandler)handler
 {
-    [NSNotificationCenter.defaultCenter
-     addObserverForName:UIKeyboardWillShowNotification
-     object:nil
-     queue:NSOperationQueue.mainQueue
-     usingBlock:^(NSNotification *note) {
-         handler(note,
-                 YES,
-                 [self
-                  viewIsObscured:view
-                  byScreenRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]]);
-     }];
-    [NSNotificationCenter.defaultCenter
-     addObserverForName:UIKeyboardWillHideNotification
-     object:nil
-     queue:NSOperationQueue.mainQueue
-     usingBlock:^(NSNotification *note) {
-         handler(note, NO, NO);
-     }];
+    self.observers = [NSMutableArray arrayWithCapacity:2];
+    
+    [self.observers addObject:
+     [NSNotificationCenter.defaultCenter
+      addObserverForName:UIKeyboardWillShowNotification
+      object:nil
+      queue:NSOperationQueue.mainQueue
+      usingBlock:^(NSNotification *note) {
+          handler(note,
+                  YES,
+                  [self
+                   viewIsObscured:view
+                   byScreenRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]]);
+      }]];
+    [self.observers addObject:
+     [NSNotificationCenter.defaultCenter
+      addObserverForName:UIKeyboardWillHideNotification
+      object:nil
+      queue:NSOperationQueue.mainQueue
+      usingBlock:^(NSNotification *note) {
+          handler(note, NO, NO);
+      }]];
 }
 
 - (void) dealloc
 {
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    for (id observer in _observers)
+    {
+        [NSNotificationCenter.defaultCenter removeObserver:observer];
+    }
 }
 
 @end
