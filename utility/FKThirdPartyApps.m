@@ -209,9 +209,8 @@ static NSArray *getMapsApps()
 }
 
 
-
-#define FK_SHEET_ASSOCIATION_APPS @"Apps"
-#define FK_SHEET_ASSOCIATION_TARGETVALUE @"TargetValue"
+static void *kFKSheetAppsAssociationKey = (void *)&kFKSheetAppsAssociationKey;
+static void *kFKSheetTargetValueAssociationKey = (void *)&kFKSheetTargetValueAssociationKey;
 
 @class FKAppActionSheetDelegate;
 static FKAppActionSheetDelegate *sheetDelegate;
@@ -226,10 +225,10 @@ static FKAppActionSheetDelegate *sheetDelegate;
     
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     
-    NSArray *sheetApps = objc_getAssociatedObject(actionSheet, FK_SHEET_ASSOCIATION_APPS);
-    NSObject *targetValue = objc_getAssociatedObject(actionSheet, FK_SHEET_ASSOCIATION_TARGETVALUE);
-    objc_setAssociatedObject(actionSheet, FK_SHEET_ASSOCIATION_APPS, nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(actionSheet, FK_SHEET_ASSOCIATION_TARGETVALUE, nil, OBJC_ASSOCIATION_ASSIGN);
+    NSArray *sheetApps = objc_getAssociatedObject(actionSheet, kFKSheetAppsAssociationKey);
+    NSObject *targetValue = objc_getAssociatedObject(actionSheet, kFKSheetTargetValueAssociationKey);
+    objc_setAssociatedObject(actionSheet, kFKSheetAppsAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKSheetTargetValueAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
     
     for (FKApp *app in sheetApps)
     {
@@ -263,8 +262,8 @@ static void presentAppChoice(NSArray *apps, id targetValue, UIView *sheetParentV
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:sheetCancelButtonTitle];
     
-    objc_setAssociatedObject(sheet, FK_SHEET_ASSOCIATION_APPS, apps, OBJC_ASSOCIATION_COPY);
-    objc_setAssociatedObject(sheet, FK_SHEET_ASSOCIATION_TARGETVALUE, targetValue, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(sheet, kFKSheetAppsAssociationKey, apps, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(sheet, kFKSheetTargetValueAssociationKey, targetValue, OBJC_ASSOCIATION_COPY);
     
     if ([sheetParentView isKindOfClass:[UITabBar class]])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
