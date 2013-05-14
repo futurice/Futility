@@ -46,6 +46,10 @@
 //
 @interface FKViewKeyboardObserver : NSObject
 @property(retain) NSMutableArray *observers;
+@property(retain) NSTimer *throttlingTimer;
+@property(retain) UIView *view;
+@property(copy) FKViewKeyboardReactionHandler handler;
+@property(assign) NSTimeInterval throttlingInterval;
 @end
 @implementation FKViewKeyboardObserver
 
@@ -60,38 +64,56 @@
     return CGRectIntersectsRect(rectInScreenCoords, viewFrameInScreenCoords);
 }
 
-- (void) handleKeyboardForView:(UIView *)view withHandler:(FKViewKeyboardReactionHandler)handler
+- (void) handleKeyboardForView:(UIView *)view withHandler:(FKViewKeyboardReactionHandler)handler throttlingInterval:(NSTimeInterval)interval
 {
-    self.observers = [NSMutableArray arrayWithCapacity:2];
+    self.view = view;
+    self.handler = handler;
+    self.throttlingInterval = interval;
     
-    [self.observers addObject:
-     [NSNotificationCenter.defaultCenter
-      addObserverForName:UIKeyboardWillShowNotification
-      object:nil
-      queue:NSOperationQueue.mainQueue
-      usingBlock:^(NSNotification *note) {
-          handler(note,
-                  YES,
-                  [self
-                   viewIsObscured:view
-                   byScreenRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]]);
-      }]];
-    [self.observers addObject:
-     [NSNotificationCenter.defaultCenter
-      addObserverForName:UIKeyboardWillHideNotification
-      object:nil
-      queue:NSOperationQueue.mainQueue
-      usingBlock:^(NSNotification *note) {
-          handler(note, NO, NO);
-      }]];
+    [NSNotificationCenter.defaultCenter
+     addObserver:self
+     selector:@selector(didReceiveKeyboardNotification:)
+     name:UIKeyboardWillShowNotification
+     object:nil];
+    [NSNotificationCenter.defaultCenter
+     addObserver:self
+     selector:@selector(didReceiveKeyboardNotification:)
+     name:UIKeyboardWillHideNotification
+     object:nil];
+}
+
+- (void) didReceiveKeyboardNotification:(NSNotification *)note
+{
+    if (self.throttlingTimer)
+        [self.throttlingTimer invalidate];
+    self.throttlingTimer = [NSTimer
+                            scheduledTimerWithTimeInterval:self.throttlingInterval
+                            target:self
+                            selector:@selector(throttlingTimerDidFire:)
+                            userInfo:note
+                            repeats:NO];
+}
+
+- (void) throttlingTimerDidFire:(NSTimer *)timer
+{
+    NSNotification *note = timer.userInfo;
+    if ([note.name isEqualToString:UIKeyboardWillShowNotification])
+    {
+        self.handler(note,
+                     YES,
+                     [self
+                      viewIsObscured:self.view
+                      byScreenRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]]);
+    }
+    else
+    {
+        self.handler(note, NO, NO);
+    }
 }
 
 - (void) dealloc
 {
-    for (id observer in _observers)
-    {
-        [NSNotificationCenter.defaultCenter removeObserver:observer];
-    }
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 @end
@@ -100,10 +122,10 @@
 
 static void *kFKObserverAssociationKey = (void *)&kFKObserverAssociationKey;
 
-- (void) fk_reactToKeyboardWithHandler:(FKViewKeyboardReactionHandler)handler
+- (void) fk_reactToKeyboardWithHandler:(FKViewKeyboardReactionHandler)handler throttlingInterval:(NSTimeInterval)interval
 {
     FKViewKeyboardObserver *observer = [[FKViewKeyboardObserver alloc] init];
-    [observer handleKeyboardForView:self withHandler:handler];
+    [observer handleKeyboardForView:self withHandler:handler throttlingInterval:interval];
     objc_setAssociatedObject(self, kFKObserverAssociationKey, observer, OBJC_ASSOCIATION_RETAIN);
 }
 
@@ -114,6 +136,10 @@ static void *kFKObserverAssociationKey = (void *)&kFKObserverAssociationKey;
 
 - (void) fk_reactToKeyboardWithAnimationHandler:(void (^)(BOOL keyboardWillShow))handler
 {
+    // When you press the `x` button on a text field to clear its value, the keyboard
+    // hides and shows again in quick succession. To avoid reacting to these, we
+    // throttle the events with a short interval.
+    //
     __block BOOL hasAnimatedDueToKeyboard = NO;
     [self fk_reactToKeyboardWithHandler:^(NSNotification *note, BOOL keyboardWillShow, BOOL willBeObscuredByKeyboard) {
         if ((keyboardWillShow && willBeObscuredByKeyboard)
@@ -129,7 +155,7 @@ static void *kFKObserverAssociationKey = (void *)&kFKObserverAssociationKey;
              }
              completion:NULL];
         }
-    }];
+    } throttlingInterval:0.1];
 }
 
 @end

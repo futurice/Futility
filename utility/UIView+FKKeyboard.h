@@ -34,7 +34,7 @@ typedef void(^FKViewKeyboardReactionHandler)(NSNotification *note, BOOL keyboard
 
 @interface UIView (FKKeyboard)
 
-- (void) fk_reactToKeyboardWithHandler:(FKViewKeyboardReactionHandler)handler __attribute__((nonnull(1)));
+- (void) fk_reactToKeyboardWithHandler:(FKViewKeyboardReactionHandler)handler throttlingInterval:(NSTimeInterval)interval __attribute__((nonnull(1)));
 - (void) fk_reactToKeyboardWithAnimationHandler:(void (^)(BOOL keyboardWillShow))handler __attribute__((nonnull(1)));
 - (void) fk_stopReactingToKeyboard;
 
