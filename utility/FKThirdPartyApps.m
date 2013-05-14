@@ -49,7 +49,7 @@ static NSURL *urlByChangingScheme(NSURL *url, NSString *newScheme)
     NSMutableString *s = [NSMutableString stringWithCapacity:100];
     
     // [NSURL -path] strips possible trailing slashes, CFURLCopyPath() does not:
-    NSString *path = (NSString *)CFBridgingRelease(CFURLCopyPath((CFURLRef)url));
+    NSString *path = (NSString *)CFBridgingRelease(CFURLCopyPath((__bridge CFURLRef)url));
     
     if (newScheme != nil && 0 < newScheme.length)
         [s appendFormat:@"%@://", newScheme];
@@ -68,9 +68,9 @@ static NSURL *urlByChangingScheme(NSURL *url, NSString *newScheme)
 static NSString *urlEncoded(NSString *str)
 {
 	CFStringRef ref = CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                              (CFStringRef)str,
+                                                              (__bridge CFStringRef)str,
                                                               NULL,
-                                                              (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
+                                                              (__bridge CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
                                                               CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     return (NSString *)CFBridgingRelease(ref);
 }
