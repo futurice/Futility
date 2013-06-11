@@ -36,7 +36,13 @@ THE SOFTWARE.
 #define kCFCoreFoundationVersionNumber_iOS_6_0 790.00
 #endif
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
+// This value is from the iOS 7 DP1:
+#define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
+#endif
+
 #define PRE_IOS_3  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_3_0)
 #define PRE_IOS_4  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_4_0)
 #define PRE_IOS_5  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0)
 #define PRE_IOS_6  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0)
+#define PRE_IOS_7  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0)
