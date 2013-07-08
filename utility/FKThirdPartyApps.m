@@ -81,6 +81,7 @@ static NSString *urlEncoded(NSString *str)
 - (NSString *) appStoreId;
 - (NSString *) name;
 - (BOOL) isInstalled;
+- (void) offerToInstall;
 - (void) handleOpaqueValue:(id)value;
 @end
 @implementation FKApp
@@ -88,6 +89,9 @@ static NSString *urlEncoded(NSString *str)
 - (NSString *) name { return nil; }
 - (BOOL) isInstalled { return NO; }
 - (void) handleOpaqueValue:(id)value {}
+- (void) offerToInstall {
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", self.appStoreId]]);
+}
 @end
 
 
