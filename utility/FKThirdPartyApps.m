@@ -78,11 +78,13 @@ static NSString *urlEncoded(NSString *str)
 
 
 @interface FKApp : NSObject
+- (NSString *) appStoreId;
 - (NSString *) name;
 - (BOOL) isInstalled;
 - (void) handleOpaqueValue:(id)value;
 @end
 @implementation FKApp
+- (NSString *) appStoreId { return nil; }
 - (NSString *) name { return nil; }
 - (BOOL) isInstalled { return NO; }
 - (void) handleOpaqueValue:(id)value {}
@@ -121,6 +123,7 @@ static NSString *urlEncoded(NSString *str)
 @end
 @implementation FKWebBrowserAppGoogleChrome
 - (NSString *) name { return @"Google Chrome"; }
+- (NSString *) appStoreId { return @"535886823"; }
 - (BOOL) isInstalled { return canOpenURL(@"googlechrome://"); }
 - (BOOL) canOpenURL:(NSURL *)url {
     return [@[@"http", @"https"] containsObject:url.scheme.lowercaseString];
@@ -135,6 +138,7 @@ static NSString *urlEncoded(NSString *str)
 @end
 @implementation FKWebBrowserAppOperaMini
 - (NSString *) name { return @"Opera Mini"; }
+- (NSString *) appStoreId { return @"363729560"; }
 - (BOOL) isInstalled { return canOpenURL(@"ohttp://"); }
 - (BOOL) canOpenURL:(NSURL *)url {
     return [@[@"http", @"https", @"ftp"] containsObject:url.scheme.lowercaseString];
@@ -172,6 +176,7 @@ static NSString *urlEncoded(NSString *str)
 @end
 @implementation FKMapsAppGoogleMaps
 - (NSString *) name { return @"Google Maps"; } // TODO: should localize?
+- (NSString *) appStoreId { return @"585027354"; }
 - (BOOL) isInstalled { return canOpenURL(@"comgooglemaps://"); }
 - (void) openWithSearch:(NSString *)searchQuery {
     openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%@", urlEncoded(searchQuery)]]);
@@ -182,6 +187,7 @@ static NSString *urlEncoded(NSString *str)
 @end
 @implementation FKMapsAppNokiaHere
 - (NSString *) name { return @"HERE Maps"; }
+- (NSString *) appStoreId { return @"577430143"; }
 - (BOOL) isInstalled { return canOpenURL(@"nok://"); }
 - (void) openWithSearch:(NSString *)searchQuery {
     // TODO: The URL scheme is "nok", but what is the URL format supposed to be for searches?
