@@ -77,6 +77,7 @@ static NSString *urlEncoded(NSString *str)
 
 
 
+
 @interface FKApp : NSObject
 - (NSString *) appStoreId;
 - (NSString *) name;
@@ -157,9 +158,15 @@ static NSString *urlEncoded(NSString *str)
 //
 @interface FKMapsApp : FKApp
 - (void) openWithSearch:(NSString *)searchQuery;
+- (BOOL) supportsNavigationMode:(FKMapsAppNavigationMode)mode;
+- (void) openWithNavigationFromAddress:(NSString *)from toAddress:(NSString *)to navigationMode:(FKMapsAppNavigationMode)mode;
+- (void) openWithNavigationFromPlacemark:(MKPlacemark *)from toPlacemark:(MKPlacemark *)to navigationMode:(FKMapsAppNavigationMode)mode;
 @end
 @implementation FKMapsApp
 - (void) openWithSearch:(NSString *)searchQuery {}
+- (BOOL) supportsNavigationMode:(FKMapsAppNavigationMode)mode { return NO; }
+- (void) openWithNavigationFromAddress:(NSString *)from toAddress:(NSString *)to navigationMode:(FKMapsAppNavigationMode)mode {}
+- (void) openWithNavigationFromPlacemark:(MKPlacemark *)from toPlacemark:(MKPlacemark *)to navigationMode:(FKMapsAppNavigationMode)mode {}
 - (void) handleOpaqueValue:(id)value {
     if ([value isKindOfClass:[NSString class]])
         [self openWithSearch:(NSString *)value];
@@ -174,6 +181,26 @@ static NSString *urlEncoded(NSString *str)
 - (void) openWithSearch:(NSString *)searchQuery {
     openURL([NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@", urlEncoded(searchQuery ?: @"")]]);
 }
+- (NSString *) parameterForNavigationMode:(FKMapsAppNavigationMode)mode {
+    switch (mode) {
+        case FKMapsAppNavigationMode_Drive: return MKLaunchOptionsDirectionsModeDriving;
+        case FKMapsAppNavigationMode_Walk: return MKLaunchOptionsDirectionsModeWalking;
+        case FKMapsAppNavigationMode_Transit: return nil;
+        case FKMapsAppNavigationMode_None: return nil;
+    }
+}
+- (BOOL) supportsNavigationMode:(FKMapsAppNavigationMode)mode { return ([self parameterForNavigationMode:mode] != nil); }
+- (void) openWithNavigationFromAddress:(NSString *)from toAddress:(NSString *)to navigationMode:(FKMapsAppNavigationMode)mode {
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/maps?saddr=%@&daddr=%@",
+                                  urlEncoded(from ?: @""), urlEncoded(to ?: @"")]]);
+}
+- (void) openWithNavigationFromPlacemark:(MKPlacemark *)from toPlacemark:(MKPlacemark *)to navigationMode:(FKMapsAppNavigationMode)mode {
+    MKMapItem *fromItem = from ? [[MKMapItem alloc] initWithPlacemark:from] : [MKMapItem mapItemForCurrentLocation];
+    MKMapItem *toItem = to ? [[MKMapItem alloc] initWithPlacemark:to] : [MKMapItem mapItemForCurrentLocation];
+    [MKMapItem openMapsWithItems:@[fromItem, toItem] launchOptions:@{
+     MKLaunchOptionsDirectionsModeKey: [self parameterForNavigationMode:mode],
+     }];
+}
 @end
 
 @interface FKMapsAppGoogleMaps : FKMapsApp
@@ -184,6 +211,51 @@ static NSString *urlEncoded(NSString *str)
 - (BOOL) isInstalled { return canOpenURL(@"comgooglemaps://"); }
 - (void) openWithSearch:(NSString *)searchQuery {
     openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%@", urlEncoded(searchQuery ?: @"")]]);
+}
+- (NSString *) parameterForNavigationMode:(FKMapsAppNavigationMode)mode {
+    switch (mode) {
+        case FKMapsAppNavigationMode_Drive: return @"driving";
+        case FKMapsAppNavigationMode_Walk: return @"walking";
+        case FKMapsAppNavigationMode_Transit: return @"transit";
+        case FKMapsAppNavigationMode_None: return nil;
+    }
+}
+- (BOOL) supportsNavigationMode:(FKMapsAppNavigationMode)mode { return ([self parameterForNavigationMode:mode] != nil); }
+- (void) openWithNavigationFromAddress:(NSString *)from toAddress:(NSString *)to navigationMode:(FKMapsAppNavigationMode)mode {
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=%@",
+                                  urlEncoded(from ?: @""), urlEncoded(to ?: @""),
+                                  urlEncoded([self parameterForNavigationMode:mode])]]);
+}
++ (NSString *) parameterFromPlacemark:(MKPlacemark *)placemark
+{
+    if (placemark == nil)
+        return nil;
+    // Prefer address format
+    if (placemark.addressDictionary) {
+        NSDictionary *dict = placemark.addressDictionary;
+        NSArray *addressParts = @[
+                                  dict[(NSString*)kABPersonAddressStreetKey] ?: @"",
+                                  FMT(@"%@ %@", dict[(NSString*)kABPersonAddressZIPKey], dict[(NSString*)kABPersonAddressCityKey]) ?: @"",
+                                  dict[(NSString*)kABPersonAddressCountryKey] ?: @"",
+                                  ];
+        BOOL allPartsExist = YES;
+        for (NSString *part in addressParts) {
+            if ([part stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].length == 0) {
+                allPartsExist = NO;
+                break;
+            }
+        }
+        if (allPartsExist)
+            return [addressParts componentsJoinedByString:@", "];
+    }
+    // Otherwise use coordinate format (shows as such in the Google Maps UI)
+    return [NSString stringWithFormat:@"%f,%f", placemark.coordinate.latitude, placemark.coordinate.longitude];
+}
+- (void) openWithNavigationFromPlacemark:(MKPlacemark *)from toPlacemark:(MKPlacemark *)to navigationMode:(FKMapsAppNavigationMode)mode {
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=%@",
+                                  urlEncoded([self.class parameterFromPlacemark:from] ?: @""),
+                                  urlEncoded([self.class parameterFromPlacemark:to] ?: @""),
+                                  urlEncoded([self parameterForNavigationMode:mode])]]);
 }
 @end
 
@@ -220,7 +292,8 @@ static NSArray *getMapsApps()
 
 
 static void *kFKSheetAppsAssociationKey = (void *)&kFKSheetAppsAssociationKey;
-static void *kFKSheetTargetValueAssociationKey = (void *)&kFKSheetTargetValueAssociationKey;
+static void *kFKSheetHandlerAssociationKey = (void *)&kFKSheetHandlerAssociationKey;
+typedef void(^FKSheetHandler)(FKApp *app);
 
 @class FKAppActionSheetDelegate;
 static FKAppActionSheetDelegate *sheetDelegate;
@@ -236,15 +309,15 @@ static FKAppActionSheetDelegate *sheetDelegate;
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     
     NSArray *sheetApps = objc_getAssociatedObject(actionSheet, kFKSheetAppsAssociationKey);
-    NSObject *targetValue = objc_getAssociatedObject(actionSheet, kFKSheetTargetValueAssociationKey);
+    FKSheetHandler handler = objc_getAssociatedObject(actionSheet, kFKSheetHandlerAssociationKey);
     objc_setAssociatedObject(actionSheet, kFKSheetAppsAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(actionSheet, kFKSheetTargetValueAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(actionSheet, kFKSheetHandlerAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
     
     for (FKApp *app in sheetApps)
     {
         if ([app.name isEqualToString:buttonTitle])
         {
-            [app handleOpaqueValue:targetValue];
+            handler(app);
             return;
         }
     }
@@ -253,8 +326,16 @@ static FKAppActionSheetDelegate *sheetDelegate;
 
 
 
-static void presentAppChoice(NSArray *apps, id targetValue, UIView *sheetParentView, NSString *sheetTitle, NSString *sheetCancelButtonTitle)
+static void presentAppChoice(NSArray *apps, UIView *sheetParentView, NSString *sheetTitle, NSString *sheetCancelButtonTitle, FKSheetHandler handler)
 {
+    if (apps.count == 0)
+        return;
+    
+    if (apps.count == 1)
+    {
+        handler(apps.lastObject);
+        return;
+    }
     
     if (sheetDelegate == nil)
         sheetDelegate = [[FKAppActionSheetDelegate alloc] init];
@@ -273,7 +354,7 @@ static void presentAppChoice(NSArray *apps, id targetValue, UIView *sheetParentV
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:sheetCancelButtonTitle];
     
     objc_setAssociatedObject(sheet, kFKSheetAppsAssociationKey, apps, OBJC_ASSOCIATION_COPY);
-    objc_setAssociatedObject(sheet, kFKSheetTargetValueAssociationKey, targetValue, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(sheet, kFKSheetHandlerAssociationKey, handler, OBJC_ASSOCIATION_COPY);
     
     if ([sheetParentView isKindOfClass:[UITabBar class]])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
@@ -298,16 +379,9 @@ void fk_openURLInAnyBrowser(NSURL *url, UIView *sheetParentView, NSString *sheet
             [availableBrowsers addObject:browser];
     }
     
-    if (availableBrowsers.count == 0)
-        return;
-    
-    if (availableBrowsers.count == 1)
-    {
-        [(FKWebBrowserApp *)availableBrowsers.lastObject openURL:url];
-        return;
-    }
-    
-    presentAppChoice(availableBrowsers, urlToOpen, sheetParentView, sheetTitle, sheetCancelButtonTitle);
+    presentAppChoice(availableBrowsers, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp){
+        [(FKWebBrowserApp *)selectedApp openURL:urlToOpen];
+    });
 }
 
 void fk_openSearchInAnyMapsApp(NSString *mapSearchQuery, UIView *sheetParentView, NSString *sheetTitle, NSString *sheetCancelButtonTitle)
@@ -319,16 +393,41 @@ void fk_openSearchInAnyMapsApp(NSString *mapSearchQuery, UIView *sheetParentView
             [availableMapsApps addObject:mapsApp];
     }
     
-    if (availableMapsApps.count == 0)
-        return;
-    
-    if (availableMapsApps.count == 1)
-    {
-        [(FKMapsApp *)availableMapsApps.lastObject openWithSearch:mapSearchQuery];
-        return;
-    }
-    
-    presentAppChoice(availableMapsApps, mapSearchQuery, sheetParentView, sheetTitle, sheetCancelButtonTitle);
+    presentAppChoice(availableMapsApps, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp){
+        [(FKMapsApp *)selectedApp openWithSearch:mapSearchQuery];
+    });
 }
 
+void fk_showDirectionsInAnyMapsApp(MKPlacemark *source,
+                                   MKPlacemark *destination,
+                                   FKMapsAppNavigationMode navigationMode,
+                                   BOOL showNonInstalledApps,
+                                   UIView *sheetParentView,
+                                   NSString *sheetTitle,
+                                   NSString *sheetCancelButtonTitle)
+{
+    NSMutableArray *availableMapsApps = [NSMutableArray arrayWithCapacity:10];
+    for (FKMapsApp *mapsApp in getMapsApps())
+    {
+        if (!showNonInstalledApps && !mapsApp.isInstalled)
+            continue;
+        if ([mapsApp supportsNavigationMode:navigationMode])
+            [availableMapsApps addObject:mapsApp];
+    }
+    
+    presentAppChoice(availableMapsApps, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp) {
+        FKMapsApp *selectedMapsApp = (FKMapsApp *)selectedApp;
+        
+        if (!selectedMapsApp.isInstalled)
+        {
+            [selectedMapsApp offerToInstall];
+            return;
+        }
+        
+        [selectedMapsApp
+         openWithNavigationFromPlacemark:source
+         toPlacemark:destination
+         navigationMode:navigationMode];
+    });
+}
 

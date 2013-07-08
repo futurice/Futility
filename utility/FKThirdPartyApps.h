@@ -29,9 +29,26 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum
+{
+    FKMapsAppNavigationMode_None = 0,
+    FKMapsAppNavigationMode_Drive,
+    FKMapsAppNavigationMode_Walk,
+    FKMapsAppNavigationMode_Transit,
+}
+FKMapsAppNavigationMode;
+
 // The functions below will open the standard system app by default, but
 // if there are any relevant third-party apps installed, an action sheet
 // will be shown to the user so they can choose which app to invoke.
 
 void fk_openURLInAnyBrowser(NSURL *url, UIView *sheetParentView, NSString *sheetTitle, NSString *sheetCancelButtonTitle);
 void fk_openSearchInAnyMapsApp(NSString *mapSearchQuery, UIView *sheetParentView, NSString *sheetTitle, NSString *sheetCancelButtonTitle);
+
+void fk_showDirectionsInAnyMapsApp(MKPlacemark *source,
+                                   MKPlacemark *destination,
+                                   FKMapsAppNavigationMode navigationMode,
+                                   BOOL showNonInstalledApps,
+                                   UIView *sheetParentView,
+                                   NSString *sheetTitle,
+                                   NSString *sheetCancelButtonTitle);
