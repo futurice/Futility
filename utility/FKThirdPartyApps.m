@@ -169,7 +169,7 @@ static NSString *urlEncoded(NSString *str)
 @interface FKMapsAppAppleMaps : FKMapsApp
 @end
 @implementation FKMapsAppAppleMaps
-- (NSString *) name { return @"Maps"; } // TODO: should localize
+- (NSString *) name { return @"Apple Maps"; } // TODO: should localize
 - (BOOL) isInstalled { return YES; }
 - (void) openWithSearch:(NSString *)searchQuery {
     openURL([NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@", urlEncoded(searchQuery)]]);
