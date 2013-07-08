@@ -172,7 +172,7 @@ static NSString *urlEncoded(NSString *str)
 - (NSString *) name { return @"Apple Maps"; } // TODO: should localize
 - (BOOL) isInstalled { return YES; }
 - (void) openWithSearch:(NSString *)searchQuery {
-    openURL([NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@", urlEncoded(searchQuery)]]);
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@", urlEncoded(searchQuery ?: @"")]]);
 }
 @end
 
@@ -183,7 +183,7 @@ static NSString *urlEncoded(NSString *str)
 - (NSString *) appStoreId { return @"585027354"; }
 - (BOOL) isInstalled { return canOpenURL(@"comgooglemaps://"); }
 - (void) openWithSearch:(NSString *)searchQuery {
-    openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%@", urlEncoded(searchQuery)]]);
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%@", urlEncoded(searchQuery ?: @"")]]);
 }
 @end
 
@@ -195,7 +195,7 @@ static NSString *urlEncoded(NSString *str)
 - (BOOL) isInstalled { return canOpenURL(@"nok://"); }
 - (void) openWithSearch:(NSString *)searchQuery {
     // TODO: The URL scheme is "nok", but what is the URL format supposed to be for searches?
-    openURL([NSURL URLWithString:[NSString stringWithFormat:@"nok://search/%@", urlEncoded(searchQuery)]]);
+    openURL([NSURL URLWithString:[NSString stringWithFormat:@"nok://search/%@", urlEncoded(searchQuery ?: @"")]]);
 }
 @end
 
