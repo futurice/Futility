@@ -1,23 +1,23 @@
 //
 //  FKThirdPartyApps.m
-//  FuKit
+//  Futility
 //
 //  Created by Ali Rantakari on 13.12.2012.
 /*
  The MIT License
- 
+
  Copyright (c) 2012-2013 Futurice
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,10 +47,10 @@ static BOOL openURL(NSURL *url)
 static NSURL *urlByChangingScheme(NSURL *url, NSString *newScheme)
 {
     NSMutableString *s = [NSMutableString stringWithCapacity:100];
-    
+
     // [NSURL -path] strips possible trailing slashes, CFURLCopyPath() does not:
     NSString *path = (NSString *)CFBridgingRelease(CFURLCopyPath((__bridge CFURLRef)url));
-    
+
     if (newScheme != nil && 0 < newScheme.length)
         [s appendFormat:@"%@://", newScheme];
     if (url.host != nil && 0 < url.host.length)
@@ -61,7 +61,7 @@ static NSURL *urlByChangingScheme(NSURL *url, NSString *newScheme)
         [s appendString:path];
     if (url.query != nil && 0 < url.query.length)
         [s appendFormat:@"?%@", url.query];
-    
+
     return [NSURL URLWithString:s];
 }
 
@@ -305,14 +305,14 @@ static FKAppActionSheetDelegate *sheetDelegate;
 {
     if (buttonIndex == actionSheet.cancelButtonIndex)
         return;
-    
+
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    
+
     NSArray *sheetApps = objc_getAssociatedObject(actionSheet, kFKSheetAppsAssociationKey);
     FKSheetHandler handler = objc_getAssociatedObject(actionSheet, kFKSheetHandlerAssociationKey);
     objc_setAssociatedObject(actionSheet, kFKSheetAppsAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(actionSheet, kFKSheetHandlerAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
-    
+
     for (FKApp *app in sheetApps)
     {
         if ([app.name isEqualToString:buttonTitle])
@@ -330,32 +330,32 @@ static void presentAppChoice(NSArray *apps, UIView *sheetParentView, NSString *s
 {
     if (apps.count == 0)
         return;
-    
+
     if (apps.count == 1)
     {
         handler(apps.lastObject);
         return;
     }
-    
+
     if (sheetDelegate == nil)
         sheetDelegate = [[FKAppActionSheetDelegate alloc] init];
-    
+
     UIActionSheet *sheet = [[UIActionSheet alloc]
                             initWithTitle:sheetTitle
                             delegate:sheetDelegate
                             cancelButtonTitle:nil
                             destructiveButtonTitle:nil
                             otherButtonTitles:nil];
-    
+
     for (FKApp *app in apps)
     {
         [sheet addButtonWithTitle:app.name];
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:sheetCancelButtonTitle];
-    
+
     objc_setAssociatedObject(sheet, kFKSheetAppsAssociationKey, apps, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(sheet, kFKSheetHandlerAssociationKey, handler, OBJC_ASSOCIATION_COPY);
-    
+
     if ([sheetParentView isKindOfClass:[UITabBar class]])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
     else if ([sheetParentView isKindOfClass:[UIToolbar class]])
@@ -371,14 +371,14 @@ void fk_openURLInAnyBrowser(NSURL *url, UIView *sheetParentView, NSString *sheet
     NSURL *urlToOpen = url;
     if (urlToOpen.scheme == nil || 0 == urlToOpen.scheme.length)
         urlToOpen = urlByChangingScheme(urlToOpen, @"http");
-    
+
     NSMutableArray *availableBrowsers = [NSMutableArray arrayWithCapacity:10];
     for (FKWebBrowserApp *browser in getBrowserApps())
     {
         if (browser.isInstalled && [browser canOpenURL:url])
             [availableBrowsers addObject:browser];
     }
-    
+
     presentAppChoice(availableBrowsers, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp){
         [(FKWebBrowserApp *)selectedApp openURL:urlToOpen];
     });
@@ -392,7 +392,7 @@ void fk_openSearchInAnyMapsApp(NSString *mapSearchQuery, UIView *sheetParentView
         if (mapsApp.isInstalled)
             [availableMapsApps addObject:mapsApp];
     }
-    
+
     presentAppChoice(availableMapsApps, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp){
         [(FKMapsApp *)selectedApp openWithSearch:mapSearchQuery];
     });
@@ -414,16 +414,16 @@ void fk_showDirectionsInAnyMapsApp(MKPlacemark *source,
         if ([mapsApp supportsNavigationMode:navigationMode])
             [availableMapsApps addObject:mapsApp];
     }
-    
+
     presentAppChoice(availableMapsApps, sheetParentView, sheetTitle, sheetCancelButtonTitle, ^void(FKApp *selectedApp) {
         FKMapsApp *selectedMapsApp = (FKMapsApp *)selectedApp;
-        
+
         if (!selectedMapsApp.isInstalled)
         {
             [selectedMapsApp offerToInstall];
             return;
         }
-        
+
         [selectedMapsApp
          openWithNavigationFromPlacemark:source
          toPlacemark:destination

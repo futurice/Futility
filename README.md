@@ -1,4 +1,4 @@
-FuKit
+Futility
 =====
 
 Reusable, Futu-internal code for iOS projects.

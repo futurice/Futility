@@ -18,9 +18,9 @@
 		AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DBD160348DC007CEDDB /* SenTestingKit.framework */; };
 		AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA5160348DC007CEDDB /* UIKit.framework */; };
 		AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
-		AD255DF116034978007CEDDB /* libFuKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DDD16034978007CEDDB /* libFuKit.a */; };
+		AD255DF116034978007CEDDB /* libFutility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DDD16034978007CEDDB /* libFutility.a */; };
 		AD255DF716034978007CEDDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD255DF516034978007CEDDB /* InfoPlist.strings */; };
-		AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255DF916034978007CEDDB /* FuKitTests.m */; };
+		AD255DFA16034978007CEDDB /* FutilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255DF916034978007CEDDB /* FutilityTests.m */; };
 		AD255E0A160349FE007CEDDB /* DeviceCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E04160349FE007CEDDB /* DeviceCapabilities.m */; };
 		AD255E0C160349FE007CEDDB /* UIAlertView+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */; };
 		AD255E0F16035F20007CEDDB /* FKCollectionExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */; };
@@ -34,7 +34,7 @@
 			containerPortal = AD255D98160348DC007CEDDB /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AD255DDC16034978007CEDDB;
-			remoteInfo = FuKit;
+			remoteInfo = Futility;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -51,36 +51,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKBinarySearch.h"; sourceTree = "<group>"; };
-		88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKBinarySearch.m"; sourceTree = "<group>"; };
+		88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+FKBinarySearch.h"; path = "../Futility/NSArray+FKBinarySearch.h"; sourceTree = "<group>"; };
+		88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+FKBinarySearch.m"; path = "../Futility/NSArray+FKBinarySearch.m"; sourceTree = "<group>"; };
 		88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+FKBinarySearchTests.mm"; sourceTree = "<group>"; };
-		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
-		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
-		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
-		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
+		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+FKBlocks.h"; path = "../Futility/UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
+		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+FKBlocks.m"; path = "../Futility/UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
+		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+FKPhoneNumbers.h"; path = "../Futility/NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
+		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+FKPhoneNumbers.m"; path = "../Futility/NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
 		A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbersTests.m"; sourceTree = "<group>"; };
-		A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FKKeyboard.h"; sourceTree = "<group>"; };
-		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FKKeyboard.m"; sourceTree = "<group>"; };
-		A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKThirdPartyApps.h; sourceTree = "<group>"; };
-		A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKThirdPartyApps.m; sourceTree = "<group>"; };
+		A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FKKeyboard.h"; path = "../Futility/UIView+FKKeyboard.h"; sourceTree = "<group>"; };
+		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FKKeyboard.m"; path = "../Futility/UIView+FKKeyboard.m"; sourceTree = "<group>"; };
+		A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FKThirdPartyApps.h; path = ../Futility/FKThirdPartyApps.h; sourceTree = "<group>"; };
+		A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FKThirdPartyApps.m; path = ../Futility/FKThirdPartyApps.m; sourceTree = "<group>"; };
 		AD255DA5160348DC007CEDDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AD255DA7160348DC007CEDDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AD255DA9160348DC007CEDDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AD255DBD160348DC007CEDDB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		AD255DDD16034978007CEDDB /* libFuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD255DEB16034978007CEDDB /* FuKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FuKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD255DF416034978007CEDDB /* FuKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FuKitTests-Info.plist"; sourceTree = "<group>"; };
+		AD255DDD16034978007CEDDB /* libFutility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFutility.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD255DEB16034978007CEDDB /* FutilityTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutilityTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD255DF416034978007CEDDB /* FutilityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutilityTests-Info.plist"; sourceTree = "<group>"; };
 		AD255DF616034978007CEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AD255DF916034978007CEDDB /* FuKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuKitTests.m; sourceTree = "<group>"; };
-		AD255E02160349FE007CEDDB /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
-		AD255E03160349FE007CEDDB /* DeviceCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCapabilities.h; sourceTree = "<group>"; };
-		AD255E04160349FE007CEDDB /* DeviceCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCapabilities.m; sourceTree = "<group>"; };
-		AD255E07160349FE007CEDDB /* OSConditionals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSConditionals.h; sourceTree = "<group>"; };
-		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
-		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
+		AD255DF916034978007CEDDB /* FutilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutilityTests.m; sourceTree = "<group>"; };
+		AD255E02160349FE007CEDDB /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = ../Futility/Colors.h; sourceTree = "<group>"; };
+		AD255E03160349FE007CEDDB /* DeviceCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceCapabilities.h; path = ../Futility/DeviceCapabilities.h; sourceTree = "<group>"; };
+		AD255E04160349FE007CEDDB /* DeviceCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceCapabilities.m; path = ../Futility/DeviceCapabilities.m; sourceTree = "<group>"; };
+		AD255E07160349FE007CEDDB /* OSConditionals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSConditionals.h; path = ../Futility/OSConditionals.h; sourceTree = "<group>"; };
+		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+FKBlocks.h"; path = "../Futility/UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
+		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+FKBlocks.m"; path = "../Futility/UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
 		AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionExtensionsTests.m; sourceTree = "<group>"; };
-		C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKCollectionsExtensions.h; sourceTree = "<group>"; };
-		C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionsExtensions.m; sourceTree = "<group>"; };
+		C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FKCollectionsExtensions.h; path = ../Futility/FKCollectionsExtensions.h; sourceTree = "<group>"; };
+		C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FKCollectionsExtensions.m; path = ../Futility/FKCollectionsExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 				AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */,
 				AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */,
 				AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */,
-				AD255DF116034978007CEDDB /* libFuKit.a in Frameworks */,
+				AD255DF116034978007CEDDB /* libFutility.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,8 +110,8 @@
 		AD255D96160348DC007CEDDB = {
 			isa = PBXGroup;
 			children = (
-				AD255DDF16034978007CEDDB /* FuKit */,
-				AD255DF216034978007CEDDB /* FuKitTests */,
+				AD255DDF16034978007CEDDB /* Futility */,
+				AD255DF216034978007CEDDB /* FutilityTests */,
 				AD255DA4160348DC007CEDDB /* Frameworks */,
 				AD255DA2160348DC007CEDDB /* Products */,
 			);
@@ -120,8 +120,8 @@
 		AD255DA2160348DC007CEDDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD255DDD16034978007CEDDB /* libFuKit.a */,
-				AD255DEB16034978007CEDDB /* FuKitTests.octest */,
+				AD255DDD16034978007CEDDB /* libFutility.a */,
+				AD255DEB16034978007CEDDB /* FutilityTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,36 +137,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AD255DDF16034978007CEDDB /* FuKit */ = {
-			isa = PBXGroup;
-			children = (
-				AD255E01160349FE007CEDDB /* utility */,
-			);
-			path = FuKit;
-			sourceTree = "<group>";
-		};
-		AD255DF216034978007CEDDB /* FuKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				AD255DF316034978007CEDDB /* Supporting Files */,
-				AD255DF916034978007CEDDB /* FuKitTests.m */,
-				AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */,
-				88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */,
-				A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */,
-			);
-			path = FuKitTests;
-			sourceTree = "<group>";
-		};
-		AD255DF316034978007CEDDB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				AD255DF416034978007CEDDB /* FuKitTests-Info.plist */,
-				AD255DF516034978007CEDDB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AD255E01160349FE007CEDDB /* utility */ = {
+		AD255DDF16034978007CEDDB /* Futility */ = {
 			isa = PBXGroup;
 			children = (
 				A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */,
@@ -188,15 +159,36 @@
 				A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */,
 				A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */,
 			);
-			path = utility;
-			sourceTree = SOURCE_ROOT;
+			path = Futility;
+			sourceTree = "<group>";
+		};
+		AD255DF216034978007CEDDB /* FutilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DF316034978007CEDDB /* Supporting Files */,
+				AD255DF916034978007CEDDB /* FutilityTests.m */,
+				AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */,
+				88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */,
+				A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */,
+			);
+			path = FutilityTests;
+			sourceTree = "<group>";
+		};
+		AD255DF316034978007CEDDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD255DF416034978007CEDDB /* FutilityTests-Info.plist */,
+				AD255DF516034978007CEDDB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD255DDC16034978007CEDDB /* FuKit */ = {
+		AD255DDC16034978007CEDDB /* Futility */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKit" */;
+			buildConfigurationList = AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "Futility" */;
 			buildPhases = (
 				AD255DD916034978007CEDDB /* Sources */,
 				AD255DDA16034978007CEDDB /* Frameworks */,
@@ -206,14 +198,14 @@
 			);
 			dependencies = (
 			);
-			name = FuKit;
-			productName = FuKit;
-			productReference = AD255DDD16034978007CEDDB /* libFuKit.a */;
+			name = Futility;
+			productName = Futility;
+			productReference = AD255DDD16034978007CEDDB /* libFutility.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		AD255DEA16034978007CEDDB /* FuKitTests */ = {
+		AD255DEA16034978007CEDDB /* FutilityTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKitTests" */;
+			buildConfigurationList = AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FutilityTests" */;
 			buildPhases = (
 				AD255DE616034978007CEDDB /* Sources */,
 				AD255DE716034978007CEDDB /* Frameworks */,
@@ -225,9 +217,9 @@
 			dependencies = (
 				AD255DF016034978007CEDDB /* PBXTargetDependency */,
 			);
-			name = FuKitTests;
-			productName = FuKitTests;
-			productReference = AD255DEB16034978007CEDDB /* FuKitTests.octest */;
+			name = FutilityTests;
+			productName = FutilityTests;
+			productReference = AD255DEB16034978007CEDDB /* FutilityTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -239,7 +231,7 @@
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = Futurice;
 			};
-			buildConfigurationList = AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "FuKit" */;
+			buildConfigurationList = AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "Futility" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -251,8 +243,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD255DDC16034978007CEDDB /* FuKit */,
-				AD255DEA16034978007CEDDB /* FuKitTests */,
+				AD255DDC16034978007CEDDB /* Futility */,
+				AD255DEA16034978007CEDDB /* FutilityTests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,7 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD255DFA16034978007CEDDB /* FuKitTests.m in Sources */,
+				AD255DFA16034978007CEDDB /* FutilityTests.m in Sources */,
 				AD255E0F16035F20007CEDDB /* FKCollectionExtensionsTests.m in Sources */,
 				88D5CAC61604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm in Sources */,
 				A459A980163159C500D88254 /* NSString+FKPhoneNumbersTests.m in Sources */,
@@ -316,7 +308,7 @@
 /* Begin PBXTargetDependency section */
 		AD255DF016034978007CEDDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD255DDC16034978007CEDDB /* FuKit */;
+			target = AD255DDC16034978007CEDDB /* Futility */;
 			targetProxy = AD255DEF16034978007CEDDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -387,11 +379,11 @@
 		AD255DFC16034978007CEDDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/FuKit.dst;
+				DSTROOT = /tmp/Futility.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -399,11 +391,11 @@
 		AD255DFD16034978007CEDDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/FuKit.dst;
+				DSTROOT = /tmp/Futility.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -417,9 +409,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "FuKitTests/FuKitTests-Info.plist";
+				INFOPLIST_FILE = "FutilityTests/FutilityTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutilityTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -433,9 +425,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "FuKitTests/FuKitTests-Info.plist";
+				INFOPLIST_FILE = "FutilityTests/FutilityTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FutilityTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -443,7 +435,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "FuKit" */ = {
+		AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "Futility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD255DCC160348DC007CEDDB /* Debug */,
@@ -452,7 +444,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKit" */ = {
+		AD255DFB16034978007CEDDB /* Build configuration list for PBXNativeTarget "Futility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD255DFC16034978007CEDDB /* Debug */,
@@ -461,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FuKitTests" */ = {
+		AD255DFE16034978007CEDDB /* Build configuration list for PBXNativeTarget "FutilityTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD255DFF16034978007CEDDB /* Debug */,

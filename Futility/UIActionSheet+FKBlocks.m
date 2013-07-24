@@ -1,24 +1,24 @@
 //
 //  UIActionSheet+FKBlocks.m
-//  FuKit
+//  Futility
 //
 //  Created by Ali Rantakari on 20.3.2013.
 //
 /*
  The MIT License
- 
+
  Copyright (c) 2013 Futurice
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -56,16 +56,16 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
                             destructiveButtonTitle:destructiveButtonTitle
                             otherButtonTitles:nil];
     sheet.actionSheetStyle = style;
-    
+
     for (NSString *buttonTitle in otherButtonTitles)
     {
         [sheet addButtonWithTitle:buttonTitle];
     }
     sheet.cancelButtonIndex = [sheet addButtonWithTitle:cancelButtonTitle];
-    
+
     objc_setAssociatedObject(sheet, kFKDismissBlockAssociationKey, dismissBlock, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(sheet, kFKCancelBlockAssociationKey, cancelBlock, OBJC_ASSOCIATION_COPY);
-    
+
     if ([sheetParentView isKindOfClass:UITabBar.class])
         [sheet showFromTabBar:(UITabBar *)sheetParentView];
     else if ([sheetParentView isKindOfClass:UIToolbar.class])
@@ -74,7 +74,7 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
         [sheet showFromBarButtonItem:(UIBarButtonItem *)sheetParentView animated:YES];
     else
         [sheet showInView:sheetParentView];
-    
+
     return sheet;
 }
 
@@ -82,7 +82,7 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
 {
     FKActionSheetDismissBlock dismissBlock = objc_getAssociatedObject(actionSheet, kFKDismissBlockAssociationKey);
     FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, kFKCancelBlockAssociationKey);
-    
+
     if (buttonIndex == actionSheet.cancelButtonIndex)
     {
         if (cancelBlock != nil)
@@ -101,7 +101,7 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
             });
         }
     }
-    
+
     objc_setAssociatedObject(actionSheet, kFKDismissBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(actionSheet, kFKCancelBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
 }
@@ -109,14 +109,14 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
 + (void) actionSheetCancel:(UIActionSheet *)actionSheet
 {
     FKActionSheetCancelBlock cancelBlock = objc_getAssociatedObject(actionSheet, kFKCancelBlockAssociationKey);
-    
+
     if (cancelBlock != nil)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             cancelBlock(actionSheet);
         });
     }
-    
+
     objc_setAssociatedObject(actionSheet, kFKDismissBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(actionSheet, kFKCancelBlockAssociationKey, nil, OBJC_ASSOCIATION_ASSIGN);
 }

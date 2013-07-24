@@ -1,6 +1,6 @@
 //
 //  NSArray+FKBinarySearchTests.m
-//  FuKit
+//  Futility
 //
 //  Created by Oleg Grenrus on 9/15/12.
 //  Copyright (c) 2012 Futurice. All rights reserved.

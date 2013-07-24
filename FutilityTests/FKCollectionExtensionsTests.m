@@ -1,6 +1,6 @@
 //
 //  FKCollectionExtensionsTests.m
-//  FuKit
+//  Futility
 //
 //  Created by Pyry Jahkola on 14.9.2012.
 //  Copyright (c) 2012 Futurice. All rights reserved.
@@ -25,7 +25,7 @@
 {
     FKArrayEnumerationBlock identity = ^id(id obj) { return obj; };
     FKArrayEnumerationBlock describe = ^id(id obj) { return [obj description]; };
-    
+
     NSArray *array0 = @[];
     NSArray *array1 = @[@1, @2.0, @"three"];
     NSArray *array2 = @[@1, @2.0, @"three", @[], @{}];
@@ -35,7 +35,7 @@
         STFail(@"respond to fk_map:");
         return;
     }
-    
+
     STAssertEqualObjects([array0 fk_map:describe], @[], @"map over empty array");
 
     STAssertEqualObjects([array2 fk_map:identity], array2, @"map identity");
@@ -67,12 +67,12 @@
 {
     STAssertEqualObjects(([@[] fk_reduce:^id(id x, id y) { return @1; }]), nil, @"Empty receiver -> response is nil");
     STAssertEqualObjects(([@[@1,@2] fk_reduce:^id(id x, id y) { return nil; }]), nil, @"nil");
-    
+
     id val_sum = [@[@1,@2,@3,@4] fk_reduce:^id(id x, id y) {
         return @([x intValue] + [y intValue]);
     }];
     STAssertEqualObjects(val_sum, @(1+2+3+4), @"sum");
-    
+
     id val_div = [@[@1,@2,@3,@4] fk_reduce:^id(id x, id y) {
         return @([x floatValue] / [y floatValue]);
     }];
