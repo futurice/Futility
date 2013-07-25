@@ -51,6 +51,7 @@ typedef BOOL (^FKArrayMatchBlock)(id obj);
 
 - (NSArray *) fk_arrayWithoutDuplicates;
 - (NSArray *) fk_arrayWithoutNulls;
+- (NSArray *) fk_arrayWithoutEmpties;
 
 // Return @[@[a,x], @[c,y]] as @{a:x, c:y}
 - (NSDictionary *) fk_asDictionary;

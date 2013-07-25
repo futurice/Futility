@@ -101,6 +101,12 @@ THE SOFTWARE.
         return ![obj isEqual:NSNull.null];
     }];
 }
+- (NSArray *) fk_arrayWithoutEmpties
+{
+    return [self fk_filter:^BOOL(id obj) {
+        return ([obj respondsToSelector:@selector(length)] && 0 < [obj length]);
+    }];
+}
 
 - (NSDictionary *) fk_asDictionary
 {

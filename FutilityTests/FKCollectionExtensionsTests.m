@@ -102,6 +102,19 @@
                          @"Preserves order");
 }
 
+- (void) test_fk_arrayWithoutEmpties
+{
+    STAssertEqualObjects((@[@"a",@"b",@""].fk_arrayWithoutEmpties),
+                         (@[@"a",@"b"]),
+                         @"Base case");
+    STAssertEqualObjects((@[@"a",@"b",NSNull.null,@4].fk_arrayWithoutEmpties),
+                         (@[@"a",@"b"]),
+                         @"Removes non-strings");
+    STAssertEqualObjects((@[@"a",@"b",@"c",@"x",@"1"].fk_arrayWithoutEmpties),
+                         (@[@"a",@"b",@"c",@"x",@"1"]),
+                         @"Preserves order");
+}
+
 - (void) test_fk_arrayAsDictionary
 {
     STAssertEqualObjects((@[@[@"a",@1], @[@"b",@2]].fk_asDictionary),
