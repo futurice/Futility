@@ -35,7 +35,7 @@ THE SOFTWARE.
     for (id obj in self)
     {
         id o = block(obj);
-        [ret addObject:(o == nil ? [NSNull null] : o)];
+        [ret addObject:(o ?: NSNull.null)];
     }
     return ret;
 }
