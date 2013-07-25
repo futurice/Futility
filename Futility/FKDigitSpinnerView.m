@@ -5,25 +5,34 @@
 //  Created by Juho Vähä-Herttua.
 //  Loosely based on code written by Janne Käki.
 //
-//  Copyright (c) 2012 Futurice.
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a
-//  copy of this software and associated documentation files (the "Software"),
-//  to deal in the Software without restriction, including without limitation
-//  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-//  and/or sell copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following conditions:
+// Copyright © Futurice (http://www.futurice.com)
+// All rights reserved.
 //
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
 //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-//  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-//  DEALINGS IN THE SOFTWARE.
+// * Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Futurice nor the names of its contributors may be used to
+//   endorse or promote products derived from this software without specific prior
+//   written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+// IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+// NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 
 #import "FKDigitSpinnerView.h"
@@ -81,12 +90,12 @@
     scrollView.userInteractionEnabled = NO;
     scrollView.bounces = NO;
     scrollView.delegate = self;
-    
+
     // Add all labels
     for (int i=-1; i<20; i++) {
         NSInteger countFromBottom = 20-(i+1);
         CGRect labelFrame = CGRectMake(0, countFromBottom*self.height, self.width, self.height);
-        
+
         UILabel *numberLabel = [[UILabel alloc] initWithFrame:labelFrame];
         numberLabel.backgroundColor = [UIColor clearColor];
         numberLabel.textAlignment = NSTextAlignmentCenter;
@@ -98,10 +107,10 @@
         numberLabel.tag = 1000+i;
         [scrollView addSubview:numberLabel];
     }
-    
+
     // Initialize scroll view to default value of -1
     self.value = -1;
-    
+
     return scrollView;
 }
 
@@ -109,14 +118,14 @@
 {
     self.scrollView.frame = self.bounds;
     self.scrollView.contentSize = CGSizeMake(self.width, 21*self.height);
-    
+
     // Update locations of all the labels
     for (int i=-1; i<20; i++) {
         NSInteger countFromBottom = 20-(i+1);
         UILabel *numberLabel = (UILabel *)[self.scrollView viewWithTag:1000+i];
         numberLabel.frame = CGRectMake(0, countFromBottom*self.height, self.width, self.height);
     }
-    
+
     // Scrolling finished, get tag of the lower value
     NSInteger tag = 999;
     if (self.value >= 0) {
@@ -147,18 +156,18 @@
         // Get tag for the upper label
         tag = 1000+10+(value%10);
     }
-    
+
     // Scroll to the correct label
     UILabel *nextLabel = (UILabel *)[self.scrollView viewWithTag:tag];
     [self.scrollView scrollRectToVisible:nextLabel.frame animated:animated];
-    
+
     _value = value;
 }
 
 - (void)setFont:(UIFont *)font
 {
     _font = font;
-    
+
     // Update locations of all the labels
     for (int i=-1; i<20; i++) {
         UILabel *numberLabel = (UILabel *)[self.scrollView viewWithTag:1000+i];
@@ -169,7 +178,7 @@
 - (void)setTextColor:(UIColor *)textColor
 {
     _textColor = textColor;
-    
+
     // Update colors of all the labels
     for (int i=-1; i<20; i++) {
         UILabel *numberLabel = (UILabel *)[self.scrollView viewWithTag:1000+i];
@@ -184,7 +193,7 @@
     if (self.value >= 0) {
         tag = 1000+(self.value%10);
     }
-    
+
     // Scroll to the correct label
     UILabel *nextLabel = (UILabel *)[self.scrollView viewWithTag:tag];
     [self.scrollView scrollRectToVisible:nextLabel.frame animated:NO];
