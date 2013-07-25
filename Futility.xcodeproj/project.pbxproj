@@ -13,6 +13,10 @@
 		A459A97C1631573900D88254 /* NSString+FKPhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */; };
 		A459A980163159C500D88254 /* NSString+FKPhoneNumbersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */; };
 		A4A7C0781701E27F008A40FA /* UIView+FKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */; };
+		A4D041C517A12F1000AE9FDE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C417A12F1000AE9FDE /* AddressBook.framework */; };
+		A4D041C717A12F1500AE9FDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C617A12F1400AE9FDE /* MapKit.framework */; };
+		A4D041C817A12F3700AE9FDE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C417A12F1000AE9FDE /* AddressBook.framework */; };
+		A4D041C917A12F3B00AE9FDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C617A12F1400AE9FDE /* MapKit.framework */; };
 		A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */; };
 		AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
 		AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DBD160348DC007CEDDB /* SenTestingKit.framework */; };
@@ -61,6 +65,8 @@
 		A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbersTests.m"; sourceTree = "<group>"; };
 		A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FKKeyboard.h"; path = "../Futility/UIView+FKKeyboard.h"; sourceTree = "<group>"; };
 		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FKKeyboard.m"; path = "../Futility/UIView+FKKeyboard.m"; sourceTree = "<group>"; };
+		A4D041C417A12F1000AE9FDE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A4D041C617A12F1400AE9FDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FKThirdPartyApps.h; path = ../Futility/FKThirdPartyApps.h; sourceTree = "<group>"; };
 		A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FKThirdPartyApps.m; path = ../Futility/FKThirdPartyApps.m; sourceTree = "<group>"; };
 		AD255DA5160348DC007CEDDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -88,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D041C717A12F1500AE9FDE /* MapKit.framework in Frameworks */,
+				A4D041C517A12F1000AE9FDE /* AddressBook.framework in Frameworks */,
 				AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D041C917A12F3B00AE9FDE /* MapKit.framework in Frameworks */,
+				A4D041C817A12F3700AE9FDE /* AddressBook.framework in Frameworks */,
 				AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */,
 				AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */,
 				AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */,
@@ -129,6 +139,8 @@
 		AD255DA4160348DC007CEDDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4D041C617A12F1400AE9FDE /* MapKit.framework */,
+				A4D041C417A12F1000AE9FDE /* AddressBook.framework */,
 				AD255DA5160348DC007CEDDB /* UIKit.framework */,
 				AD255DA7160348DC007CEDDB /* Foundation.framework */,
 				AD255DA9160348DC007CEDDB /* CoreGraphics.framework */,
