@@ -90,6 +90,9 @@
     STAssertEqualObjects((@[@"a",@"b",@"c",@"x",@"1"].fk_arrayWithoutDuplicates),
                          (@[@"a",@"b",@"c",@"x",@"1"]),
                          @"Preserves order");
+    STAssertEqualObjects((@[].fk_arrayWithoutDuplicates),
+                         (@[]),
+                         @"Empty array");
 }
 
 - (void) test_fk_arrayWithoutNulls
@@ -100,6 +103,9 @@
     STAssertEqualObjects((@[@"a",@"b",@"c",@"x",@"1"].fk_arrayWithoutNulls),
                          (@[@"a",@"b",@"c",@"x",@"1"]),
                          @"Preserves order");
+    STAssertEqualObjects((@[].fk_arrayWithoutNulls),
+                         (@[]),
+                         @"Empty array");
 }
 
 - (void) test_fk_arrayWithoutEmpties
@@ -113,6 +119,9 @@
     STAssertEqualObjects((@[@"a",@"b",@"c",@"x",@"1"].fk_arrayWithoutEmpties),
                          (@[@"a",@"b",@"c",@"x",@"1"]),
                          @"Preserves order");
+    STAssertEqualObjects((@[].fk_arrayWithoutEmpties),
+                         (@[]),
+                         @"Empty array");
 }
 
 - (void) test_fk_arrayAsDictionary
@@ -130,6 +139,9 @@
                          (@{@"b":@2}),
                          @"Non-NSCopying objects cannot be used as dictionary keys "
                          @"so they should be skipped");
+    STAssertEqualObjects((@[].fk_asDictionary),
+                         (@{}),
+                         @"Empty array");
 }
 
 - (void) test_fk_dictionaryPairs
@@ -140,6 +152,9 @@
     STAssertEqualObjects((@{@"a":NSNull.null, @"b":@2}.fk_pairs),
                          (@[@[@"a",NSNull.null], @[@"b",@2]]),
                          @"Keep NSNulls as-is");
+    STAssertEqualObjects((@{}.fk_pairs),
+                         (@[]),
+                         @"Empty dictionary");
 }
 
 
