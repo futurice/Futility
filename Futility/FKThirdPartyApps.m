@@ -29,6 +29,7 @@
 
 #import "FKThirdPartyApps.h"
 #import <objc/runtime.h>
+#import <AddressBook/AddressBook.h>
 
 #if !__has_feature(objc_arc)
 #warning "This file must be compiled with ARC enabled"
