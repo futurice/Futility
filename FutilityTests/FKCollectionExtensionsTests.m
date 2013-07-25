@@ -82,6 +82,22 @@
                                @"division");
 }
 
+- (void) test_fk_flattened
+{
+    STAssertEqualObjects((@[@"a",@[@"b",@"c"],@"d"].fk_flattened),
+                         (@[@"a",@"b",@"c",@"d"]),
+                         @"Base case");
+    STAssertEqualObjects((@[@"a",@[@"b",@[@"c",@"d"],@"e"],@"f"].fk_flattened),
+                         (@[@"a",@"b",@"c",@"d",@"e",@"f"]),
+                         @"Two levels deep");
+    STAssertEqualObjects((@[@"a",@"b"].fk_flattened),
+                         (@[@"a",@"b"]),
+                         @"Already flat");
+    STAssertEqualObjects((@[].fk_flattened),
+                         (@[]),
+                         @"Empty array");
+}
+
 - (void) test_fk_arrayWithoutDuplicates
 {
     STAssertEqualObjects((@[@"a",@"b",@"c",@"a",@"c"].fk_arrayWithoutDuplicates),

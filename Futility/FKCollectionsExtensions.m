@@ -85,6 +85,19 @@ THE SOFTWARE.
     return NO;
 }
 
+- (NSArray *) fk_flattened
+{
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count * 2];
+    for (id obj in self)
+    {
+        if ([obj isKindOfClass:NSArray.class])
+            [ret addObjectsFromArray:[obj fk_flattened]];
+        else
+            [ret addObject:obj];
+    }
+    return ret;
+}
+
 - (NSArray *) fk_arrayWithoutDuplicates
 {
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];

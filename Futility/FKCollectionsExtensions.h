@@ -49,6 +49,9 @@ typedef BOOL (^FKArrayMatchBlock)(id obj);
 // Return whether array contains an item for which block(obj) returns YES
 - (BOOL) fk_contains:(FKArrayMatchBlock)block;
 
+// Return array by replacing all inner arrays with their contents
+- (NSArray *) fk_flattened;
+
 - (NSArray *) fk_arrayWithoutDuplicates;
 - (NSArray *) fk_arrayWithoutNulls;
 - (NSArray *) fk_arrayWithoutEmpties;
