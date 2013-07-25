@@ -100,6 +100,8 @@ THE SOFTWARE.
 
 - (NSArray *) fk_arrayWithoutDuplicates
 {
+    // This seems to be faster than using an NSMutableOrderedSet
+    //
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self)
     {
