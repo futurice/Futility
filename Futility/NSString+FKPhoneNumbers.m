@@ -71,7 +71,7 @@
 {
     static NSDataDetector *phoneNumberDetector = nil;
     if (phoneNumberDetector == nil)
-        phoneNumberDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:NULL];
+        phoneNumberDetector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes)NSTextCheckingTypePhoneNumber error:NULL];
     return (0 < [phoneNumberDetector numberOfMatchesInString:self options:0 range:NSMakeRange(0, self.length)]);
 }
 
