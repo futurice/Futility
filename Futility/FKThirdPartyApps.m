@@ -236,7 +236,9 @@ static NSString *urlEncoded(NSString *str)
         NSDictionary *dict = placemark.addressDictionary;
         NSArray *addressParts = @[
                                   dict[(NSString*)kABPersonAddressStreetKey] ?: @"",
-                                  FMT(@"%@ %@", dict[(NSString*)kABPersonAddressZIPKey], dict[(NSString*)kABPersonAddressCityKey]) ?: @"",
+                                  [NSString stringWithFormat:@"%@ %@",
+                                   dict[(NSString*)kABPersonAddressZIPKey],
+                                   dict[(NSString*)kABPersonAddressCityKey]] ?: @"",
                                   dict[(NSString*)kABPersonAddressCountryKey] ?: @"",
                                   ];
         BOOL allPartsExist = YES;
