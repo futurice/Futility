@@ -403,6 +403,11 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-unused-parameter",
+				);
 			};
 			name = Debug;
 		};
@@ -415,6 +420,11 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-unused-parameter",
+				);
 			};
 			name = Release;
 		};
