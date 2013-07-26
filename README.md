@@ -1,7 +1,7 @@
 Futility
 =====
 
-Reusable, Futu-internal code for iOS projects.
+Reusable code for iOS projects.
 
 
 Contributing
