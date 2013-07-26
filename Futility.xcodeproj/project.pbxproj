@@ -17,6 +17,11 @@
 		A4D041C717A12F1500AE9FDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C617A12F1400AE9FDE /* MapKit.framework */; };
 		A4D041C817A12F3700AE9FDE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C417A12F1000AE9FDE /* AddressBook.framework */; };
 		A4D041C917A12F3B00AE9FDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D041C617A12F1400AE9FDE /* MapKit.framework */; };
+		A4D4435B17A26B8F00F3DF5D /* FKDigitSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435217A26B8F00F3DF5D /* FKDigitSpinnerView.m */; };
+		A4D4435C17A26B8F00F3DF5D /* FKNumberSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435417A26B8F00F3DF5D /* FKNumberSpinnerView.m */; };
+		A4D4435D17A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435617A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m */; };
+		A4D4435E17A26B8F00F3DF5D /* UIView+FKGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435817A26B8F00F3DF5D /* UIView+FKGeometry.m */; };
+		A4D4435F17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */; };
 		A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */; };
 		AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
 		AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DBD160348DC007CEDDB /* SenTestingKit.framework */; };
@@ -67,6 +72,16 @@
 		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FKKeyboard.m"; path = "../Futility/UIView+FKKeyboard.m"; sourceTree = "<group>"; };
 		A4D041C417A12F1000AE9FDE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A4D041C617A12F1400AE9FDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A4D4435117A26B8F00F3DF5D /* FKDigitSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKDigitSpinnerView.h; sourceTree = "<group>"; };
+		A4D4435217A26B8F00F3DF5D /* FKDigitSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKDigitSpinnerView.m; sourceTree = "<group>"; };
+		A4D4435317A26B8F00F3DF5D /* FKNumberSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKNumberSpinnerView.h; sourceTree = "<group>"; };
+		A4D4435417A26B8F00F3DF5D /* FKNumberSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKNumberSpinnerView.m; sourceTree = "<group>"; };
+		A4D4435517A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+FKFileSystemPaths.h"; sourceTree = "<group>"; };
+		A4D4435617A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+FKFileSystemPaths.m"; sourceTree = "<group>"; };
+		A4D4435717A26B8F00F3DF5D /* UIView+FKGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FKGeometry.h"; sourceTree = "<group>"; };
+		A4D4435817A26B8F00F3DF5D /* UIView+FKGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FKGeometry.m"; sourceTree = "<group>"; };
+		A4D4435917A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FKSplashScreenAnimation.h"; sourceTree = "<group>"; };
+		A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FKSplashScreenAnimation.m"; sourceTree = "<group>"; };
 		A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FKThirdPartyApps.h; path = ../Futility/FKThirdPartyApps.h; sourceTree = "<group>"; };
 		A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FKThirdPartyApps.m; path = ../Futility/FKThirdPartyApps.m; sourceTree = "<group>"; };
 		AD255DA5160348DC007CEDDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +167,16 @@
 		AD255DDF16034978007CEDDB /* Futility */ = {
 			isa = PBXGroup;
 			children = (
+				A4D4435117A26B8F00F3DF5D /* FKDigitSpinnerView.h */,
+				A4D4435217A26B8F00F3DF5D /* FKDigitSpinnerView.m */,
+				A4D4435317A26B8F00F3DF5D /* FKNumberSpinnerView.h */,
+				A4D4435417A26B8F00F3DF5D /* FKNumberSpinnerView.m */,
+				A4D4435517A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.h */,
+				A4D4435617A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m */,
+				A4D4435717A26B8F00F3DF5D /* UIView+FKGeometry.h */,
+				A4D4435817A26B8F00F3DF5D /* UIView+FKGeometry.m */,
+				A4D4435917A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.h */,
+				A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */,
 				A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */,
 				A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */,
 				C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */,
@@ -301,6 +326,11 @@
 				C9F0FC3416E9FEDB0059531C /* FKCollectionsExtensions.m in Sources */,
 				A43AA7B016FA0D2100912B00 /* UIActionSheet+FKBlocks.m in Sources */,
 				A4A7C0781701E27F008A40FA /* UIView+FKKeyboard.m in Sources */,
+				A4D4435B17A26B8F00F3DF5D /* FKDigitSpinnerView.m in Sources */,
+				A4D4435C17A26B8F00F3DF5D /* FKNumberSpinnerView.m in Sources */,
+				A4D4435D17A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m in Sources */,
+				A4D4435E17A26B8F00F3DF5D /* UIView+FKGeometry.m in Sources */,
+				A4D4435F17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
