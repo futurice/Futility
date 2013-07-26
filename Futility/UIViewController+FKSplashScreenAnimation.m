@@ -35,6 +35,7 @@
 //
 
 #import "UIViewController+FKSplashScreenAnimation.h"
+#import <QuartzCore/QuartzCore.h>
 
 #if !__has_feature(objc_arc)
 #warning "This file must be compiled with ARC enabled"
