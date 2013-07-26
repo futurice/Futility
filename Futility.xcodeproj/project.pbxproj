@@ -60,16 +60,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+FKBinarySearch.h"; path = "../Futility/NSArray+FKBinarySearch.h"; sourceTree = "<group>"; };
-		88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+FKBinarySearch.m"; path = "../Futility/NSArray+FKBinarySearch.m"; sourceTree = "<group>"; };
+		88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FKBinarySearch.h"; sourceTree = "<group>"; };
+		88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FKBinarySearch.m"; sourceTree = "<group>"; };
 		88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+FKBinarySearchTests.mm"; sourceTree = "<group>"; };
-		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+FKBlocks.h"; path = "../Futility/UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
-		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+FKBlocks.m"; path = "../Futility/UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
-		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+FKPhoneNumbers.h"; path = "../Futility/NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
-		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+FKPhoneNumbers.m"; path = "../Futility/NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
+		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
+		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
+		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
+		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
 		A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbersTests.m"; sourceTree = "<group>"; };
-		A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FKKeyboard.h"; path = "../Futility/UIView+FKKeyboard.h"; sourceTree = "<group>"; };
-		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FKKeyboard.m"; path = "../Futility/UIView+FKKeyboard.m"; sourceTree = "<group>"; };
+		A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FKKeyboard.h"; sourceTree = "<group>"; };
+		A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FKKeyboard.m"; sourceTree = "<group>"; };
 		A4D041C417A12F1000AE9FDE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A4D041C617A12F1400AE9FDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A4D4435117A26B8F00F3DF5D /* FKDigitSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKDigitSpinnerView.h; sourceTree = "<group>"; };
@@ -97,11 +97,11 @@
 		AD255E03160349FE007CEDDB /* DeviceCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceCapabilities.h; path = ../Futility/DeviceCapabilities.h; sourceTree = "<group>"; };
 		AD255E04160349FE007CEDDB /* DeviceCapabilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceCapabilities.m; path = ../Futility/DeviceCapabilities.m; sourceTree = "<group>"; };
 		AD255E07160349FE007CEDDB /* OSConditionals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSConditionals.h; path = ../Futility/OSConditionals.h; sourceTree = "<group>"; };
-		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+FKBlocks.h"; path = "../Futility/UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
-		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+FKBlocks.m"; path = "../Futility/UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
+		AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+FKBlocks.h"; sourceTree = "<group>"; };
+		AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+FKBlocks.m"; sourceTree = "<group>"; };
 		AD255E0E16035F20007CEDDB /* FKCollectionExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionExtensionsTests.m; sourceTree = "<group>"; };
-		C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FKCollectionsExtensions.h; path = ../Futility/FKCollectionsExtensions.h; sourceTree = "<group>"; };
-		C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FKCollectionsExtensions.m; path = ../Futility/FKCollectionsExtensions.m; sourceTree = "<group>"; };
+		C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKCollectionsExtensions.h; sourceTree = "<group>"; };
+		C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKCollectionsExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +132,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4D4436017A2816000F3DF5D /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4435117A26B8F00F3DF5D /* FKDigitSpinnerView.h */,
+				A4D4435217A26B8F00F3DF5D /* FKDigitSpinnerView.m */,
+				A4D4435317A26B8F00F3DF5D /* FKNumberSpinnerView.h */,
+				A4D4435417A26B8F00F3DF5D /* FKNumberSpinnerView.m */,
+			);
+			name = UIViews;
+			sourceTree = "<group>";
+		};
+		A4D4436117A2817100F3DF5D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4436217A281BD00F3DF5D /* Collections */,
+				A4D4436317A281D700F3DF5D /* Strings */,
+				A4D4436417A281E400F3DF5D /* Views */,
+				A4D4435517A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.h */,
+				A4D4435617A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		A4D4436217A281BD00F3DF5D /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */,
+				C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */,
+				88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */,
+				88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
+		A4D4436317A281D700F3DF5D /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */,
+				A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
+		A4D4436417A281E400F3DF5D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4435717A26B8F00F3DF5D /* UIView+FKGeometry.h */,
+				A4D4435817A26B8F00F3DF5D /* UIView+FKGeometry.m */,
+				A4D4435917A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.h */,
+				A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */,
+				A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */,
+				A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */,
+				AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */,
+				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
+				A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */,
+				A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		AD255D96160348DC007CEDDB = {
 			isa = PBXGroup;
 			children = (
@@ -167,32 +227,12 @@
 		AD255DDF16034978007CEDDB /* Futility */ = {
 			isa = PBXGroup;
 			children = (
-				A4D4435117A26B8F00F3DF5D /* FKDigitSpinnerView.h */,
-				A4D4435217A26B8F00F3DF5D /* FKDigitSpinnerView.m */,
-				A4D4435317A26B8F00F3DF5D /* FKNumberSpinnerView.h */,
-				A4D4435417A26B8F00F3DF5D /* FKNumberSpinnerView.m */,
-				A4D4435517A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.h */,
-				A4D4435617A26B8F00F3DF5D /* UIApplication+FKFileSystemPaths.m */,
-				A4D4435717A26B8F00F3DF5D /* UIView+FKGeometry.h */,
-				A4D4435817A26B8F00F3DF5D /* UIView+FKGeometry.m */,
-				A4D4435917A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.h */,
-				A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */,
-				A4A7C0761701E27F008A40FA /* UIView+FKKeyboard.h */,
-				A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */,
-				C9F0FC3216E9FEDB0059531C /* FKCollectionsExtensions.h */,
-				C9F0FC3316E9FEDB0059531C /* FKCollectionsExtensions.m */,
+				A4D4436117A2817100F3DF5D /* Categories */,
+				A4D4436017A2816000F3DF5D /* UIViews */,
 				AD255E02160349FE007CEDDB /* Colors.h */,
 				AD255E03160349FE007CEDDB /* DeviceCapabilities.h */,
 				AD255E04160349FE007CEDDB /* DeviceCapabilities.m */,
 				AD255E07160349FE007CEDDB /* OSConditionals.h */,
-				AD255E08160349FE007CEDDB /* UIAlertView+FKBlocks.h */,
-				AD255E09160349FE007CEDDB /* UIAlertView+FKBlocks.m */,
-				A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */,
-				A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */,
-				88D5CAC01604E78800B7CBD7 /* NSArray+FKBinarySearch.h */,
-				88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */,
-				A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */,
-				A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */,
 				A4EA32DE1679FF0300332885 /* FKThirdPartyApps.h */,
 				A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */,
 			);
