@@ -3,6 +3,8 @@ Futility
 
 Reusable code for iOS projects.
 
+Supports iOS 5 and later.
+
 
 Contributing
 ------------
@@ -11,6 +13,7 @@ For all code added to this repository, the following must hold:
 
 - Either you, or Futurice, owns the copyright
 - The code is released under the three-clause BSD license (see the `LICENSE` file).
+- The code works on iOS 5+ (iOS 4 support is not necessary)
 
 If the time you use to write some code is billed to a customer, the customer normally owns the copyright. Do not add such code here.
 
