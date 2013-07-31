@@ -1,7 +1,6 @@
 //
 //  UIAlertView+FKBlocks.h
 //  Non-ARC version
-//  iOS 4.3+
 //
 //
 // Copyright © Futurice (http://www.futurice.com)

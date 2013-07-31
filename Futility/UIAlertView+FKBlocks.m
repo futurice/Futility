@@ -1,6 +1,5 @@
 //
 //  UIAlertView+FKBlocks.m
-//  iOS 4.3+
 // 
 //
 // Copyright © Futurice (http://www.futurice.com)
@@ -103,78 +102,13 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
                                              dismissHandler:dismissBlock
                                               cancelHandler:cancelBlock];
     
-    UITextField *field = nil;
-    if ([alert respondsToSelector:@selector(alertViewStyle)])
-    {
-        // iOS 5+ : Supports text field alerts natively.
-        alert.alertViewStyle = secureInput ? UIAlertViewStyleSecureTextInput : UIAlertViewStylePlainTextInput;
-        field = [alert textFieldAtIndex:0];
-        field.keyboardType = keyboardType;
-        field.placeholder = fieldPlaceholder;
-        field.text = fieldText;
-        [alert show];
-    }
-    else
-    {
-        // iOS 4.x or earlier : must implement hacky workaround.
-        
-        // We add newlines to the end of the 'message' to reserve a bit of space
-        // below it, and then drop our UITextField there.
-        // 
-        // This works fine unless 'message' is so long that the alert view will
-        // display it in a scroll view, in which case we won't be able to reserve
-        // space for the text field by adding newlines to the end.
-        // 
-        // Three lines of message text (~100pt height) is shown as a normal label,
-        // but four lines (~120pt height) is shown as a scroll view. So we remove one
-        // word at a time from our message until it's short enough to fit on three
-        // lines:
-        // 
-        NSString *modifiedMessage = alert.message;
-        BOOL messageIsTruncated = NO;
-        while (110.0f < [[modifiedMessage stringByAppendingFormat:@"%@\n\n\n", (messageIsTruncated ? @"…" : @"")]
-                         sizeWithFont:[UIFont systemFontOfSize:16]
-                         constrainedToSize:CGSizeMake(260, 1000)
-                         lineBreakMode:NSLineBreakByWordWrapping].height)
-        {
-            messageIsTruncated = YES;
-            NSArray *words = [modifiedMessage componentsSeparatedByString:@" "];
-            modifiedMessage = [[words subarrayWithRange:NSMakeRange(0, words.count-1)] componentsJoinedByString:@" "];
-        }
-        
-        alert.message = [modifiedMessage stringByAppendingFormat:@"%@\n\n\n", (messageIsTruncated ? @"…" : @"")];
-        
-        field = [[UITextField alloc] initWithFrame:CGRectMake(16, 0, 252, 25)];
-        field.font = [UIFont systemFontOfSize:18];
-        field.keyboardAppearance = UIKeyboardAppearanceAlert;
-        field.secureTextEntry = secureInput;
-        field.borderStyle = UITextBorderStyleRoundedRect;
-        field.tag = TAG_INPUT_FIELD;
-        field.keyboardType = keyboardType;
-        field.placeholder = fieldPlaceholder;
-        field.text = fieldText;
-        [field becomeFirstResponder];
-        [alert addSubview:field];
-        
-        [alert show];
-        
-        // The alert view positions its subviews only after calling -show, so
-        // we have to do this here:
-        CGFloat alertLabelsBottom = 0;
-        for (UIView *subview in alert.subviews)
-        {
-            if (![subview isKindOfClass:[UILabel class]])
-                continue;
-            CGFloat bottom = CGRectGetMaxY(subview.frame);
-            if (alertLabelsBottom < bottom)
-                alertLabelsBottom = bottom;
-        }
-        field.frame = CGRectMake(field.frame.origin.x,
-                                 alertLabelsBottom - field.frame.size.height,
-                                 field.frame.size.width,
-                                 field.frame.size.height);
-    }
+    alert.alertViewStyle = secureInput ? UIAlertViewStyleSecureTextInput : UIAlertViewStylePlainTextInput;
+    UITextField *field = [alert textFieldAtIndex:0];
+    field.keyboardType = keyboardType;
+    field.placeholder = fieldPlaceholder;
+    field.text = fieldText;
     
+    [alert show];
     return alert;
 }
 
