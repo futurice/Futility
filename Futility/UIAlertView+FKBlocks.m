@@ -135,7 +135,7 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
         while (110.0f < [[modifiedMessage stringByAppendingFormat:@"%@\n\n\n", (messageIsTruncated ? @"…" : @"")]
                          sizeWithFont:[UIFont systemFontOfSize:16]
                          constrainedToSize:CGSizeMake(260, 1000)
-                         lineBreakMode:UILineBreakModeWordWrap].height)
+                         lineBreakMode:NSLineBreakByWordWrapping].height)
         {
             messageIsTruncated = YES;
             NSArray *words = [modifiedMessage componentsSeparatedByString:@" "];
