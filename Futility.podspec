@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Futility"
-  s.version      = "1.0.4"
+  s.version      = "1.1"
   s.summary      = "Some reusable iOS goodness, brought to you by Futurice."
   s.homepage     = "https://github.com/futurice/Futility"
   s.license      = { :type => "BSD-3", :file => 'LICENSE' }
