@@ -33,9 +33,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef id (^FKArrayEnumerationBlock)(id obj);
-typedef id (^FKArrayOperationBlock)(id x, id y);
-typedef BOOL (^FKArrayMatchBlock)(id obj);
+typedef id(^FKArrayEnumerationBlock)(id obj);
+typedef id(^FKArrayOperationBlock)(id x, id y);
+typedef BOOL(^FKArrayMatchBlock)(id obj);
 
 @interface NSArray (FKExtensions)
 
