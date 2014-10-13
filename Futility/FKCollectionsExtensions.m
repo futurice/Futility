@@ -67,7 +67,7 @@
         [ret addObject:NSNull.null];
     }
     
-    dispatch_queue_t collectionQueue = dispatch_queue_create("org.hasseg.fauxpas.parallel-map-collection",
+    dispatch_queue_t collectionQueue = dispatch_queue_create("com.Futurice.Futility.parallel-map-collection",
                                                              DISPATCH_QUEUE_SERIAL);
     dispatch_apply(count, queue, ^(size_t i) {
         id o = block(self[i]);
