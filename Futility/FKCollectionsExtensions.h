@@ -79,10 +79,10 @@ typedef NSArray*(^FKKeyValueEnumerationBlock)(id<NSCopying> key, id value);
 /// Return copy of self without empty values (typically NSStrings) or NSNulls
 - (NSArray *) fk_arrayWithoutEmpties;
 
-/// Return copy of self without occurrences of `obj`
+/// Return copy of self without any occurrences of `obj`
 - (NSArray *) fk_arrayWithoutObject:(id)obj;
 
-/// Return copy of self without occurrences of the objects in `objs`
+/// Return copy of self without any occurrences of the objects in `objs`
 - (NSArray *) fk_arrayWithoutObjects:(NSArray *)objs;
 
 /// Return @[@[a,x], @[c,y]] as @{a:x, c:y}
