@@ -102,8 +102,6 @@
     if (self.count == 0)
         return nil;
     id ret = self.firstObject;
-    if (self.count < 2)
-        return ret;
     for (NSUInteger i = 1; i < self.count; i++)
     {
         ret = block(ret, self[i]);
