@@ -23,8 +23,8 @@
 
 - (void)test_fk_map
 {
-    FKArrayEnumerationBlock identity = ^id(id obj) { return obj; };
-    FKArrayEnumerationBlock describe = ^id(id obj) { return [obj description]; };
+    FKUnaryOperatorBlock identity = ^id(id obj) { return obj; };
+    FKUnaryOperatorBlock describe = ^id(id obj) { return [obj description]; };
 
     NSArray *array0 = @[];
     NSArray *array1 = @[@1, @2.0, @"three"];
@@ -43,9 +43,31 @@
     STAssertEqualObjects([array1 fk_map:describe], array3, @"map function");
 }
 
+- (void)test_fk_parallelMap
+{
+    FKUnaryOperatorBlock identity = ^id(id obj) { return obj; };
+    FKUnaryOperatorBlock describe = ^id(id obj) { return [obj description]; };
+    
+    NSArray *array0 = @[];
+    NSArray *array1 = @[@1, @2.0, @"three"];
+    NSArray *array2 = @[@1, @2.0, @"three", @[], @{}];
+    NSArray *array3 = @[@"1", @"2", @"three"];
+    
+    if (![array0 respondsToSelector:@selector(fk_map:)]) {
+        STFail(@"respond to fk_map:");
+        return;
+    }
+    
+    STAssertEqualObjects([array0 fk_parallelMap:describe], @[], @"map over empty array");
+    
+    STAssertEqualObjects([array2 fk_parallelMap:identity], array2, @"map identity");
+    
+    STAssertEqualObjects([array1 fk_parallelMap:describe], array3, @"map function");
+}
+
 - (void)test_fk_filter
 {
-    FKArrayMatchBlock valid = ^BOOL(id obj) { return obj != [NSNull null]; };
+    FKObjectToBoolBlock valid = ^BOOL(id obj) { return obj != [NSNull null]; };
 
     NSArray *array0 = @[];
     NSArray *array1 = @[@1, [NSNull null], @"three"];
@@ -173,5 +195,100 @@
                          @"Empty dictionary");
 }
 
+- (void) test_fk_dictionaryMap
+{
+#define DICTMAP(_d, _f) [(_d) fk_map:^NSArray*(id<NSCopying> key, id value) { return (_f); }]
+    STAssertEqualObjects(DICTMAP(@{}, (@[key,value])), (@{}), @"Empty receiver -> response is an empty dict");
+    
+    NSDictionary *d = @{@"a":@1, @"b":@2};
+    STAssertEqualObjects(DICTMAP(d, (@[key,value])), (@{@"a":@1, @"b":@2}), @"Identity");
+    STAssertEqualObjects(DICTMAP(d, (@[key, @([value intValue] + 1)])), (@{@"a":@2, @"b":@3}), @"Value mapping");
+    STAssertEqualObjects(DICTMAP(d, (@[[(NSString*)key stringByAppendingString:@"x"], @([value intValue] + 1)])), (@{@"ax":@2, @"bx":@3}), @"Value and key mapping");
+    
+    STAssertEqualObjects(DICTMAP(d, ([(NSObject*)key isEqual:@"a"] ? @[key, value] : @[])),
+                         (@{@"a":@1}), @"Skip returned empty array");
+    STAssertEqualObjects(DICTMAP(d, ([(NSObject*)key isEqual:@"a"] ? @[key, value] : nil)),
+                         (@{@"a":@1}), @"Skip returned nil");
+    STAssertEqualObjects(DICTMAP(d, ([(NSObject*)key isEqual:@"a"] ? @[key, value] : (NSArray*)NSNull.null)),
+                         (@{@"a":@1}), @"Skip returned NSNull");
+    
+    FKNonCopyingClass *nonCopyingObj = [[FKNonCopyingClass alloc] init];
+    STAssertEqualObjects(DICTMAP(d, ([(NSObject*)key isEqual:@"a"] ? @[key, value] : @[nonCopyingObj, @1])),
+                         (@{@"a":@1}), @"Skip returned non-NSCopying keys");
+#undef DICTMAP
+}
+
+- (void) test_fk_mapSel
+{
+    STAssertEqualObjects(([@[] fk_mapSel:NULL]), @[], @"Null selector --> return self");
+    STAssertEqualObjects(([@[] fk_mapSel:@selector(lowercaseString)]), @[], @"Empty receiver -> response is an empty array");
+    STAssertEqualObjects(([@[@1,@2] fk_mapSel:@selector(stringValue)]), (@[@"1",@"2"]), @"basic");
+    STAssertEqualObjects(([@[@1,@2] fk_mapSel:@selector(lowercaseString)]), (@[NSNull.null, NSNull.null]), @"Doesn't respond to selector -> nil values");
+}
+
+- (void) test_fk_filterSel
+{
+    STAssertEqualObjects(([@[] fk_filterSel:NULL]), @[], @"Null selector --> return self");
+    STAssertEqualObjects(([@[] fk_filterSel:@selector(intValue)]), @[], @"Empty receiver -> response is an empty array");
+    STAssertEqualObjects(([@[@"1",@"2"] fk_filterSel:@selector(intValue)]), (@[@"1",@"2"]), @"basic");
+    STAssertEqualObjects(([@[@"1",@"0",@"2"] fk_filterSel:@selector(intValue)]), (@[@"1",@"2"]), @"basic");
+    STAssertEqualObjects(([@[@"0",@"0",@"0"] fk_filterSel:@selector(intValue)]), @[], @"basic");
+    STAssertEqualObjects(([@[@0,@1,@2] fk_filterSel:@selector(lowercaseString)]), @[], @"Doesn't respond to selector -> empty array");
+}
+
+- (void) test_fk_contains
+{
+    STAssertFalse(([@[] fk_contains:nil]), @"Nil block --> 'does not contain'");
+    STAssertEquals(([@[] fk_contains:^BOOL(id obj) { return YES; }]), NO, @"Empty receiver -> response is always NO");
+    STAssertEquals(([@[@1,@2] fk_contains:^BOOL(id obj) { return [obj isEqual:@1]; }]), YES, @"Basic");
+    STAssertEquals(([@[@2,@3] fk_contains:^BOOL(id obj) { return [obj isEqual:@1]; }]), NO, @"Basic");
+}
+
+- (void) test_fk_first
+{
+    STAssertNil(([@[] fk_first:nil]), @"Nil block");
+    STAssertNil(([@[] fk_first:^BOOL(id obj) { return YES; }]), @"Empty receiver -> response is always nil");
+    STAssertNil(([@[@2,@3] fk_first:^BOOL(id obj) { return [obj isEqual:@1]; }]), @"Not found");
+    STAssertEqualObjects(([@[@1,@2] fk_first:^BOOL(id obj) { return [obj isEqual:@1]; }]), @1, @"Basic");
+    STAssertEqualObjects(([@[@1,@2] fk_first:^BOOL(id obj) { return [obj isEqual:@2]; }]), @2, @"Basic");
+}
+
+- (void) test_fk_indexOfFirst
+{
+    STAssertEquals(([@[] fk_indexOfFirst:nil]), (NSUInteger)NSNotFound, @"Nil block -> response is always NSNotFound");
+    STAssertEquals(([@[] fk_indexOfFirst:^BOOL(id obj) { return YES; }]), (NSUInteger)NSNotFound, @"Empty receiver -> response is always NSNotFound");
+    STAssertEquals(([@[@2,@3] fk_indexOfFirst:^BOOL(id obj) { return [obj isEqual:@1]; }]), (NSUInteger)NSNotFound, @"Not found");
+    STAssertEquals(([@[@1,@2] fk_indexOfFirst:^BOOL(id obj) { return [obj isEqual:@1]; }]), (NSUInteger)0, @"Basic");
+    STAssertEquals(([@[@1,@2] fk_indexOfFirst:^BOOL(id obj) { return [obj isEqual:@2]; }]), (NSUInteger)1, @"Basic");
+}
+
+- (void) test_fk_withoutObject
+{
+    STAssertEqualObjects(([@[@"a",@"b",@"c"] fk_arrayWithoutObject:@"a"]),
+                         (@[@"b",@"c"]),
+                         @"Base case");
+    STAssertEqualObjects(([@[@"a",@"b",@"a"] fk_arrayWithoutObject:@"a"]),
+                         (@[@"b"]),
+                         @"Multiple instances to remove");
+    STAssertEqualObjects(([@[@"a",@"b",@"c"] fk_arrayWithoutObject:nil]),
+                         (@[@"a", @"b",@"c"]),
+                         @"nil");
+}
+
+- (void) test_fk_withoutObjects
+{
+    STAssertEqualObjects(([@[@"a",@"b",@"c"] fk_arrayWithoutObjects:@[@"a"]]),
+                         (@[@"b",@"c"]),
+                         @"Base case");
+    STAssertEqualObjects(([@[@"a",@"b",@"c"] fk_arrayWithoutObjects:@[@"a",@"c"]]),
+                         (@[@"b"]),
+                         @"Multiple specified");
+    STAssertEqualObjects(([@[@"a",@"b",@"a",@"c"] fk_arrayWithoutObjects:@[@"a",@"c"]]),
+                         (@[@"b"]),
+                         @"Multiple instances to remove");
+    STAssertEqualObjects(([@[@"a",@"b",@"c"] fk_arrayWithoutObjects:nil]),
+                         (@[@"a", @"b",@"c"]),
+                         @"nil");
+}
 
 @end

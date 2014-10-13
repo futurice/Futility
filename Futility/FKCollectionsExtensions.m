@@ -35,7 +35,7 @@
 
 @implementation NSArray (FKExtensions)
 
-- (NSArray *) fk_map:(FKArrayEnumerationBlock)block
+- (NSArray *) fk_map:(FKUnaryOperatorBlock)block
 {
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self)
@@ -46,7 +46,47 @@
     return ret;
 }
 
-- (NSArray *) fk_filter:(FKArrayMatchBlock)block
+- (NSArray *) fk_mapWithIndex:(FKIndexedEnumerationBlock)block
+{
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
+    for (NSUInteger i = 0; i < self.count; i++)
+    {
+        id obj = self[i];
+        id o = block(obj, i);
+        [ret addObject:(o ?: NSNull.null)];
+    }
+    return ret;
+}
+
+- (NSArray *) fk_parallelMap:(FKUnaryOperatorBlock)block onQueue:(dispatch_queue_t)queue
+{
+    NSUInteger count = self.count;
+    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:count];
+    for (NSUInteger i = 0; i < count; i++)
+    {
+        [ret addObject:NSNull.null];
+    }
+    
+    dispatch_queue_t collectionQueue = dispatch_queue_create("org.hasseg.fauxpas.parallel-map-collection",
+                                                             DISPATCH_QUEUE_SERIAL);
+    dispatch_apply(count, queue, ^(size_t i) {
+        id o = block(self[i]);
+        dispatch_sync(collectionQueue, ^{
+            ret[i] = o ?: NSNull.null;
+        });
+    });
+    
+    return ret;
+}
+
+- (NSArray *) fk_parallelMap:(FKUnaryOperatorBlock)block
+{
+    return [self
+            fk_parallelMap:block
+            onQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+}
+
+- (NSArray *) fk_filter:(FKObjectToBoolBlock)block
 {
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     for (id obj in self)
@@ -57,11 +97,11 @@
     return ret;
 }
 
-- (id) fk_reduce:(FKArrayOperationBlock)block
+- (id) fk_reduce:(FKBinaryOperatorBlock)block
 {
     if (self.count == 0)
         return nil;
-    id ret = self[0];
+    id ret = self.firstObject;
     if (self.count < 2)
         return ret;
     for (NSUInteger i = 1; i < self.count; i++)
@@ -71,7 +111,7 @@
     return ret;
 }
 
-- (id) fk_first:(FKArrayMatchBlock)block
+- (id) fk_first:(FKObjectToBoolBlock)block
 {
     for (id obj in self)
     {
@@ -81,7 +121,7 @@
     return nil;
 }
 
-- (BOOL) fk_contains:(FKArrayMatchBlock)block
+- (BOOL) fk_contains:(FKObjectToBoolBlock)block
 {
     for (id obj in self)
     {
@@ -89,6 +129,16 @@
             return YES;
     }
     return NO;
+}
+
+- (NSUInteger) fk_indexOfFirst:(FKObjectToBoolBlock)block
+{
+    for (NSUInteger i = 0; i < self.count; i++)
+    {
+        if (block(self[i]))
+            return i;
+    }
+    return NSNotFound;
 }
 
 - (NSArray *) fk_flattened
@@ -106,28 +156,40 @@
 
 - (NSArray *) fk_arrayWithoutDuplicates
 {
-    // This seems to be faster than using an NSMutableOrderedSet
-    //
-    NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
-    for (id obj in self)
-    {
-        if (![ret containsObject:obj])
-            [ret addObject:obj];
-    }
-    return ret;
+    return [[NSOrderedSet orderedSetWithArray:self] array];
 }
+
 - (NSArray *) fk_arrayWithoutNulls
 {
     return [self fk_filter:^BOOL(id obj) {
         return ![obj isEqual:NSNull.null];
     }];
 }
+
 - (NSArray *) fk_arrayWithoutEmpties
 {
     return [self fk_filter:^BOOL(id obj) {
         return ([obj respondsToSelector:@selector(length)] && 0 < [obj length]);
     }];
 }
+
+- (NSArray *) fk_arrayWithoutObject:(id)obj
+{
+    NSMutableArray *ret = self.mutableCopy;
+    [ret removeObject:obj];
+    return ret;
+}
+
+- (NSArray *) fk_arrayWithoutObjects:(NSArray *)objs
+{
+    NSMutableArray *ret = self.mutableCopy;
+    for (id obj in objs)
+    {
+        [ret removeObject:obj];
+    }
+    return ret;
+}
+
 
 - (NSDictionary *) fk_asDictionary
 {
@@ -136,13 +198,45 @@
     {
         if (![obj respondsToSelector:@selector(count)]
             || obj.count == 0
-            || ![obj[0] conformsToProtocol:@protocol(NSCopying)]
+            || ![obj.firstObject conformsToProtocol:@protocol(NSCopying)]
             )
             continue;
-        ret[obj[0]] = (1 < obj.count) ? obj[1] : NSNull.null;
+        ret[obj.firstObject] = (1 < obj.count) ? obj[1] : NSNull.null;
     }
     return ret;
 }
+
+#pragma mark - Selector variants
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
+- (NSArray *) fk_mapSel:(SEL)selector
+{
+    // We could use -[NSArray valueForKey:] here but that would crash
+    // as soon as one of the objects wasn't KVC-compliant for the given key.
+    //
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for (id obj in self)
+    {
+        id o = [obj respondsToSelector:selector] ? [obj performSelector:selector] : nil;
+        [array addObject:(o ?: NSNull.null)];
+    }
+    return array;
+}
+
+- (NSArray *) fk_filterSel:(SEL)selector
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for (id obj in self)
+    {
+        if (([obj respondsToSelector:selector] && [obj performSelector:selector]) || NO)
+            [array addObject:obj];
+    }
+    return array;
+}
+
+#pragma clang diagnostic pop
 
 @end
 
@@ -155,6 +249,22 @@
     for (id key in self)
     {
         [ret addObject:@[key, self[key]]];
+    }
+    return ret;
+}
+
+- (NSDictionary *) fk_map:(FKKeyValueEnumerationBlock)block
+{
+    NSMutableDictionary *ret = [NSMutableDictionary dictionaryWithCapacity:self.count];
+    for (id<NSCopying> key in self)
+    {
+        NSArray *mapped = block(key, self[key]);
+        if (![mapped isKindOfClass:NSArray.class]
+            || mapped.count < 2
+            || ![mapped[0] conformsToProtocol:@protocol(NSCopying)]
+            )
+            continue;
+        ret[mapped[0]] = mapped[1];
     }
     return ret;
 }
