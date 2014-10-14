@@ -47,8 +47,14 @@
 #define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
 #endif
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_8_0
+// This value is from the iOS 8.0 release:
+#define kCFCoreFoundationVersionNumber_iOS_8_0 1140.100
+#endif
+
 #define PRE_IOS_3  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_3_0)
 #define PRE_IOS_4  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_4_0)
 #define PRE_IOS_5  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0)
 #define PRE_IOS_6  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0)
 #define PRE_IOS_7  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0)
+#define PRE_IOS_8  (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_8_0)
