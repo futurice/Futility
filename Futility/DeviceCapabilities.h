@@ -34,7 +34,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-BOOL deviceCanMakeCalls();
-BOOL deviceCanMakeFaceTimeCalls();
-BOOL deviceHasCamera();
-BOOL deviceHasRetinaScreen();
+BOOL fk_deviceCanMakeCalls();
+BOOL fk_deviceCanMakeFaceTimeCalls();
+BOOL fk_deviceHasCamera();
+BOOL fk_deviceHasRetinaScreen();

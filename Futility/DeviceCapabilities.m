@@ -33,22 +33,22 @@
 
 #import "DeviceCapabilities.h"
 
-BOOL deviceCanMakeCalls()
+BOOL fk_deviceCanMakeCalls()
 {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:"]];
 }
 
-BOOL deviceCanMakeFaceTimeCalls()
+BOOL fk_deviceCanMakeFaceTimeCalls()
 {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"facetime:"]];
 }
 
-BOOL deviceHasCamera()
+BOOL fk_deviceHasCamera()
 {
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
 }
 
-BOOL deviceHasRetinaScreen()
+BOOL fk_deviceHasRetinaScreen()
 {
     return ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.00);
 }
