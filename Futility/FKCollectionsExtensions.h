@@ -43,16 +43,16 @@ typedef NSArray*(^FKKeyValueEnumerationBlock)(id<NSCopying> key, id value);
 @interface NSArray (FKExtensions)
 
 /// Create new array by performing block(obj) on each item
-- (NSArray *) fk_map:(FKUnaryOperatorBlock)block;
+- (instancetype) fk_map:(FKUnaryOperatorBlock)block;
 
 /// Create new array by performing block(obj,idx) on each item
-- (NSArray *) fk_mapWithIndex:(FKIndexedEnumerationBlock)block;
+- (instancetype) fk_mapWithIndex:(FKIndexedEnumerationBlock)block;
 
 /// Create new array by performing block(obj) on each item in parallel
-- (NSArray *) fk_parallelMap:(FKUnaryOperatorBlock)block;
+- (instancetype) fk_parallelMap:(FKUnaryOperatorBlock)block;
 
 /// Create new array by removing items for which block(obj) returns NO
-- (NSArray *) fk_filter:(FKObjectToBoolBlock)block;
+- (instancetype) fk_filter:(FKObjectToBoolBlock)block;
 
 /// Return value obtained by performing block(x, y) for items left-to-right
 /// (i.e. for [1,2,3,4] we would get (((1 op 2) op 3) op 4) )
@@ -68,31 +68,31 @@ typedef NSArray*(^FKKeyValueEnumerationBlock)(id<NSCopying> key, id value);
 - (BOOL) fk_contains:(FKObjectToBoolBlock)block;
 
 /// Create new array by
-- (NSArray *) fk_flattened;
+- (instancetype) fk_flattened;
 
 /// Return copy of self without duplicate values
-- (NSArray *) fk_arrayWithoutDuplicates;
+- (instancetype) fk_arrayWithoutDuplicates;
 
 /// Return copy of self without NSNull values
-- (NSArray *) fk_arrayWithoutNulls;
+- (instancetype) fk_arrayWithoutNulls;
 
 /// Return copy of self without empty values (typically NSStrings) or NSNulls
-- (NSArray *) fk_arrayWithoutEmpties;
+- (instancetype) fk_arrayWithoutEmpties;
 
 /// Return copy of self without any occurrences of `obj`
-- (NSArray *) fk_arrayWithoutObject:(id)obj;
+- (instancetype) fk_arrayWithoutObject:(id)obj;
 
 /// Return copy of self without any occurrences of the objects in `objs`
-- (NSArray *) fk_arrayWithoutObjects:(NSArray *)objs;
+- (instancetype) fk_arrayWithoutObjects:(NSArray *)objs;
 
 /// Return @[@[a,x], @[c,y]] as @{a:x, c:y}
 - (NSDictionary *) fk_asDictionary;
 
 /// Create new array by performing `selector` on each item
-- (NSArray *) fk_mapSel:(SEL)selector;
+- (instancetype) fk_mapSel:(SEL)selector;
 
 /// Create new array by removing items for which `selector` returns NO
-- (NSArray *) fk_filterSel:(SEL)selector;
+- (instancetype) fk_filterSel:(SEL)selector;
 
 @end
 
@@ -103,10 +103,10 @@ typedef NSArray*(^FKKeyValueEnumerationBlock)(id<NSCopying> key, id value);
 - (NSArray *) fk_pairs;
 
 /// Create new dictionary by performing block(key,value) on each key-value pair
-- (NSDictionary *) fk_map:(FKKeyValueEnumerationBlock)block;
+- (instancetype) fk_map:(FKKeyValueEnumerationBlock)block;
 
 /// Create a new dictionary by merging `other` with self, overwriting values for
 /// existing keys
-- (NSDictionary *) fk_dictionaryByMerging:(NSDictionary *)other;
+- (instancetype) fk_dictionaryByMerging:(NSDictionary *)other;
 
 @end
