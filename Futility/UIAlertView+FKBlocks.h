@@ -34,7 +34,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^FKAlertViewDismissBlock)(UIAlertView *alert, int buttonIndex, NSString *input);
+typedef void (^FKAlertViewDismissBlock)(UIAlertView *alert, NSInteger buttonIndex, NSString *input);
 typedef void (^FKAlertViewCancelBlock)(UIAlertView *alert);
 
 @interface UIAlertView (UIAlertView_FKBlocks)

@@ -163,7 +163,7 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
         if (dismissBlock != nil)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                dismissBlock(alertView, (int)buttonIndex, input);
+                dismissBlock(alertView, buttonIndex, input);
             });
         }
     }
