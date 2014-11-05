@@ -3,7 +3,7 @@ Futility
 
 Reusable code for iOS projects.
 
-Supports iOS 5 and later.
+Supports iOS 6 and later.
 
 
 Contributing
