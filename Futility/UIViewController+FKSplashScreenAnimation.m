@@ -44,7 +44,7 @@
 
 @implementation UIViewController (FKSplashScreenAnimation)
 
-#define SPLASH_PLACEHOLDER_TAG 77177171
+static const NSInteger FKSplashScreenImageViewPlaceholderTag = 77177171;
 
 static UIWindow *splashWindow;
 
@@ -67,7 +67,7 @@ static UIWindow *splashWindow;
     UIImageView *splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")]];
     splash.layer.shouldRasterize = YES;
     splash.layer.rasterizationScale = UIScreen.mainScreen.scale;
-    splash.tag = SPLASH_PLACEHOLDER_TAG;
+    splash.tag = FKSplashScreenImageViewPlaceholderTag;
 
     splash.frame = CGRectMake(0, 0, splashWindow.frame.size.width, splashWindow.frame.size.height);
     splashWindow.rootViewController.view.frame = splash.bounds;
@@ -76,7 +76,7 @@ static UIWindow *splashWindow;
 
 - (UIImageView *) fk_splashScreenPlaceholder
 {
-    return (UIImageView *)[splashWindow.rootViewController.view viewWithTag:SPLASH_PLACEHOLDER_TAG];
+    return (UIImageView *)[splashWindow.rootViewController.view viewWithTag:FKSplashScreenImageViewPlaceholderTag];
 }
 
 #define CHANGE_Y(_view, _y) (_view).frame = CGRectMake((_view).frame.origin.x, (_y), (_view).frame.size.width, (_view).frame.size.height)
