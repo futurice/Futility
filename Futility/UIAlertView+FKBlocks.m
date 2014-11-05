@@ -82,8 +82,6 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
     return alert;
 }
 
-#define TAG_INPUT_FIELD 1977
-
 + (UIAlertView *) fk_showWithTitle:(NSString*)title
                            message:(NSString*)message
                      textFieldText:(NSString*)fieldText
@@ -153,15 +151,9 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
     }
     else
     {
-        UITextField *inputField;
-        if ([self respondsToSelector:@selector(alertViewStyle)])
-            inputField = [alertView textFieldAtIndex:0];
-        else
-            inputField = (UITextField *)[alertView viewWithTag:TAG_INPUT_FIELD];
-        NSString *input = inputField.text;
-        
         if (dismissBlock != nil)
         {
+            NSString *input = [alertView textFieldAtIndex:0].text;
             dispatch_async(dispatch_get_main_queue(), ^{
                 dismissBlock(alertView, buttonIndex, input);
             });
