@@ -64,7 +64,7 @@ typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
 // FKSplashScreenAnimation enumeration.
 //
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
-                                                 animations:(int)animations
+                                                 animations:(unsigned int)animations
                                                  completion:(void(^)(BOOL finished))completion;
 
 // Creates a temporary UIWindow that contains the splash screen image.

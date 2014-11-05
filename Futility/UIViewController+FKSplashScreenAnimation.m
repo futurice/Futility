@@ -83,7 +83,7 @@ static UIWindow *splashWindow;
 #define CHANGE_X(_view, _x) (_view).frame = CGRectMake((_x), (_view).frame.origin.y, (_view).frame.size.width, (_view).frame.size.height)
 #define ANIMATION_IS_USED(_animationsBitfield, _animationBit) ((_animationsBitfield) & (_animationBit))
 
-static BOOL animationIncludesSliding(int animations)
+static BOOL animationIncludesSliding(unsigned int animations)
 {
     return (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideUp)
             || ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideDown)
@@ -92,25 +92,25 @@ static BOOL animationIncludesSliding(int animations)
             );
 }
 
-- (void) fk_prepareAnimations:(int)animations forView:(UIView *)splashView
+- (void) fk_prepareAnimations:(unsigned int)animations forView:(UIView *)splashView
 {
     if (animationIncludesSliding(animations))
     {
         splashView.layer.shadowColor = UIColor.blackColor.CGColor;
         splashView.layer.shadowOffset = CGSizeMake(0, 0);
-        splashView.layer.shadowOpacity = 0.6;
+        splashView.layer.shadowOpacity = 0.6f;
         splashView.layer.shadowRadius = 10;
         splashView.layer.shadowPath = [UIBezierPath bezierPathWithRect:splashView.bounds].CGPath;
     }
 
     if (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_ZoomViewUnderneath))
     {
-        self.view.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        self.view.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
         self.view.alpha = 0.5;
     }
 }
 
-- (void) fk_performAnimations:(int)animations forView:(UIView *)splashView
+- (void) fk_performAnimations:(unsigned int)animations forView:(UIView *)splashView
 {
     if (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideUp))
         CHANGE_Y(splashView, -(splashView.frame.size.height + splashView.layer.shadowRadius));
@@ -137,7 +137,7 @@ static BOOL animationIncludesSliding(int animations)
     }
 }
 
-- (void) fk_completeAnimations:(int)animations forView:(UIView *)splashView
+- (void) fk_completeAnimations:(unsigned int)animations forView:(UIView *)splashView
 {
     self.view.transform = CGAffineTransformIdentity;
 }
@@ -149,7 +149,7 @@ static BOOL splashScreenHasBeenAnimated = NO;
 }
 
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
-                                                 animations:(int)animations
+                                                 animations:(unsigned int)animations
                                                  completion:(void(^)(BOOL finished))completion
 {
     if (animations == FKSplashScreenAnimation_None)
