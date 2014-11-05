@@ -297,7 +297,7 @@
 			name = FutilityTests;
 			productName = FutilityTests;
 			productReference = AD255DEB16034978007CEDDB /* FutilityTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
