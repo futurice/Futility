@@ -467,9 +467,19 @@
 		AD255DFC16034978007CEDDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/Futility.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
@@ -477,6 +487,8 @@
 					"-Wall",
 					"-Wextra",
 					"-Wno-unused-parameter",
+					"-Wundef",
+					"-Wfloat-equal",
 				);
 			};
 			name = Debug;
@@ -484,9 +496,19 @@
 		AD255DFD16034978007CEDDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/Futility.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Futility;
 				SKIP_INSTALL = YES;
@@ -494,6 +516,8 @@
 					"-Wall",
 					"-Wextra",
 					"-Wno-unused-parameter",
+					"-Wundef",
+					"-Wfloat-equal",
 				);
 			};
 			name = Release;
