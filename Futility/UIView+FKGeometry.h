@@ -38,11 +38,11 @@
 
 @interface UIView (FKGeometry)
 
-@property (assign) CGFloat x;
-@property (assign) CGFloat y;
-@property (assign) CGFloat width;
-@property (assign) CGFloat height;
-@property (assign) CGPoint origin;
-@property (assign) CGSize size;
+@property (assign, nonatomic) CGFloat x;
+@property (assign, nonatomic) CGFloat y;
+@property (assign, nonatomic) CGFloat width;
+@property (assign, nonatomic) CGFloat height;
+@property (assign, nonatomic) CGPoint origin;
+@property (assign, nonatomic) CGSize size;
 
 @end
