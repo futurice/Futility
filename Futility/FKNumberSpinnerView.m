@@ -87,7 +87,7 @@
     NSInteger digitWidth = self.bounds.size.width/self.digitCount;
     NSInteger digitHeight = self.bounds.size.height;
     for (int i=0; i<self.digitCount; i++) {
-        FKDigitSpinnerView *digitSpinner = [self.digitSpinners objectAtIndex:i];
+        FKDigitSpinnerView *digitSpinner = self.digitSpinners[i];
         digitSpinner.frame = CGRectMake(i*digitWidth, 0, digitWidth, digitHeight);
     }
 }
@@ -105,7 +105,7 @@
     self.digitSpinners = [NSMutableArray arrayWithCapacity:self.digitCount];
     for (int i=0; i<self.digitCount; i++) {
         FKDigitSpinnerView *digitSpinner = [[FKDigitSpinnerView alloc] init];
-        [self.digitSpinners setObject:digitSpinner atIndexedSubscript:i];
+        self.digitSpinners[i] = digitSpinner;
         [self addSubview:digitSpinner];
     }
     [self setFrame:self.frame];
@@ -123,7 +123,7 @@
 
     // Set correct value for each digit
     for (int i=0; i<self.digitCount; i++) {
-        FKDigitSpinnerView *digitSpinner = [self.digitSpinners objectAtIndex:(self.digitCount-1-i)];
+        FKDigitSpinnerView *digitSpinner = self.digitSpinners[(self.digitCount-1-i)];
         if (value < 0) {
             [digitSpinner setValue:-1 animated:animated];
         } else if (i == 0) {

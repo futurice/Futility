@@ -44,7 +44,7 @@
 
 @implementation UIViewController (FKSplashScreenAnimation)
 
-#define SPLASH_PLACEHOLDER_TAG 77177171
+static const NSInteger FKSplashScreenImageViewPlaceholderTag = 77177171;
 
 static UIWindow *splashWindow;
 
@@ -67,7 +67,7 @@ static UIWindow *splashWindow;
     UIImageView *splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(isFourInchScreen ? @"Default-568h" : @"Default")]];
     splash.layer.shouldRasterize = YES;
     splash.layer.rasterizationScale = UIScreen.mainScreen.scale;
-    splash.tag = SPLASH_PLACEHOLDER_TAG;
+    splash.tag = FKSplashScreenImageViewPlaceholderTag;
 
     splash.frame = CGRectMake(0, 0, splashWindow.frame.size.width, splashWindow.frame.size.height);
     splashWindow.rootViewController.view.frame = splash.bounds;
@@ -76,14 +76,14 @@ static UIWindow *splashWindow;
 
 - (UIImageView *) fk_splashScreenPlaceholder
 {
-    return (UIImageView *)[splashWindow.rootViewController.view viewWithTag:SPLASH_PLACEHOLDER_TAG];
+    return (UIImageView *)[splashWindow.rootViewController.view viewWithTag:FKSplashScreenImageViewPlaceholderTag];
 }
 
 #define CHANGE_Y(_view, _y) (_view).frame = CGRectMake((_view).frame.origin.x, (_y), (_view).frame.size.width, (_view).frame.size.height)
 #define CHANGE_X(_view, _x) (_view).frame = CGRectMake((_x), (_view).frame.origin.y, (_view).frame.size.width, (_view).frame.size.height)
 #define ANIMATION_IS_USED(_animationsBitfield, _animationBit) ((_animationsBitfield) & (_animationBit))
 
-static BOOL animationIncludesSliding(unsigned int animations)
+static BOOL animationIncludesSliding(NSUInteger animations)
 {
     return (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideUp)
             || ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideDown)
@@ -92,7 +92,7 @@ static BOOL animationIncludesSliding(unsigned int animations)
             );
 }
 
-- (void) fk_prepareAnimations:(unsigned int)animations forView:(UIView *)splashView
+- (void) fk_prepareAnimations:(NSUInteger)animations forView:(UIView *)splashView
 {
     if (animationIncludesSliding(animations))
     {
@@ -110,7 +110,7 @@ static BOOL animationIncludesSliding(unsigned int animations)
     }
 }
 
-- (void) fk_performAnimations:(unsigned int)animations forView:(UIView *)splashView
+- (void) fk_performAnimations:(NSUInteger)animations forView:(UIView *)splashView
 {
     if (ANIMATION_IS_USED(animations, FKSplashScreenAnimation_SlideUp))
         CHANGE_Y(splashView, -(splashView.frame.size.height + splashView.layer.shadowRadius));
@@ -137,7 +137,7 @@ static BOOL animationIncludesSliding(unsigned int animations)
     }
 }
 
-- (void) fk_completeAnimations:(unsigned int)animations forView:(UIView *)splashView
+- (void) fk_completeAnimations:(NSUInteger)animations forView:(UIView *)splashView
 {
     self.view.transform = CGAffineTransformIdentity;
 }
@@ -149,7 +149,7 @@ static BOOL splashScreenHasBeenAnimated = NO;
 }
 
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
-                                                 animations:(unsigned int)animations
+                                                 animations:(NSUInteger)animations
                                                  completion:(void(^)(BOOL finished))completion
 {
     if (animations == FKSplashScreenAnimation_None)

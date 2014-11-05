@@ -35,7 +35,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^FKActionSheetDismissBlock)(UIActionSheet *sheet, int buttonIndex);
+typedef void (^FKActionSheetDismissBlock)(UIActionSheet *sheet, NSInteger buttonIndex);
 typedef void (^FKActionSheetCancelBlock)(UIActionSheet *sheet);
 
 @interface UIActionSheet (FKBlocks)

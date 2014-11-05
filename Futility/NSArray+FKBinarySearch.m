@@ -47,7 +47,7 @@
     {
         NSUInteger imid = (imax + imin) / 2;
 
-        NSComparisonResult result = comparator([self objectAtIndex:imid]);
+        NSComparisonResult result = comparator(self[imid]);
 
         // self[mid] compare o  == NSOrderedAscending <=> o > self[imid]
         if (result == NSOrderedAscending) {
@@ -78,7 +78,7 @@
     {
         NSUInteger imid = (imax + imin) / 2;
 
-        NSComparisonResult result = comparator([self objectAtIndex:imid]);
+        NSComparisonResult result = comparator(self[imid]);
 
         // self[mid] compare o  == NSOrderedAscending <=> o > self[imid]
         if (result == NSOrderedAscending) {
@@ -102,7 +102,7 @@
     {
         NSUInteger imid = (imax + imin) / 2;
 
-        NSComparisonResult result = comparator([self objectAtIndex:imid]);
+        NSComparisonResult result = comparator(self[imid]);
 
         // self[mid] compare o  == NSOrderedAscending <=> o > self[imid]
         if (result == NSOrderedAscending) {
