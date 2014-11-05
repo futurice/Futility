@@ -305,6 +305,7 @@
 		AD255D98160348DC007CEDDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = FK;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Futurice;
 			};
