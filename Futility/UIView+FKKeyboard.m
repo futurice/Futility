@@ -50,9 +50,9 @@
 // react to this by detaching the observer.
 //
 @interface FKViewKeyboardObserver : NSObject
-@property(retain) NSMutableArray *observers;
-@property(retain) NSTimer *throttlingTimer;
-@property(retain) UIView *view;
+@property(strong) NSMutableArray *observers;
+@property(strong) NSTimer *throttlingTimer;
+@property(strong) UIView *view;
 @property(copy) FKViewKeyboardReactionHandler handler;
 @property(assign) NSTimeInterval throttlingInterval;
 @end
