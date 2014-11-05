@@ -38,6 +38,10 @@
 #import "FKNumberSpinnerView.h"
 #import "FKDigitSpinnerView.h"
 
+// FIXME: Fix these issues here:
+#pragma clang diagnostic ignored "-Wconversion"
+#pragma clang diagnostic ignored "-Wsign-conversion"
+
 @interface FKNumberSpinnerView ()
 
 @property (nonatomic, strong) NSMutableArray *digitSpinners;
