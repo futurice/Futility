@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Futurice. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface FutilityTests : SenTestCase
+@interface FutilityTests : XCTestCase
 @end
 
 @implementation FutilityTests

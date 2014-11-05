@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Futurice. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "NSArray+FKBinarySearch.h"
 
 #import <vector>
 #import <algorithm>
 
-@interface NSArray_FKBinarySearchTests : SenTestCase
+@interface NSArray_FKBinarySearchTests : XCTestCase
 @end
 
 @implementation NSArray_FKBinarySearchTests
@@ -24,21 +24,21 @@
         return [number compare:n];
     };
 
-    STAssertEquals([array indexOfFirstObjectGreaterUsingComparator:comparator],
+    XCTAssertEqual([array indexOfFirstObjectGreaterUsingComparator:comparator],
                    gt,
-                   [NSString stringWithFormat:@"index of x > %@ should be %u in %@", n, gt, array]);
+                   @"index of x > %@ should be %lu in %@", n, gt, array);
 
-    STAssertEquals([array indexOfLastObjectLessOrEqualUsingComparator:comparator],
+    XCTAssertEqual([array indexOfLastObjectLessOrEqualUsingComparator:comparator],
                    le,
-                   [NSString stringWithFormat:@"index of x <= %@ should be %u in %@", n, le, array]);
+                   @"index of x <= %@ should be %lu in %@", n, le, array);
 
-    STAssertEquals([array indexOfFirstObjectGreaterOrEqualUsingComparator:comparator],
+    XCTAssertEqual([array indexOfFirstObjectGreaterOrEqualUsingComparator:comparator],
                    ge,
-                   [NSString stringWithFormat:@"index of x >= %@ should be %u in %@", n, ge, array]);
+                   @"index of x >= %@ should be %lu in %@", n, ge, array);
 
-    STAssertEquals([array indexOfLastObjectLessUsingComparator:comparator],
+    XCTAssertEqual([array indexOfLastObjectLessUsingComparator:comparator],
                    lt,
-                   [NSString stringWithFormat:@"index of x < %@ should be %u in %@", n, lt, array]);
+                   @"index of x < %@ should be %lu in %@", n, lt, array);
 
 }
 
@@ -138,7 +138,7 @@
         auto iter = std::lower_bound(vec.begin(), vec.end(), 50);
         NSUInteger index = iter - vec.begin();
 
-        STAssertEquals([array indexOfFirstObjectGreaterOrEqualUsingComparator:comparator],
+        XCTAssertEqual([array indexOfFirstObjectGreaterOrEqualUsingComparator:comparator],
                        index,
                        @"std::lower_bound is the same as indexOfFirstObjectGreaterOrEqualUsingComparator");
     }
@@ -147,7 +147,7 @@
         auto iter = std::upper_bound(vec.begin(), vec.end(), 50);
         NSUInteger index = iter - vec.begin();
 
-        STAssertEquals([array indexOfFirstObjectGreaterUsingComparator:comparator],
+        XCTAssertEqual([array indexOfFirstObjectGreaterUsingComparator:comparator],
                        index,
                        @"std::upper_bound is the same as indexOfFirstObjectGreaterUsingComparator");
     }

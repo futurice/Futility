@@ -10,6 +10,7 @@
 		88D5CAC21604E78800B7CBD7 /* NSArray+FKBinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5CAC11604E78800B7CBD7 /* NSArray+FKBinarySearch.m */; };
 		88D5CAC61604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */; };
 		A43AA7B016FA0D2100912B00 /* UIActionSheet+FKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */; };
+		A44435F91A0A1EC300E9F447 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44435F81A0A1EC300E9F447 /* XCTest.framework */; };
 		A459A97C1631573900D88254 /* NSString+FKPhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */; };
 		A459A980163159C500D88254 /* NSString+FKPhoneNumbersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */; };
 		A4A7C0781701E27F008A40FA /* UIView+FKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A7C0771701E27F008A40FA /* UIView+FKKeyboard.m */; };
@@ -24,7 +25,6 @@
 		A4D4435F17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4435A17A26B8F00F3DF5D /* UIViewController+FKSplashScreenAnimation.m */; };
 		A4EA32E01679FF0300332885 /* FKThirdPartyApps.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA32DF1679FF0300332885 /* FKThirdPartyApps.m */; };
 		AD255DDE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
-		AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DBD160348DC007CEDDB /* SenTestingKit.framework */; };
 		AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA5160348DC007CEDDB /* UIKit.framework */; };
 		AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DA7160348DC007CEDDB /* Foundation.framework */; };
 		AD255DF116034978007CEDDB /* libFutility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD255DDD16034978007CEDDB /* libFutility.a */; };
@@ -65,6 +65,7 @@
 		88D5CAC51604E7D500B7CBD7 /* NSArray+FKBinarySearchTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+FKBinarySearchTests.mm"; sourceTree = "<group>"; };
 		A43AA7AE16FA0D2100912B00 /* UIActionSheet+FKBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+FKBlocks.h"; sourceTree = "<group>"; };
 		A43AA7AF16FA0D2100912B00 /* UIActionSheet+FKBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+FKBlocks.m"; sourceTree = "<group>"; };
+		A44435F81A0A1EC300E9F447 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A459A97A1631573900D88254 /* NSString+FKPhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FKPhoneNumbers.h"; sourceTree = "<group>"; };
 		A459A97B1631573900D88254 /* NSString+FKPhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbers.m"; sourceTree = "<group>"; };
 		A459A97F163159C500D88254 /* NSString+FKPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FKPhoneNumbersTests.m"; sourceTree = "<group>"; };
@@ -87,9 +88,8 @@
 		AD255DA5160348DC007CEDDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AD255DA7160348DC007CEDDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AD255DA9160348DC007CEDDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AD255DBD160348DC007CEDDB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AD255DDD16034978007CEDDB /* libFutility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFutility.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD255DEB16034978007CEDDB /* FutilityTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutilityTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD255DEB16034978007CEDDB /* FutilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD255DF416034978007CEDDB /* FutilityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutilityTests-Info.plist"; sourceTree = "<group>"; };
 		AD255DF616034978007CEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AD255DF916034978007CEDDB /* FutilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutilityTests.m; sourceTree = "<group>"; };
@@ -122,9 +122,9 @@
 				A4D041C917A12F3B00AE9FDE /* MapKit.framework in Frameworks */,
 				A4D041C817A12F3700AE9FDE /* AddressBook.framework in Frameworks */,
 				AD84ACF91603775500AC4B7A /* CoreGraphics.framework in Frameworks */,
-				AD255DEC16034978007CEDDB /* SenTestingKit.framework in Frameworks */,
 				AD255DED16034978007CEDDB /* UIKit.framework in Frameworks */,
 				AD255DEE16034978007CEDDB /* Foundation.framework in Frameworks */,
+				A44435F91A0A1EC300E9F447 /* XCTest.framework in Frameworks */,
 				AD255DF116034978007CEDDB /* libFutility.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				AD255DDD16034978007CEDDB /* libFutility.a */,
-				AD255DEB16034978007CEDDB /* FutilityTests.octest */,
+				AD255DEB16034978007CEDDB /* FutilityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,12 +214,12 @@
 		AD255DA4160348DC007CEDDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A44435F81A0A1EC300E9F447 /* XCTest.framework */,
 				A4D041C617A12F1400AE9FDE /* MapKit.framework */,
 				A4D041C417A12F1000AE9FDE /* AddressBook.framework */,
 				AD255DA5160348DC007CEDDB /* UIKit.framework */,
 				AD255DA7160348DC007CEDDB /* Foundation.framework */,
 				AD255DA9160348DC007CEDDB /* CoreGraphics.framework */,
-				AD255DBD160348DC007CEDDB /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,8 +296,8 @@
 			);
 			name = FutilityTests;
 			productName = FutilityTests;
-			productReference = AD255DEB16034978007CEDDB /* FutilityTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = AD255DEB16034978007CEDDB /* FutilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -306,7 +306,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FK;
-				LastUpgradeCheck = 0460;
+				LastTestingUpgradeCheck = 0610;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Futurice;
 			};
 			buildConfigurationList = AD255D9B160348DC007CEDDB /* Build configuration list for PBXProject "Futility" */;
@@ -475,6 +476,10 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/Futility.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -504,6 +509,10 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				DSTROOT = /tmp/Futility.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -528,14 +537,14 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "FutilityTests/FutilityTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = FutilityTests;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -544,14 +553,14 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "FutilityTests/FutilityTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = FutilityTests;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
