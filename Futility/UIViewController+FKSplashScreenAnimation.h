@@ -36,7 +36,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
+typedef NS_OPTIONS(NSUInteger, FKSplashScreenAnimation)
 {
     FKSplashScreenAnimation_None = 0,
     FKSplashScreenAnimation_SlideUp =    (1 << 0),
@@ -64,7 +64,7 @@ typedef NS_OPTIONS(unsigned int, FKSplashScreenAnimation)
 // FKSplashScreenAnimation enumeration.
 //
 - (UIImageView *) fk_animateSplashScreenRemovalWithDuration:(NSTimeInterval)duration
-                                                 animations:(unsigned int)animations
+                                                 animations:(NSUInteger)animations
                                                  completion:(void(^)(BOOL finished))completion;
 
 // Creates a temporary UIWindow that contains the splash screen image.
