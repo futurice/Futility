@@ -153,7 +153,14 @@ static void *kFKCancelBlockAssociationKey = (void *)&kFKCancelBlockAssociationKe
     {
         if (dismissBlock != nil)
         {
-            NSString *input = [alertView textFieldAtIndex:0].text;
+            // There's no API to query the number of text fields, and -textFieldAtIndex
+            // raises "out of bounds" exceptions, so we have to check the alert view
+            // style to determine whether the number of text fields is larger than 0.
+            //
+            NSString *input = (alertView.alertViewStyle == UIAlertViewStyleDefault
+                               ? nil
+                               : [alertView textFieldAtIndex:0].text);
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 dismissBlock(alertView, buttonIndex, input);
             });
